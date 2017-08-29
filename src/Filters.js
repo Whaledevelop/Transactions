@@ -30,7 +30,7 @@ export class Filters extends React.Component {
 				this.setState ({ 
 				currentIncomeClassName: 'btn btn-default'						
 				});
-		}
+		};
 	}
 
 	handleConsumptionFilter(props) {
@@ -44,7 +44,7 @@ export class Filters extends React.Component {
 				this.setState ({ 
 				currentConsumptionClassName: 'btn btn-default'						
 				});
-		}
+		};
 	}
 
 	handleLastMonthFilter(props) {
