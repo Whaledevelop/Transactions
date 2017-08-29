@@ -21,12 +21,7 @@ export class Filters extends React.Component {
 
 	handleIncomeFilter(props) {
 		const inverseIncome = !this.props.incomeFilter;
-		//alert ('Это handleIncomeFilter из Filter. Это обратное значение от this props incomeFilter, т.е. переданного,        ' + inverseIncome);
-		//alert ('Соответственно это сам this props income Filter                   ' + this.props.incomeFilter);
-		//alert ('Т.е. поступил ' + this.props.incomeFilter + ', а вышел ' + inverseIncome)
 		this.props.onClick(inverseIncome, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandFilter);
-		//alert (this.props.filters.incomeFilter);
-		//alert ('А я хочу рассказать про изменение классов. До setState класс инкома был ' + this.state.currentIncomeClassName);
 		if (this.state.currentIncomeClassName === 'btn btn-default') {
 				this.setState ({
 				currentIncomeClassName: 'btn btn-success',			
@@ -36,7 +31,6 @@ export class Filters extends React.Component {
 				currentIncomeClassName: 'btn btn-default'						
 				});
 		}
-		//alert ('После setState класс будет' + this.state.currentIncomeClassName);
 	}
 
 	handleConsumptionFilter(props) {

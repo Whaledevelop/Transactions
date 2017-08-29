@@ -9,7 +9,6 @@ export class FilterButton extends React.Component {
 
 	changeClassName(props){
 		this.props.onClick(this.props.className);
-		//alert ('Это FilterButton, я ничего не делаю, только меняю классы. Кстати я передал' + this.props.className)
 	}
 
 	render() {
