@@ -21,7 +21,7 @@ export class Filters extends React.Component {
 
 	handleIncomeFilter(props) {
 		const inverseIncome = !this.props.incomeFilter;
-		this.props.onClick(inverseIncome, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandFilter);
+		this.props.onClick(inverseIncome, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
 		if (this.state.currentIncomeClassName === 'btn btn-default') {
 				this.setState ({
 				currentIncomeClassName: 'btn btn-success',			
@@ -35,7 +35,7 @@ export class Filters extends React.Component {
 
 	handleConsumptionFilter(props) {
 		const inverseConsumption = !this.props.consumptionFilter;
-		this.props.onClick(this.props.incomeFilter, inverseConsumption, this.props.lastMonthFilter, this.props.moreThanThousandFilter);
+		this.props.onClick(this.props.incomeFilter, inverseConsumption, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
 		if (this.state.currentConsumptionClassName === 'btn btn-default') {
 				this.setState ({
 				currentConsumptionClassName: 'btn btn-warning'				
@@ -49,7 +49,7 @@ export class Filters extends React.Component {
 
 	handleLastMonthFilter(props) {
 		const inverseLastMonth = !this.props.lastMonthFilter;
-		this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, inverseLastMonth, this.props.moreThanThousandFilter);
+		this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, inverseLastMonth, this.props.moreThanThousandRubFilter);
 		if (this.state.currentLastMonthClassName === 'btn btn-default') {
 			this.setState ({
 				currentLastMonthClassName: 'btn btn-info'				
