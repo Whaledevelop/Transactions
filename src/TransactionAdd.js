@@ -66,7 +66,7 @@ export class TransactionAdd extends React.Component {
                 type: 'income',
                 date: '21:30 08/28/2017'
               }
-            ];
+            ]
     }
     this.addTransaction = this.addTransaction.bind(this);
   }
@@ -89,23 +89,23 @@ addTransaction(e){
 
   render() {
     return(
-              
-<div className="col-md-4 col-lg-4">
-    <form ref={input => this.addForm = input} onSubmit={(e) => {this.addTransaction(e)}}>        
-      <div className="form-group">
-        <div className="input-group">
-          <input 
-              ref={input => this.newTransactionValue = input}
-              type="text" 
-              className="form-control"
-              placeholder="Pass the value"  />
-          <span className="input-group-btn">
-            <button className="btn btn-default" type="submit">Add</button>
-          </span>
+
+        <div className="col-md-4 col-lg-4">
+            <form ref={input => this.addForm = input} onSubmit={(e) => {this.addTransaction(e)}}>        
+              <div className="form-group">
+                <div className="input-group">
+                  <input 
+                      ref={input => this.newTransactionValue = input}
+                      type="text" 
+                      className="form-control"
+                      placeholder="Pass the value"  />
+                  <span className="input-group-btn">
+                    <button className="btn btn-default" type="submit">Add</button>
+                  </span>
+                </div>
+              </div>
+            </form>
         </div>
-      </div>
-    </form>
-</div>
 
       )
   }
