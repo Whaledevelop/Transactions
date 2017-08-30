@@ -25,6 +25,7 @@ class App extends React.Component {
           lastMonthFilter: newLastMonthFilter,
           moreThanThousandRubFilter: newMoreThanThousandRubFilter
       });
+
   }
 
   render () {
