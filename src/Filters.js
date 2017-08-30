@@ -1,8 +1,4 @@
 import React from 'react';
-import {FilterButton} from './FilterButton';
-
-
-
 
 export class Filters extends React.Component {
 	constructor(props) {
@@ -13,104 +9,98 @@ export class Filters extends React.Component {
 				currentLastMonthClassName: 'btn btn-default',
 				currentMoreThanThousandRubClassName: 'btn btn-default'
     };
-		this.handleIncomeFilter = this.handleIncomeFilter.bind(this);
-		this.handleConsumptionFilter = this.handleConsumptionFilter.bind(this);
-		this.handleLastMonthFilter = this.handleLastMonthFilter.bind(this);
-		this.handleMoreThanThousandRubFilter = this.handleMoreThanThousandRubFilter.bind(this);
+
+		this.changeFilters = this.changeFilters.bind(this);
 	}
 
-	handleIncomeFilter(props) {
-		const inverseIncome = !this.props.incomeFilter;
-		this.props.onClick(inverseIncome, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
-		if (this.state.currentIncomeClassName === 'btn btn-default') {
-				this.setState ({
-				currentIncomeClassName: 'btn btn-success',			
+	changeFilters(e, props) {
+		const currentFilterId = e.target.id;
+		if (currentFilterId === 'incomeFilterId') {
+			if (!this.props.incomeFilter) {
+				this.setState({
+					currentIncomeClassName: 'btn btn-success'
 				});
-		} else {
-				this.setState ({ 
-				currentIncomeClassName: 'btn btn-default'						
+				this.props.onClick(true, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+			} else {
+				this.setState({
+				currentIncomeClassName: 'btn btn-default'
 				});
-		};
-	}
-
-	handleConsumptionFilter(props) {
-		const inverseConsumption = !this.props.consumptionFilter;
-		this.props.onClick(this.props.incomeFilter, inverseConsumption, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
-		if (this.state.currentConsumptionClassName === 'btn btn-default') {
-				this.setState ({
-				currentConsumptionClassName: 'btn btn-warning'				
+				this.props.onClick(false, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+			};
+		} else if (currentFilterId === 'consumptionFilterId') {
+			if (!this.props.consumptionFilter) {
+				this.setState({
+						currentConsumptionClassName: 'btn btn-warning'
+					});
+				this.props.onClick(this.props.incomeFilter, true, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+			} else {
+				this.setState({
+				currentConsumptionClassName: 'btn btn-default'
 				});
-		} else {
-				this.setState ({ 
-				currentConsumptionClassName: 'btn btn-default'						
+				this.props.onClick(this.props.incomeFilter, false, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+			};
+		} else if (currentFilterId === 'lastMonthFilterId') {
+			if (!this.props.lastMonthFilter) {
+				this.setState({
+					currentLastMonthClassName: 'btn btn-info'
 				});
-		};
-	}
-
-	handleLastMonthFilter(props) {
-		const inverseLastMonth = !this.props.lastMonthFilter;
-		this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, inverseLastMonth, this.props.moreThanThousandRubFilter);
-		if (this.state.currentLastMonthClassName === 'btn btn-default') {
-			this.setState ({
-				currentLastMonthClassName: 'btn btn-info'				
-			});
-		} else {
-			this.setState ({ 
-				currentLastMonthClassName: 'btn btn-default'		
-			});
-		};
-	}
-
-	handleMoreThanThousandRubFilter(props) {
-		const inverseMoreThanThousandRub = !this.props.moreThanThousandRubFilter;
-		this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, this.props.lastMonthFilter, inverseMoreThanThousandRub);
-		if (this.state.currentMoreThanThousandRubClassName === 'btn btn-default') {
-			this.setState ({
-
-				currentMoreThanThousandRubClassName: 'btn btn-primary'
-				
-			});
-		} else {
-			this.setState ({ 
-				currentMoreThanThousandRubClassName: 'btn btn-default'			
-			});
-		};
-		
+				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, true, this.props.moreThanThousandRubFilter);
+			} else {
+				this.setState({
+				currentLastMonthClassName: 'btn btn-default'
+				});
+				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, false, this.props.moreThanThousandRubFilter);
+			}
+		} else if (currentFilterId === 'moreThanThousandRubFilterId') {
+			if (!this.props.moreThanThousandRubFilter) {
+				this.setState({
+					currentMoreThanThousandRubClassName: 'btn btn-primary'
+				});
+				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, this.props.lastMonthFilter, true);	
+			} else {
+				this.setState({
+				currentMoreThanThousandRubClassName: 'btn btn-default'
+				});
+				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, this.props.lastMonthFilter, false);
+			}
+		}		
 	}
 
 	render () {
 		return (
 			<div className="btn-group btn-group-justified">
-		        <FilterButton 
-		          			className={this.state.currentIncomeClassName}
-		          			text= 'Income'
-		          			onClick={this.handleIncomeFilter}
-		          			
-		        />
-		        <FilterButton 
-		          			className={this.state.currentConsumptionClassName}
-		          			text= 'Consumption'
-		          			onClick={this.handleConsumptionFilter}
-		          			
-		        />
-		        <FilterButton 
-		          			className={this.state.currentLastMonthClassName}
-		          			text= 'Last Month'
-		          			onClick={this.handleLastMonthFilter}
-		          			
-		        />
-		        <FilterButton 
-		          			className={this.state.currentMoreThanThousandRubClassName}
-		          			text= 'More Than 1000 Rub'
-		          			onClick={this.handleMoreThanThousandRubFilter}
-
-		        />
-	
-
+				<a 
+		            href = "#"
+		            id = 'incomeFilterId'
+		            className = {this.state.currentIncomeClassName}
+		            onClick = {this.changeFilters}>
+		            Income
+		        </a>
+		        <a 
+		            href = "#"
+		            id = 'consumptionFilterId'
+		            className = {this.state.currentConsumptionClassName}
+		            onClick = {this.changeFilters}>
+		            Consumption
+		        </a>
+		        <a 
+		            href = "#"
+		            id = 'lastMonthFilterId'
+		            className = {this.state.currentLastMonthClassName}
+		            onClick = {this.changeFilters}>
+		            Last Month
+		        </a>
+		        <a 
+		            href = "#"
+		            id = 'moreThanThousandRubFilterId'
+		            className = {this.state.currentMoreThanThousandRubClassName}
+		            onClick = {this.changeFilters}>
+		            More than 1000 rub
+		        </a>
 		    </div>
 			
 				
-				);
+		);
 	}
    					
 } 
