@@ -58,7 +58,7 @@ class App extends Component {
    return (
       <div className="container-fluid">
           <div className="col-md-12 col-lg-12">
-              <h1>Transactions List</h1>  
+              <button type='button' className="btn btn-default" id="addButton">Добавить транзакцию</button>
               <Filters 
                 onClick={this.handleFilters}
                 incomeFilter={this.state.incomeFilter}

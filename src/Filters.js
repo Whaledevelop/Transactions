@@ -74,7 +74,7 @@ export class Filters extends Component {
 		            className = {this.state.currentIncomeClassName}
 		            onClick = {this.changeFilters}>
 		            Income
-		        </a>
+		    </a>
 		        <a 
 		            id = 'consumptionFilterId'
 		            className = {this.state.currentConsumptionClassName}
