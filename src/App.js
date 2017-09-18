@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './bootstrap.css'
 import './App.css';
 import {TransactionsTable} from './TransactionsTable';
@@ -6,7 +6,7 @@ import {transactionsList} from './transactionsList';
 import {Filters} from './Filters';
 import moment from 'moment';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
   super(props);
   this.state = {

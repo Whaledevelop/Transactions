@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export class Filters extends React.Component {
+export class Filters extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {

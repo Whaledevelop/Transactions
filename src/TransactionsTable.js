@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
 
-export class TransactionsTable extends React.Component {
+export class TransactionsTable extends Component {
 	render (){
 	    return (   
 	       <tr key={this.props.transaction.id}>
