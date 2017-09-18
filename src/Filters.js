@@ -70,28 +70,24 @@ export class Filters extends Component {
 		return (
 			<div className="btn-group btn-group-justified">
 				<a 
-		            href = "#"
 		            id = 'incomeFilterId'
 		            className = {this.state.currentIncomeClassName}
 		            onClick = {this.changeFilters}>
 		            Income
 		        </a>
 		        <a 
-		            href = "#"
 		            id = 'consumptionFilterId'
 		            className = {this.state.currentConsumptionClassName}
 		            onClick = {this.changeFilters}>
 		            Consumption
 		        </a>
 		        <a 
-		            href = "#"
 		            id = 'lastMonthFilterId'
 		            className = {this.state.currentLastMonthClassName}
 		            onClick = {this.changeFilters}>
 		            Last Month
 		        </a>
 		        <a 
-		            href = "#"
 		            id = 'moreThanThousandRubFilterId'
 		            className = {this.state.currentMoreThanThousandRubClassName}
 		            onClick = {this.changeFilters}>
