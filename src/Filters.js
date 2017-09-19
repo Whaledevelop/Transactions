@@ -15,7 +15,7 @@ export class Filters extends Component {
 	changeFilters(e, props) {
 		const filterId = e.target.id;
 		if (filterId === 'incomeId') {
-			if (!this.props.incomeFilter) {
+			if (!this.props.filters.incomeFilter) {
 				this.setState({
 						incomeClassName: 'btn btn-success'
 				});
@@ -24,8 +24,7 @@ export class Filters extends Component {
 						incomeClassName: 'btn btn-default'
 				});
 			};
-			this.props.onClick(!this.props.incomeFilter, this.props.consumptionFilter, 
-				this.props.lastMonthFilter, this.props.moreThanFilter);
+			this.props.onClick();
 		} else if (filterId === 'consumptionId') {
 			if (!this.props.consumptionFilter) {
 				this.setState({
@@ -36,8 +35,7 @@ export class Filters extends Component {
 						consumptionClassName: 'btn btn-default'
 				});
 			};
-			this.props.onClick(this.props.incomeFilter, !this.props.consumptionFilter, 
-				this.props.lastMonthFilter, this.props.moreThanFilter);
+			this.props.onClick();
 		} else if (filterId === 'lastMonthId') {
 			if (!this.props.lastMonthFilter) {
 				this.setState({
@@ -48,8 +46,7 @@ export class Filters extends Component {
 					lastMonthClassName: 'btn btn-default'
 				});
 			}
-			this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, 
-				!this.props.lastMonthFilter, this.props.moreThanFilter);
+			this.props.onClick();
 		} else if (filterId === 'moreThanFilterId') {
 			if (!this.props.moreThanFilter) {
 				this.setState({
@@ -60,8 +57,7 @@ export class Filters extends Component {
 				moreThanClassName: 'btn btn-default'
 				});
 			}
-			this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, 
-				this.props.lastMonthFilter, !this.props.moreThanFilter);
+			this.props.onClick();
 		}		
 	}
 

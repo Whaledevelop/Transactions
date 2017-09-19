@@ -12,45 +12,42 @@ import {Filters} from './Filters';
 class App extends Component {
   constructor(props) {
   super(props);
-  this.state = {
+  this.state = { filters:  {
                   incomeFilter: false,
                   consumptionFilter: false,
                   lastMonthFilter: false,
                   moreThanFilter: false
+      }
     }
     this.handleFilters = this.handleFilters.bind(this);
   }
 
-  handleFilters(newIncomeFilter, newConsumptionFilter,
-     newLastMonthFilter, newMoreThanFilter) {
+  handleFilters(newFilters) {
       this.setState({
-          incomeFilter: newIncomeFilter,
-          consumptionFilter: newConsumptionFilter,
-          lastMonthFilter: newLastMonthFilter,
-          moreThanFilter: newMoreThanFilter
+          filters: newFilters
       });
   }
 
   render () {
     const filterTransactions = () => {
         let filteredTransactions =  transactionsList;
-        if (this.state.incomeFilter || this.state.consumptionFilter || 
-          this.state.lastMonthFilter || this.state.moreThanFilter) {
-            if (this.state.incomeFilter) {
+        if (this.state.filters) {
+            if (this.state.filters.incomeFilter) {
+              console.log ('true income');
               filteredTransactions = filteredTransactions.filter(transaction =>
                  transaction.type === 'income');
             }
-            if (this.state.consumptionFilter) {
+            if (this.state.filters.consumptionFilter) {
               filteredTransactions = filteredTransactions.filter (transaction =>
                  transaction.type === 'consumption');
             }
-            if (this.state.lastMonthFilter) {
+            if (this.state.filters.lastMonthFilter) {
               const monthAgo = moment().subtract(30, 'days').calendar();
               const formattedMonthAgo = moment(monthAgo).format('YYMMDD');
               filteredTransactions = filteredTransactions.filter(transaction => 
                 moment(transaction.date).format('YYMMDD') > formattedMonthAgo);
             }
-            if (this.state.moreThanFilter) {
+            if (this.state.filters.moreThanFilter) {
               filteredTransactions = filteredTransactions.filter (transaction => 
                 transaction.value > 1000);
             }
@@ -70,10 +67,7 @@ class App extends Component {
               </button>
               <Filters 
                   onClick={this.handleFilters}
-                  incomeFilter={this.state.incomeFilter}
-                  consumptionFilter={this.state.consumptionFilter}
-                  lastMonthFilter={this.state.lastMonthFilter}
-                  moreThanFilter={this.state.moreThanFilter}/>
+                  filters={this.state.filters}/>
               <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -84,13 +78,7 @@ class App extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                  {filterTransactions(
-                      this.state.incomeFilter, 
-                      this.state.consumptionFilter, 
-                      this.state.lastMonthFilter, 
-                      this.state.moreThanFilter
-                    )
-                }
+                  {filterTransactions(this.state.filters)}
                 </tbody>
               </table>              
           </div>
