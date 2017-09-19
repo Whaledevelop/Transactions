@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import moment from 'moment';
+
 import './bootstrap.css'
 import './App.css';
+
 import {TransactionsTable} from './TransactionsTable';
 import {transactionsList} from './transactionsList';
 import {Filters} from './Filters';
-import moment from 'moment';
+
 
 class App extends Component {
   constructor(props) {
@@ -13,18 +16,18 @@ class App extends Component {
                   incomeFilter: false,
                   consumptionFilter: false,
                   lastMonthFilter: false,
-                  moreThanThousandRubFilter: false
+                  moreThanFilter: false
     }
     this.handleFilters = this.handleFilters.bind(this);
   }
 
   handleFilters(newIncomeFilter, newConsumptionFilter,
-     newLastMonthFilter, newMoreThanThousandRubFilter) {
+     newLastMonthFilter, newMoreThanFilter) {
       this.setState({
           incomeFilter: newIncomeFilter,
           consumptionFilter: newConsumptionFilter,
           lastMonthFilter: newLastMonthFilter,
-          moreThanThousandRubFilter: newMoreThanThousandRubFilter
+          moreThanFilter: newMoreThanFilter
       });
   }
 
@@ -32,7 +35,7 @@ class App extends Component {
     const filterTransactions = () => {
         let filteredTransactions =  transactionsList;
         if (this.state.incomeFilter || this.state.consumptionFilter || 
-          this.state.lastMonthFilter || this.state.moreThanThousandRubFilter) {
+          this.state.lastMonthFilter || this.state.moreThanFilter) {
             if (this.state.incomeFilter) {
               filteredTransactions = filteredTransactions.filter(transaction =>
                  transaction.type === 'income');
@@ -47,7 +50,7 @@ class App extends Component {
               filteredTransactions = filteredTransactions.filter(transaction => 
                 moment(transaction.date).format('YYMMDD') > formattedMonthAgo);
             }
-            if (this.state.moreThanThousandRubFilter) {
+            if (this.state.moreThanFilter) {
               filteredTransactions = filteredTransactions.filter (transaction => 
                 transaction.value > 1000);
             }
@@ -62,13 +65,15 @@ class App extends Component {
    return (
       <div className="container-fluid">
           <div className="col-md-12 col-lg-12">
-              <button type='button' className="btn btn-default" id="addButton">Добавить транзакцию</button>
+              <button type='button' className="btn btn-default" id="addButton">
+                  Добавить транзакцию
+              </button>
               <Filters 
                   onClick={this.handleFilters}
                   incomeFilter={this.state.incomeFilter}
                   consumptionFilter={this.state.consumptionFilter}
                   lastMonthFilter={this.state.lastMonthFilter}
-                  moreThanThousandRubFilter={this.state.moreThanThousandRubFilter}/>
+                  moreThanFilter={this.state.moreThanFilter}/>
               <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -83,7 +88,7 @@ class App extends Component {
                       this.state.incomeFilter, 
                       this.state.consumptionFilter, 
                       this.state.lastMonthFilter, 
-                      this.state.moreThanThousandRubFilter
+                      this.state.moreThanFilter
                     )
                 }
                 </tbody>
