@@ -40,7 +40,6 @@ class App extends Component {
 
   superFilter(e){
       let currentFilter = e.target.id;
-      console.log (currentFilter);
       this.props.onFilter(currentFilter);
   }
 
@@ -89,8 +88,6 @@ class App extends Component {
               <div>
                   <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
                   <button id="consumption" onClick = {this.superFilter.bind(this)}>Consumption Filter</button>
-                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
-                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
               </div>
               <table className="table table-striped table-hover">
                 <thead>
@@ -142,7 +139,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    transactions: state.transactions.filter(transaction => transaction.type.includes(state.filters))//.includes(state.income))
+    transactions: state.transactions.filter(transaction => transaction.type.includes(state.filters)),//.includes(state.income))
   }),
   dispatch => ({
     onAddTransaction: (value, transactions) => {
