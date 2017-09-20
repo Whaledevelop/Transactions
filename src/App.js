@@ -13,14 +13,14 @@ import Filters from './Filters';
 
 class App extends Component {
   constructor(props) {
-  super(props);
-  this.state = {
-                  incomeFilter: false,
-                  consumptionFilter: false,
-                  lastMonthFilter: false,
-                  moreThanFilter: false
-    }
-    this.handleFilters = this.handleFilters.bind(this);
+    super(props);
+    this.state = {
+                    incomeFilter: false,
+                    consumptionFilter: false,
+                    lastMonthFilter: false,
+                    moreThanFilter: false
+      }
+      this.handleFilters = this.handleFilters.bind(this);
   }
 
   handleFilters(newIncomeFilter, newConsumptionFilter,
@@ -34,8 +34,14 @@ class App extends Component {
   }
 
   addTransaction() {
-    this.props.onAddTransaction(this.transactionInput.value);
+    this.props.onAddTransaction(this.transactionInput.value, this.props.transactions);
     this.transactionInput.value = '';
+  }
+
+  superFilter(e){
+      let currentFilter = e.target.id;
+      console.log (currentFilter);
+      this.props.onFilter(currentFilter);
   }
 
   render () {
@@ -80,13 +86,29 @@ class App extends Component {
                     <input type="text" ref={(input) => { this.transactionInput = input }} />
                     <button onClick={this.addTransaction.bind(this)}>Add transaction</button>
               </div>
+              <div>
+                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
+                  <button id="consumption" onClick = {this.superFilter.bind(this)}>Consumption Filter</button>
+                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
+                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
+              </div>
               <table className="table table-striped table-hover">
-                {this.props.transactions.map((transaction, index) =>
-                  <TransactionsTable 
-                                    transaction={transaction} 
-                                    key={transaction.id}/>
-                    )}
-              </table>            
+                <thead>
+                      <tr>
+                          <th>id</th>
+                          <th>Value</th>
+                          <th>Type</th>
+                          <th>Date</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {this.props.transactions.map((transaction, index) =>
+                        <TransactionsTable 
+                                          transaction={transaction} 
+                                          key={transaction.id}/>
+                          )}
+                  </tbody>
+              </table>                          
               <Filters 
                   onClick={this.handleFilters}
                   incomeFilter={this.state.incomeFilter}
@@ -120,17 +142,20 @@ class App extends Component {
 
 export default connect(
   state => ({
-    transactions: state.transactions
+    transactions: state.transactions.filter(transaction => transaction.type.includes(state.filters))//.includes(state.income))
   }),
   dispatch => ({
-    onAddTransaction: (value) => {
+    onAddTransaction: (value, transactions) => {
       const payload = {
-        id: (transactionsList.length + 1),
+        id: 11,//(transactions.length + 1),
         value: value,
         type: 'income',
         date: moment().format('HH:mm - DD.MM.YYYY')
       };
       dispatch({ type: 'ADD_TRANSACTION', payload });
+    },
+    onFilter: (filter) => {
+      dispatch({ type: 'FILTER', payload: filter});
     }
   })
 )(App);
