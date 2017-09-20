@@ -63,7 +63,7 @@ class App extends Component {
     };
 
    return (
-      <div className="container-fluid">
+      <div className="container">
           <div className="col-md-12 col-lg-12">
               <button type='button' className="btn btn-default" id="addButton">
                   Добавить транзакцию
