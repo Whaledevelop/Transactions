@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import './bootstrap.css'
+import './bootstrap.css';
 import './App.css';
 
-import {TransactionsTable} from './TransactionsTable';
-import {transactionsList} from './transactionsList';
-import {Filters} from './Filters';
+import TransactionsTable from './TransactionsTable';
+import transactionsList from './transactionsList';
+import Filters from './Filters';
 
 
 class App extends Component {
@@ -31,6 +33,11 @@ class App extends Component {
       });
   }
 
+  addTransaction() {
+    this.props.onAddTransaction(this.transactionInput.value);
+    this.transactionInput.value = '';
+  }
+
   render () {
     const filterTransactions = () => {
         let filteredTransactions =  transactionsList;
@@ -45,10 +52,9 @@ class App extends Component {
                  transaction.type === 'consumption');
             }
             if (this.state.lastMonthFilter) {
-              const monthAgo = moment().subtract(30, 'days').calendar();
-              const formattedMonthAgo = moment(monthAgo).format('YYMMDD');
+              const monthAgo = moment().subtract(30, 'days').format('YYMMDD');
               filteredTransactions = filteredTransactions.filter(transaction => 
-                moment(transaction.date).format('YYMMDD') > formattedMonthAgo);
+                moment(transaction.date).format('YYMMDD') > monthAgo);
             }
             if (this.state.moreThanFilter) {
               filteredTransactions = filteredTransactions.filter (transaction => 
@@ -65,9 +71,22 @@ class App extends Component {
    return (
       <div className="container">
           <div className="col-md-12 col-lg-12">
-              <button type='button' className="btn btn-default" id="addButton">
-                  Добавить транзакцию
-              </button>
+              <div>
+                  <Link to="/add">
+                      <button type="button" className="btn btn-default" id="addButton">Add transaction</button>
+                  </Link>
+              </div>
+              <div>
+                    <input type="text" ref={(input) => { this.transactionInput = input }} />
+                    <button onClick={this.addTransaction.bind(this)}>Add transaction</button>
+              </div>
+              <table className="table table-striped table-hover">
+                {this.props.transactions.map((transaction, index) =>
+                  <TransactionsTable 
+                                    transaction={transaction} 
+                                    key={transaction.id}/>
+                    )}
+              </table>            
               <Filters 
                   onClick={this.handleFilters}
                   incomeFilter={this.state.incomeFilter}
@@ -92,11 +111,26 @@ class App extends Component {
                     )
                 }
                 </tbody>
-              </table>              
+              </table>            
           </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  state => ({
+    transactions: state.transactions
+  }),
+  dispatch => ({
+    onAddTransaction: (value) => {
+      const payload = {
+        id: (transactionsList.length + 1),
+        value: value,
+        type: 'income',
+        date: moment().format('HH:mm - DD.MM.YYYY')
+      };
+      dispatch({ type: 'ADD_TRANSACTION', payload });
+    }
+  })
+)(App);

@@ -1,6 +1,5 @@
 .btn {
 	border-radius: 10px 10px 0px 0px;
-
 }
 
 #addButton {
@@ -12,17 +11,10 @@
 	border: 1px solid #eeeeee;
 }
 
-
 th,th {
 	width: 32%
 }
 
 td:first-child, th:first-child {
 	width: 4%
-}
-
-h1 {
-	height: 100px;
-	line-height: 100px;
-	margin: 0px;
 }

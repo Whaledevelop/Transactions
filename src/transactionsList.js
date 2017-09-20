@@ -60,3 +60,5 @@ export const transactionsList = [
                 date: '21:30 09/18/2017'
               }
             ];
+
+export default transactionsList;

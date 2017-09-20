@@ -16,3 +16,5 @@ export class TransactionsTable extends Component {
 	    )
   	}
 }
+
+export default TransactionsTable;
