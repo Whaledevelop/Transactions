@@ -63,7 +63,6 @@ class App extends Component {
    return (
       <div className="container">
           <div className="col-md-12 col-lg-12">
-              <button type='button' className="btn btn-default" id="addButton">Добавить транзакцию</button>
               <Filters 
                   onClick={this.handleFilters}
                   incomeFilter={this.state.incomeFilter}
@@ -96,20 +95,3 @@ class App extends Component {
 }
 
 export default App;
-/*
-connect(
-  state => ({
-    transactions: state.transactions
-  }),
-  dispatch => ({
-    onAddTransaction: (newTransaction, transactions) => {
-      const payload = {
-        id: (transactions.length + 1),
-        value: newTransaction.value,
-        type: newTransaction.type,
-        date: newTransaction.date
-      };
-      dispatch({ type: 'ADD_TRANSACTION', payload });
-    }
-  })
-)(App);*/
