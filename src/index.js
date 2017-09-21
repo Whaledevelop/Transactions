@@ -1,13 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { HashRouter, Route} from 'react-router-dom';
-
-=======
 import './index.css';
->>>>>>> parent of bdadb88... Another name refact
 import App from './App';
 import AddForm from './AddForm';
 import reducer from './reducers';
