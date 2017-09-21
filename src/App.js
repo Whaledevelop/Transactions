@@ -38,11 +38,6 @@ class App extends Component {
     this.transactionInput.value = '';
   }
 
-  superFilter(e){
-      let currentFilter = e.target.id;
-      this.props.onFilter(currentFilter);
-  }
-
   render () {
     const filterTransactions = () => {
         let filteredTransactions =  transactionsList;
@@ -86,8 +81,8 @@ class App extends Component {
                     <button onClick={this.addTransaction.bind(this)}>Add transaction</button>
               </div>
               <div>
-                  <button id="income" onClick = {this.superFilter.bind(this)}>Income Filter</button>
-                  <button id="consumption" onClick = {this.superFilter.bind(this)}>Consumption Filter</button>
+                  <button>Income Filter</button>
+                  <button>Consumption Filter</button>
               </div>
               <table className="table table-striped table-hover">
                 <thead>
@@ -139,7 +134,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    transactions: state.transactions.filter(transaction => transaction.type.includes(state.filters)),//.includes(state.income))
+    transactions: state.transactions
   }),
   dispatch => ({
     onAddTransaction: (value, transactions) => {
@@ -150,9 +145,6 @@ export default connect(
         date: moment().format('HH:mm - DD.MM.YYYY')
       };
       dispatch({ type: 'ADD_TRANSACTION', payload });
-    },
-    onFilter: (filter) => {
-      dispatch({ type: 'FILTER', payload: filter});
     }
   })
 )(App);

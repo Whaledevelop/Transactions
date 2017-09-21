@@ -1,4 +1,4 @@
-const initialState = [{
+export const initialTransactions = [{
   id: 1,
   value: 20000,
   type: 'consumption',
@@ -59,7 +59,7 @@ const initialState = [{
   date: '21:30 - 09.18.2017'
 }];
 
-export default function transactions (state = initialState, action) {
+export default function transactions (state = initialTransactions, action) {
     if (action.type === 'ADD_TRANSACTION') {
       return [
         ...state,
