@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import moment from 'moment';
 
 export class TransactionsTable extends Component {
 	render (){
@@ -8,9 +7,7 @@ export class TransactionsTable extends Component {
 		         <td>{this.props.transaction.id}</td>
 		         <td>{this.props.transaction.value}</td>
 		         <td>{this.props.transaction.type}</td> 
-		         <td>
-		         	{moment(this.props.transaction.date).format('HH:mm - DD.MM.YYYY')}
-		         </td>
+		         <td>{this.props.transaction.date}</td>
 		   </tr>
 	    )
   	}
