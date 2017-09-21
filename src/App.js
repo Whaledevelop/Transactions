@@ -42,15 +42,21 @@ class App extends Component {
 
   handleFilters(newIncomeFilter, newConsumptionFilter,
      newLastMonthFilter, newMoreThanFilter) {
+<<<<<<< HEAD
+>>>>>>> parent of fcc0987... Added add form
+=======
 >>>>>>> parent of fcc0987... Added add form
       this.setState({
           incomeFilter: newIncomeFilter,
           consumptionFilter: newConsumptionFilter,
           lastMonthFilter: newLastMonthFilter,
 <<<<<<< HEAD
+<<<<<<< HEAD
           moreThanThousandRubFilter: newMoreThanThousandRubFilter
       });
 =======
+=======
+>>>>>>> parent of fcc0987... Added add form
           moreThanFilter: newMoreThanFilter
       });
   }
@@ -58,6 +64,9 @@ class App extends Component {
   addTransaction() {
     this.props.onAddTransaction(this.transactionInput.value, this.props.transactions);
     this.transactionInput.value = '';
+<<<<<<< HEAD
+>>>>>>> parent of fcc0987... Added add form
+=======
 >>>>>>> parent of fcc0987... Added add form
   }
 
@@ -66,7 +75,11 @@ class App extends Component {
         let filteredTransactions =  transactionsList;
         if (this.state.incomeFilter || this.state.consumptionFilter || 
 <<<<<<< HEAD
+<<<<<<< HEAD
           this.state.lastMonthFilter || this.state.moreThanThousandRubFilter) {
+=======
+          this.state.lastMonthFilter || this.state.moreThanFilter) {
+>>>>>>> parent of fcc0987... Added add form
 =======
           this.state.lastMonthFilter || this.state.moreThanFilter) {
 >>>>>>> parent of fcc0987... Added add form
@@ -80,6 +93,7 @@ class App extends Component {
             }
             if (this.state.lastMonthFilter) {
 <<<<<<< HEAD
+<<<<<<< HEAD
               const monthAgo = moment().subtract(30, 'days').calendar();
               const formattedMonthAgo = moment(monthAgo).format('YYMMDD');
               filteredTransactions = filteredTransactions.filter(transaction => 
@@ -87,11 +101,16 @@ class App extends Component {
             }
             if (this.state.moreThanThousandRubFilter) {
 =======
+=======
+>>>>>>> parent of fcc0987... Added add form
               const monthAgo = moment().subtract(30, 'days').format('YYMMDD');
               filteredTransactions = filteredTransactions.filter(transaction => 
                 moment(transaction.date).format('YYMMDD') > monthAgo);
             }
             if (this.state.moreThanFilter) {
+<<<<<<< HEAD
+>>>>>>> parent of fcc0987... Added add form
+=======
 >>>>>>> parent of fcc0987... Added add form
               filteredTransactions = filteredTransactions.filter (transaction => 
                 transaction.value > 1000);
@@ -108,6 +127,7 @@ class App extends Component {
       <div className="container">
           <div className="col-md-12 col-lg-12">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <button type='button' className="btn btn-default" id="addButton">Добавить транзакцию</button>
               <Filters 
                   onClick={this.handleFilters}
@@ -118,6 +138,8 @@ class App extends Component {
               <table className="table table-striped table-hover">
                 <thead>
 =======
+=======
+>>>>>>> parent of fcc0987... Added add form
               <div>
                   <Link to="/add">
                       <button type="button" className="btn btn-default" id="addButton">Add transaction</button>
@@ -156,6 +178,9 @@ class App extends Component {
                   moreThanFilter={this.state.moreThanFilter}/>
               <table className="table table-striped table-hover">
                 <thead>
+<<<<<<< HEAD
+>>>>>>> parent of fcc0987... Added add form
+=======
 >>>>>>> parent of fcc0987... Added add form
                     <tr>
                       <th>id</th>
@@ -170,17 +195,23 @@ class App extends Component {
                       this.state.consumptionFilter, 
                       this.state.lastMonthFilter, 
 <<<<<<< HEAD
+<<<<<<< HEAD
                       this.state.moreThanThousandRubFilter
                     )
                 }
                 </tbody>
               </table>              
 =======
+=======
+>>>>>>> parent of fcc0987... Added add form
                       this.state.moreThanFilter
                     )
                 }
                 </tbody>
               </table>            
+<<<<<<< HEAD
+>>>>>>> parent of fcc0987... Added add form
+=======
 >>>>>>> parent of fcc0987... Added add form
           </div>
       </div>
