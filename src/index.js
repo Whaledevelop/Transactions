@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { HashRouter, Route} from 'react-router-dom';
+import { BrowserRouter , Route} from 'react-router-dom';
 
 import './index.css';
 import App from './App';
@@ -14,12 +14,12 @@ const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__
 
 ReactDOM.render(
     <Provider store={store}>
-      <HashRouter>
+      <BrowserRouter>
         <div>
           <Route exact path="/" component={App}/>
           <Route path="/add" component={AddForm}/>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </Provider>,  
     document.getElementById('root')
   );
