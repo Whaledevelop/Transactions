@@ -4,8 +4,6 @@ import './bootstrap.css';
 import './App.css';
 
 export class AddForm extends Component {
-
-
     render () {
         return (
             <div className="container">
