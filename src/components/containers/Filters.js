@@ -15,53 +15,54 @@ export class Filters extends Component {
 
 	changeFilters(e, props) {
 		const currentFilterId = e.target.id;
+		let {income, consumption, thisMonth, moreThan1000} = this.props.filters;
 		if (currentFilterId === 'incomeFilterId') {
-			if (!this.props.incomeFilter) {
+			if (!income) {
 				this.setState({
 					currentIncomeClassName: 'btn btn-success'
 				});
-				this.props.onClick(true, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+				this.props.onClick(true, consumption, thisMonth, moreThan1000);
 			} else {
 				this.setState({
 				currentIncomeClassName: 'btn btn-default'
 				});
-				this.props.onClick(false, this.props.consumptionFilter, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+				this.props.onClick(false, consumption, thisMonth, moreThan1000);
 			};
 		} else if (currentFilterId === 'consumptionFilterId') {
-			if (!this.props.consumptionFilter) {
+			if (!consumption) {
 				this.setState({
 						currentConsumptionClassName: 'btn btn-warning'
 					});
-				this.props.onClick(this.props.incomeFilter, true, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+				this.props.onClick(income, true, thisMonth, moreThan1000);
 			} else {
 				this.setState({
 				currentConsumptionClassName: 'btn btn-default'
 				});
-				this.props.onClick(this.props.incomeFilter, false, this.props.lastMonthFilter, this.props.moreThanThousandRubFilter);
+				this.props.onClick(income, false, thisMonth, moreThan1000);
 			};
 		} else if (currentFilterId === 'lastMonthFilterId') {
-			if (!this.props.lastMonthFilter) {
+			if (!thisMonth) {
 				this.setState({
 					currentLastMonthClassName: 'btn btn-info'
 				});
-				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, true, this.props.moreThanThousandRubFilter);
+				this.props.onClick(income, consumption, true, moreThan1000);
 			} else {
 				this.setState({
 				currentLastMonthClassName: 'btn btn-default'
 				});
-				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, false, this.props.moreThanThousandRubFilter);
+				this.props.onClick(income, consumption, false, moreThan1000);
 			}
 		} else if (currentFilterId === 'moreThanThousandRubFilterId') {
-			if (!this.props.moreThanThousandRubFilter) {
+			if (!moreThan1000) {
 				this.setState({
 					currentMoreThanThousandRubClassName: 'btn btn-primary'
 				});
-				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, this.props.lastMonthFilter, true);	
+				this.props.onClick(income, consumption, thisMonth, true);	
 			} else {
 				this.setState({
 				currentMoreThanThousandRubClassName: 'btn btn-default'
 				});
-				this.props.onClick(this.props.incomeFilter, this.props.consumptionFilter, this.props.lastMonthFilter, false);
+				this.props.onClick(income, consumption, thisMonth, false);
 			}
 		}		
 	}
