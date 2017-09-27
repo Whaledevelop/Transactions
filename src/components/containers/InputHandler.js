@@ -55,6 +55,7 @@ class InputHandler extends Component {
                   dateStatus: 'correct'
               })
           }
+          let {valueStatus, dateStatus} = this.state;
           this.props.onChange(valueStatus, dateStatus);
     }
 

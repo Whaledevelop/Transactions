@@ -59,7 +59,7 @@ class AddContainer extends Component {
                 <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
                 <AddForm 
                         submittedAdding={this.state.submittedAdding}
-                        onChange={this.handleChanges.bind(this)}/> 
+                        onClick={this.handleChanges.bind(this)}/> 
                 {latestAddedTransaction()}
             </div>
         )
