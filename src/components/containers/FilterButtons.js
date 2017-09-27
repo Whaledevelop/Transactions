@@ -3,62 +3,89 @@ import React, {Component} from 'react';
 class FilterButtons extends Component {
 	constructor(props) {
       super(props);
+      let defaultBtn = 'btn btn-default';
       this.state = {
-          income: {
-              id: 'income',
-              className: 'btn btn-default',
-              value: 'Income'
-          },
-          consumption: {
-              id: 'consumption',
-              className: 'btn btn-default',
-              value: 'Consumption'
-          },
-          thisMonth: {
-              id: 'thisMonth',
-              className: 'btn btn-default',
-              value: 'This Month'
-          },
-          moreThan1000: {
-              id: 'moreThan1000',
-              className: 'btn btn-default',
-              value: 'More than 1000 rubles'
-          }		
+          incomeClass: defaultBtn,
+          consumptionClass: defaultBtn,
+          thisMonthClass: defaultBtn,
+          moreThan1000Class: defaultBtn	
       };
       this.changeClassName = this.changeClassName.bind(this);
   }
 
-  changeClassName() {
-
+  changeClassName(e) {
+        let currentFilter = e.target.id;
+        let defaultBtn = 'btn btn-default';
+        if (currentFilter === 'income') {
+                if (this.state.incomeClass === defaultBtn) {
+                    this.setState ({
+                        incomeClass: 'btn btn-success'
+                    })
+                } else {
+                    this.setState ({
+                        incomeClass: defaultBtn
+                    })
+                }         
+        } else if (currentFilter === 'consumption') {
+                if (this.state.consumptionClass === defaultBtn) {
+                    this.setState ({
+                        consumptionClass: 'btn btn-warning'
+                    })
+                } else {
+                    this.setState ({
+                        consumptionClass: defaultBtn
+                    })
+                }
+        } else if (currentFilter === 'thisMonth') {
+                if (this.state.thisMonthClass === defaultBtn) {
+                    this.setState ({
+                        thisMonthClass: 'btn btn-info'
+                    })
+                } else {
+                    this.setState ({
+                        thisMonthClass: defaultBtn
+                    })
+                }
+        } else if (currentFilter === 'moreThan1000') {
+                if (this.state.moreThan1000Class === defaultBtn) {
+                    this.setState ({
+                        moreThan1000Class: 'btn btn-primary'
+                    })
+                } else {
+                    this.setState ({
+                        moreThan1000Class: defaultBtn
+                    })
+                }
+        } 
+        this.props.onClick(currentFilter);
   }
 
   render() {
-    let { income, consumption, thisMonth, moreThan1000 } = this.state;
     return (
       <div className="btn-group btn-group-justified">
           <a 
-              id = {income.id}
-              className = {income.className}
+              id = 'income'
+              className = {this.state.incomeClass}
               onClick = {this.changeClassName}>
-              {income.value}
+              Income
           </a>
           <a 
-              id = {consumption.id}
-              className = {consumption.className}
+              id = 'consumption'
+              className = {this.state.consumptionClass}
               onClick = {this.changeClassName}>
-              {consumption.value}
+              Consumption
           </a>
           <a 
-              id = {thisMonth.id}
-              className = {thisMonth.className}
+              id = 'thisMonth'
+              className = {this.state.thisMonthClass}
               onClick = {this.changeClassName}>
-              {thisMonth.value}
+              This month
           </a>
           <a 
-              id = {moreThan1000.id}
-              className = {moreThan1000.className}
+              id = 'moreThan1000'
+              className = {this.state.moreThan1000Class}
               onClick = {this.changeClassName}>
-              {moreThan1000.value}
+              More than 1000 rubles
           </a>
       </div>
     )

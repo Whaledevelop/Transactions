@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 
-import './css/bootstrap.css'
-import './css/App.css';
+import FiltersContainer from './FiltersContainer';
+import FilterList from './FilterList';
 
-import FiltersContainer from './components/containers/FiltersContainer';
-import FilterList from './components/containers/FilterList';
-
-class App extends Component {
+class ListContainer extends Component {
   constructor(props) {
   super(props);
   this.state = {
@@ -43,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default ListContainer;
