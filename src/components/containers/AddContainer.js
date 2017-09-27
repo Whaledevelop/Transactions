@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import AddForm from './AddForm';
@@ -54,8 +55,11 @@ class AddContainer extends Component {
             <h3>No transactions added</h3>
         }
         return (
-            <div>
-                <AddForm onChange={this.handleChanges.bind(this)}/> 
+            <div className="container">
+                <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
+                <AddForm 
+                        submittedAdding={this.state.submittedAdding}
+                        onChange={this.handleChanges.bind(this)}/> 
                 {latestAddedTransaction()}
             </div>
         )

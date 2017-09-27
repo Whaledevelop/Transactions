@@ -1,28 +1,16 @@
 import React, {Component} from 'react';
 import moment from 'moment';
-import axios from 'axios';
 
 class InputHandler extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           id: null,
            valueStatus: 'empty',
            dateStatus: 'empty'
         }
     }
 
     componentWillReceiveProps(nextProps) {
-          axios.get('http://localhost:6000/transactions')
-          .then(response => {
-              let newId = (response.data.length + 1);          
-              this.setState({
-                  id: newId,
-              })
-          })
-          .catch(error => {
-              console.log('Error in getting json with transactions' + error);
-          })
           let newValue = nextProps.value;
           let newParsedValue = parseInt(newValue, 10);
           if (newValue === '') {
@@ -67,40 +55,22 @@ class InputHandler extends Component {
                   dateStatus: 'correct'
               })
           }
-    }
-
-    sendNewData() {
-        let date = moment(this.props.date).format('HH:mm - DD.MM.YYYY');
-        let value = this.props.value;
-        let id = this.state.id;
-        this.props.onChange(id, value, date);               
+          this.props.onChange(valueStatus, dateStatus);
     }
 
     render() {
-      const checkerAnnouncer = () => { 
-          let { id, valueStatus, dateStatus} = this.state; 
-          if (valueStatus === 'empty' && dateStatus === 'empty') {
-              return <h4>Add information about new transaction</h4>
-          } else if (valueStatus === 'correct' && dateStatus === 'correct') {
-              return <h3 onClick={this.sendNewData.bind(this)}>Add transaction</h3>
-          } else {
-            return (
-              <div>
-                  <h4>Id for the next transaction: {id}</h4>
-                  <h4>Value status: {valueStatus}</h4>
-                  <h4>Type status: {this.props.type}</h4>
-                  <h4>Date status: {dateStatus}</h4>
-              </div>
-            )
-          }           
-      }
-
-      return (
-        <div>
-          {checkerAnnouncer()}
-        </div>
-      )
-
+        const statusHandler = () => {
+            let input = this.props;
+            let {valueStatus, dateStatus} = this.state;
+            if (input === 'value') {
+                return <h4>{valueStatus}</h4>
+            } else if (input === 'type') {
+                return <h4>{this.props.type}</h4>
+            } else if (input === 'date') {
+                return <h4>{dateStatus}</h4>
+            } else return <h5>no data</h5>
+        }
+        return <div>{statusHandler()}</div>      
     }
   }
 

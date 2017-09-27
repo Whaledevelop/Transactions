@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 
 import InputHandler from '../containers/InputHandler';
 
@@ -7,40 +6,22 @@ class AddForm extends Component {
     constructor(props) {
       super(props);
       this.state = {
-            value: '',
-            type: 'income',
-            date: ''
+          valueStatus: '',
+          dateStatus: ''
       }
+      this.inputStatusHandler = this.inputStatusHandler.bind(this);
+      this.addConfirmedData = this.addConfirmedData.bind(this);
     }
 
-    inputValue() {
-        let newValue = this.inputtedValue.value;
+    inputStatusHandler(newValueStatus, newDateStatus) {
         this.setState({
-            value: newValue             
-        }) 
+            valueStatus: newValueStatus,
+            dateStatus: newDateStatus
+        })
     }
 
-    inputType() {
-        let newType = this.inputtedType.value;
-        this.setState({
-            type: newType
-        })  
-    }
-
-    inputDate(e) {
-      let newDate = this.inputtedDate.value;
-      this.setState({
-            date: newDate        
-      })    
-    }
-
-    addConfirmedData(craftedId, confirmedValue, confirmedDate) {
-        this.props.onChange(craftedId, confirmedValue, this.state.type, confirmedDate);
-        this.setState({
-            value: '',
-            type: 'income',
-            date: ''
-        });
+    addConfirmedData(creaftedId, confirmedValue, type, comfirmedDate) {
+        this.props.onChange(creaftedId, confirmedValue, type, comfirmedDate);
         this.inputtedValue.value = '';
         this.inputtedType.value = 'income';
         this.inputtedDate.value = '';
@@ -48,40 +29,59 @@ class AddForm extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <Link to="/">
-                        <button>Transaction List</button>
-                    </Link>
-                </div>
-                <form>
+            <div>           
+                <form className = "form-horizontal">
                     <fieldset>
                         <legend>Add transaction</legend>
-                        <div>
-                            <label htmlFor="inputValue">Value</label>
-                            <input type="text" id="inputValue" onChange={this.inputValue.bind(this)}
-                                ref={(input) =>{this.inputtedValue = input }}/>
+                        <div className="form-group">
+                            <div className="col-lg-4">
+                                <label htmlFor="inputValue" className="control-label">Value</label>
+                                <input type="text" id="inputValue" className="form-control"
+                                    onChange={this.inputHandler}
+                                    ref={input =>{this.inputtedValue = input }}/>
+                            </div>
+                            <div className="col-lg-6">
+                                <InputHandler 
+                                    input='value' 
+                                    value={this.inputtedValue}
+                                    onChange={this.inputStatusHandler}/>
+                            </div>   
                         </div>
-                        <div>
-                            <label htmlFor="selectType">Type</label>
-                            <select id="selectType" onChange={this.inputType.bind(this)}
-                                ref={(input) =>{this.inputtedType = input }}>
-                                    <option>income</option>
-                                    <option>consumption</option>
-                            </select>
+                        <div className="form-group">
+                            <div className="col-lg-4">
+                                <label htmlFor="selectType" className="control-label">Type</label>
+                                <select id="selectType" className="form-control"
+                                    onChange={this.inputHandler}
+                                    ref={input =>{this.inputtedType = input }}>
+                                        <option>income</option>
+                                        <option>consumption</option>
+                                </select>
+                            </div>
+                            <div className="col-lg-6">
+                                <InputHandler 
+                                    input='type' 
+                                    type={this.inputtedType}
+                                    onChange={this.inputStatusHandler}/>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="inputDate">Date</label>
-                            <input type="datetime-local" id="inputDate" max="2030-12-30T00:00" 
-                                onChange={this.inputDate.bind(this)}
-                                ref={(input) =>{this.inputtedDate = input }}/>    
-                        </div>
-                        <div>
-                            <InputHandler 
-                                value={this.state.value}
-                                type={this.state.type}
-                                date={this.state.date} 
-                                onChange={this.addConfirmedData.bind(this)}/>
+                        <div className="form-group">
+                            <div className="col-lg-4">                           
+                                <label htmlFor="inputDate" className="control-label">Date</label>
+                                <input type="datetime-local" id="inputDate" max="3000-12-30T00:00"
+                                    className='form-control'
+                                    onChange={this.inputHandler}
+                                    ref={input =>{this.inputtedDate = input }}/>
+                            </div>
+                            <div className="col-lg-6">
+                                <InputHandler 
+                                    input='date' 
+                                    date={this.inputtedDate}
+                                    onChange={this.inputStatusHandler}/>
+                            </div>
+                            <FormButton 
+                                onChange={this.addConfirmedData}
+                                valueStatus={this.state.valueStatus}
+                                dateStatus={this.state.dateStatus}/>    
                         </div>
                     </fieldset> 
                 </form>

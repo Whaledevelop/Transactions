@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 import FiltersContainer from './FiltersContainer';
 import FilterList from './FilterList';
@@ -19,24 +20,25 @@ class ListContainer extends Component {
 
   handleFilters(newIncome, newConsumption, newThisMonth, newMoreThan1000) {
       this.setState({
-      filters: {
-          income: newIncome,
-          consumption: newConsumption,
-          thisMonth: newThisMonth,
-          moreThan1000: newMoreThan1000
-        }     
+          filters: {
+              income: newIncome,
+              consumption: newConsumption,
+              thisMonth: newThisMonth,
+              moreThan1000: newMoreThan1000
+            }     
       });
   }
 
   render () {
-   return (
-      <div className="container">
-          <div className="col-md-12 col-lg-12">
-              <FiltersContainer onClick={this.handleFilters} filters={this.state.filters}/>   
-              <FilterList filters={this.state.filters}/>        
+      return (
+          <div className="container">
+                <Link to="/add">
+                    <button className='btn btn-danger authenticButton'>Add new transaction</button>
+                </Link>
+                <FiltersContainer onClick={this.handleFilters} filters={this.state.filters}/>   
+                <FilterList filters={this.state.filters}/>        
           </div>
-      </div>
-    );
+        );
   }
 }
 

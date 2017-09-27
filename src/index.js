@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route} from 'react-router-dom';
 
-import './css/bootstrap.css'
+import './css/bootstrap.css';
 import './css/App.css';
 
 import ListContainer from './components/containers/ListContainer';
