@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import moment from 'moment';
+
 
 export class TransactionsTable extends Component {
 	render (){
+			let { id, value, type, date } = this.props.transaction
 	    return (   
-	       <tr key={this.props.transaction.id}>
-		         <td>{this.props.transaction.id}</td>
-		         <td>{this.props.transaction.value}</td>
-		         <td>{this.props.transaction.type}</td> 
-		         <td>
-		         	{moment(this.props.transaction.date).format('HH:mm - DD.MM.YYYY')}
-		         </td>
-		   </tr>
+	       <tr key={id}>
+		         <td>{id}</td>
+		         <td>{value}</td>
+		         <td>{type}</td> 
+		         <td>{date}</td>
+		   	</tr>
 	    )
   	}
 }
