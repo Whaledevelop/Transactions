@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import './css/bootstrap.css'
 import './css/App.css';
 
-import Filters from './components/containers/Filters';
+import FiltersContainer from './components/containers/FiltersContainer';
 import FilterList from './components/containers/FilterList';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
    return (
       <div className="container">
           <div className="col-md-12 col-lg-12">
-              <Filters onClick={this.handleFilters} filters={this.state.filters}/>   
+              <FiltersContainer onClick={this.handleFilters} filters={this.state.filters}/>   
               <FilterList filters={this.state.filters}/>        
           </div>
       </div>
