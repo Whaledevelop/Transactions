@@ -19,13 +19,13 @@ class AddContainer extends Component {
         }
     }
 
-    handleChanges(newId, newValue, newType, newDate) {
+    handleChanges(id, value, type, date) {
         this.setState({
             transaction: {
-                id: newId,
-                value: newValue,
-                type: newType,
-                date: newDate
+                id: id,
+                value: value,
+                type: type,
+                date: date
             },
             submittedAdding: true
         })
@@ -34,7 +34,7 @@ class AddContainer extends Component {
     componentDidUpdate() {
         if (this.state.submittedAdding) {
             let {id, value, type, date} = this.state.transaction;
-            axios.post('http://localhost:5000/transactions', {
+            axios.post('http://localhost:3333/transactions', {
                         id: id,
                         value: value,
                         type: type,
@@ -51,15 +51,15 @@ class AddContainer extends Component {
     
     render () {
         const latestAddedTransaction = () => {
-            return this.state.submittedAdding ? <JustAdded transaction={this.state.transaction}/> :
-            <h3>No transactions added</h3>
+            if (this.state.submittedAdding) {
+                return  <JustAdded transaction={this.state.transaction}/>
+            }
         }
         return (
             <div className="container">
                 <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
-                <AddForm 
-                        submittedAdding={this.state.submittedAdding}
-                        onClick={this.handleChanges.bind(this)}/> 
+                <AddForm onClick={this.handleChanges.bind(this)}/> 
+                <hr/>
                 {latestAddedTransaction()}
             </div>
         )

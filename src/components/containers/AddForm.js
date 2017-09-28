@@ -7,11 +7,12 @@ class AddForm extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          value: '',
-          type: 'income',
-          date: '',
-          valueStatus: '',
-          dateStatus: ''
+          transaction: {
+                value: '',
+                type: '',
+                date: ''
+          },
+          blockAddButton: true 
       }
       this.inputHandler = this.inputHandler.bind(this);
       this.inputStatusHandler = this.inputStatusHandler.bind(this);
@@ -20,32 +21,35 @@ class AddForm extends Component {
 
     inputHandler() {
         let newValue = this.inputtedValue.value;
-        let newType = this.inputtedType;
-        let newDate = this.inputtedDate;
-        this.setState ({
-            value: newValue,
-            type: newType,
-            date: newDate
-        }) 
-    }
-
-    inputStatusHandler(newValueStatus, newDateStatus) {
+        let newType = this.inputtedType.value;
+        let newDate = this.inputtedDate.value;
         this.setState({
-            valueStatus: newValueStatus,
-            dateStatus: newDateStatus
+            transaction: {
+                value: newValue,
+                type: newType,
+                date: newDate
+            }      
         })
     }
+ 
 
-    addConfirmedData(creaftedId, confirmedValue, type, comfirmedDate) {
-        this.props.onChange(creaftedId, confirmedValue, type, comfirmedDate);
-        /*
+    inputStatusHandler(valueStatus, typeStatus, dateStatus) {
+        if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
+                this.setState({
+                    blockAddButton: false
+                })
+        }
+    }
+
+    addConfirmedData(craftedId) {
+        let {value, type, date} = this.state.transaction;
+        this.props.onClick(craftedId, value, type, date);
         this.inputtedValue.value = '';
-        this.inputtedType.value = 'income';
-        this.inputtedDate.value = '';*/
+        this.inputtedType.value = '';
+        this.inputtedDate.value = '';
     }
 
     render() {
-        let {value, type, date, valueStatus, dateStatus} = this.state;
         return (
             <div>           
                 <form className = "form-horizontal">
@@ -59,10 +63,11 @@ class AddForm extends Component {
                                     ref={(input) =>{this.inputtedValue = input }}/>
                             </div>
                             <div className="col-lg-6">
-                                <InputHandler 
+                                <InputHandler
                                     input='value' 
-                                    value={value}
-                                    onChange={this.inputStatusHandler}/>
+                                    transaction={this.state.transaction}
+                                    onCheck={this.inputStatusHandler}
+                                />
                             </div>   
                         </div>
                         <div className="form-group">
@@ -71,39 +76,36 @@ class AddForm extends Component {
                                 <select id="selectType" className="form-control"
                                     onChange={this.inputHandler}
                                     ref={input =>{this.inputtedType = input }}>
+                                        <option></option>
                                         <option>income</option>
                                         <option>consumption</option>
                                 </select>
                             </div>
                             <div className="col-lg-6">
-                                <InputHandler 
-                                    input='type' 
-                                    type={type}
-                                    onChange={this.inputStatusHandler}/>
+                                <InputHandler
+                                    input='type'
+                                    transaction={this.state.transaction}
+                                    onCheck={this.inputStatusHandler}
+                                    />   
                             </div>
                         </div>
                         <div className="form-group">
-                            <div className="col-lg-4">                           
-                                <label htmlFor="inputDate" className="control-label">Date</label>
-                                <input type="datetime-local" id="inputDate" max="3000-12-30T00:00"
-                                    className='form-control'
-                                    onChange={this.inputHandler}
-                                    ref={input =>{this.inputtedDate = input }}/>
-                            </div>
-                            <div className="col-lg-6">
-                                <InputHandler 
-                                    input='date' 
-                                    date={date}
-                                    onChange={this.inputStatusHandler}/>
-                            </div>
-                            <FormButton 
-                                onClick={this.addConfirmedData}
-                                valueStatus={valueStatus}
-                                dateStatus={dateStatus}
-                                value={value}
-                                type={type}
-                                date={date}/>    
+                                <div className="col-lg-4">                           
+                                    <label htmlFor="inputDate" className="control-label">Date</label>
+                                    <input type="datetime-local" id="inputDate" max="3000-12-30T00:00"
+                                        className='form-control'
+                                        onChange={this.inputHandler}
+                                        ref={input =>{this.inputtedDate = input }}/>
+                                </div>
+                                <div className="col-lg-6">
+                                    <InputHandler
+                                        input='date' 
+                                        transaction={this.state.transaction}
+                                        onCheck={this.inputStatusHandler}
+                                        />
+                                </div>                                
                         </div>
+                        <FormButton block={this.state.blockAddButton} onClick={this.addConfirmedData}/>
                     </fieldset> 
                 </form>
             </div>

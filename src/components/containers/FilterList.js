@@ -13,7 +13,7 @@ class FilterList extends Component {
     }
 
     componentWillMount() {
-        axios.get(`http://localhost:5000/transactions`)
+        axios.get(`http://localhost:3333/transactions`)
             .then(response => {
                 this.setState({
                     transactions: response.data
@@ -25,7 +25,7 @@ class FilterList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {  
-        axios.get(`http://localhost:5000/transactions`)
+        axios.get(`http://localhost:3333/transactions`)
             .then(response => {
                 let filters = nextProps.filters;
                 this.setState({

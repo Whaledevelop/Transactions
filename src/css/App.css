@@ -28,4 +28,7 @@ td:first-child, th:first-child {
 	height: 48px;
 }
 
+#addButton {
+	border-radius: 3px;
+}
 

@@ -5,23 +5,20 @@ class FormButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          newTransactionId: null,
-          addButtonClassName: 'btn btn-primary disabled'
+          id: null,
+          addButtonClassName: 'btn btn-primary disabled',
+          errorMessage: ''
         }
         this.sendNewData = this.sendNewData.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        axios.get('http://localhost:5000/transactions')
+    componentWillReceiveProps() {
+        axios.get('http://localhost:3333/transactions')
             .then(response => {
-                let newId = (response.data.length + 1);          
-                this.setState({
-                    newTransactionId: newId,
-                })
-                let {valueStatus, dateStatus} = this.props;
-                if (valueStatus === 'correct'  && dateStatus === 'correct') {
-                    this.setState ({
-                        addButtonClassName: 'btn btn-primary'
+                 {
+                    let newId = (response.data.length + 1);          
+                    this.setState({
+                        id: newId
                     })
                 }
             })
@@ -31,13 +28,28 @@ class FormButton extends Component {
     }
 
     sendNewData() {
-        let {value, type, date} = this.props;
-        let id = this.state.id;
-        this.props.onClick(id, value, type, date);               
+        let block = this.props.block;
+        console.log(block);
+        if (block) {
+            this.setState ({
+                errorMessage: 'Fill all inputs to add new transaction'
+            })
+        } else {
+            this.setState({
+                addButtonClassName: 'btn btn-primary',
+                errorMessage: ''
+            })
+            //this.props.onClick(this.state.id);
+        }               
     }
 
     render() {
-      return <button className={this.state.addButtonClassName} onClick={this.sendNewData}>Add transaction</button>
+      return (
+        <div>
+            <div id="addButton" className={this.state.addButtonClassName} onClick={this.sendNewData}>Add transaction</div>
+            <h4>{this.state.errorMessage}</h4>
+        </div>
+      )
     }   
 }
 
