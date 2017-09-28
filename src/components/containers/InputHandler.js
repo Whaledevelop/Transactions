@@ -51,8 +51,9 @@ class InputHandler extends Component {
     }
 
     componentDidUpdate() {
-        let {valueStatus, typeStatus, dateStatus} = this.state;
-        this.props.onCheck(valueStatus, typeStatus, dateStatus);
+            let {valueStatus, typeStatus, dateStatus} = this.state;
+            console.log(valueStatus, typeStatus, dateStatus);
+            this.props.onConfirm(valueStatus, typeStatus, dateStatus);       
     }
 
     render() {

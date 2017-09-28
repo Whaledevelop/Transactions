@@ -35,8 +35,9 @@ class AddForm extends Component {
 
     inputStatusHandler(valueStatus, typeStatus, dateStatus) {
         if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
+                console.log('correct');
                 this.setState({
-                    blockAddButton: false
+                    blockAddButton: ''
                 })
         }
     }
@@ -66,7 +67,7 @@ class AddForm extends Component {
                                 <InputHandler
                                     input='value' 
                                     transaction={this.state.transaction}
-                                    onCheck={this.inputStatusHandler}
+                                    onConfirm={this.inputStatusHandler}
                                 />
                             </div>   
                         </div>
@@ -85,7 +86,7 @@ class AddForm extends Component {
                                 <InputHandler
                                     input='type'
                                     transaction={this.state.transaction}
-                                    onCheck={this.inputStatusHandler}
+                                    onConfirm={this.inputStatusHandler}
                                     />   
                             </div>
                         </div>
@@ -101,11 +102,13 @@ class AddForm extends Component {
                                     <InputHandler
                                         input='date' 
                                         transaction={this.state.transaction}
-                                        onCheck={this.inputStatusHandler}
+                                        onConfirm={this.inputStatusHandler}
                                         />
                                 </div>                                
                         </div>
-                        <FormButton block={this.state.blockAddButton} onClick={this.addConfirmedData}/>
+                        <FormButton 
+                            //block={this.state.blockAddButton}
+                            onClick={this.addConfirmedData}/>
                     </fieldset> 
                 </form>
             </div>
