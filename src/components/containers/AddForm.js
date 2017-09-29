@@ -12,7 +12,7 @@ class AddForm extends Component {
                 type: '',
                 date: ''
           },
-          blockAddButton: true 
+          block: true 
       }
       this.inputHandler = this.inputHandler.bind(this);
       this.inputStatusHandler = this.inputStatusHandler.bind(this);
@@ -33,21 +33,23 @@ class AddForm extends Component {
     }
  
 
-    inputStatusHandler(valueStatus, typeStatus, dateStatus) {
-        if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
-                console.log('correct');
-                this.setState({
-                    blockAddButton: ''
-                })
-        }
+    inputStatusHandler(correctData) {
+        if (correctData) {
+            console.log(correctData);
+            this.setState({
+                block: false
+            })
+        }              
     }
 
     addConfirmedData(craftedId) {
-        let {value, type, date} = this.state.transaction;
-        this.props.onClick(craftedId, value, type, date);
-        this.inputtedValue.value = '';
-        this.inputtedType.value = '';
-        this.inputtedDate.value = '';
+        if (!this.state.block) {
+            let {value, type, date} = this.state.transaction;
+            this.props.onClick(craftedId, value, type, date);
+            this.inputtedValue.value = '';
+            this.inputtedType.value = '';
+            this.inputtedDate.value = '';
+        }
     }
 
     render() {
@@ -107,7 +109,7 @@ class AddForm extends Component {
                                 </div>                                
                         </div>
                         <FormButton 
-                            //block={this.state.blockAddButton}
+                            block={this.state.block}
                             onClick={this.addConfirmedData}/>
                     </fieldset> 
                 </form>

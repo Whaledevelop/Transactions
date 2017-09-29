@@ -9,25 +9,31 @@ class FormButton extends Component {
           addButtonClassName: 'btn btn-primary disabled',
           errorMessage: ''
         }
-        this.sendNewData = this.sendNewData.bind(this);
+        this.sendNewId = this.sendNewId.bind(this);
     }
 
-    componentWillReceiveProps() {
-        axios.get('http://localhost:3333/transactions')
-            .then(response => {
-                 {
-                    let newId = (response.data.length + 1);          
-                    this.setState({
-                        id: newId
+    componentWillReceiveProps(nextProps) {
+        let block = nextProps.block;
+        console.log(block);
+        if (!block) {
+            axios.get('http://localhost:3333/transactions')
+                    .then(response => {
+                        {
+                            let newId = (response.data.length + 1);
+                            console.log(newId);          
+                            this.setState({
+                                id: newId,
+                                addButtonClassName: 'btn btn-primary'
+                            })
+                        }
                     })
-                }
-            })
-            .catch(error => {
-                console.log('Error in getting json with transactions' + error);
-            })
+                    .catch(error => {
+                        console.log('Error in getting json with transactions' + error);
+                    })
+        }   
     }
 
-    sendNewData() {
+    sendNewId() {
         let block = this.props.block;
         console.log(block);
         if (block) {
@@ -36,17 +42,16 @@ class FormButton extends Component {
             })
         } else {
             this.setState({
-                addButtonClassName: 'btn btn-primary',
                 errorMessage: ''
             })
-            //this.props.onClick(this.state.id);
+            this.props.onClick(this.state.id);
         }               
     }
 
     render() {
       return (
         <div>
-            <div id="addButton" className={this.state.addButtonClassName} onClick={this.sendNewData}>Add transaction</div>
+            <div id="addButton" className={this.state.addButtonClassName} onClick={this.sendNewId}>Add transaction</div>
             <h4>{this.state.errorMessage}</h4>
         </div>
       )

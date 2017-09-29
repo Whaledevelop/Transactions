@@ -50,10 +50,21 @@ class InputHandler extends Component {
           })
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return (
+            this.state.valueStatus !== nextState.valueStatus ||
+            this.state.typeStatus !== nextState.typeStatus ||
+            this.state.dateStatus !== nextState.dateStatus
+        )
+    }
+
     componentDidUpdate() {
             let {valueStatus, typeStatus, dateStatus} = this.state;
-            console.log(valueStatus, typeStatus, dateStatus);
-            this.props.onConfirm(valueStatus, typeStatus, dateStatus);       
+            let correctData = false;
+            if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
+                    correctData = true;
+                    this.props.onConfirm(correctData);
+            }                     
     }
 
     render() {
