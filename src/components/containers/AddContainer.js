@@ -57,10 +57,12 @@ class AddContainer extends Component {
         }
         return (
             <div className="container">
-                <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
-                <AddForm onClick={this.handleChanges.bind(this)}/> 
-                <hr/>
-                {latestAddedTransaction()}
+                <div className="col-lg-12">
+                    <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
+                    <AddForm onClick={this.handleChanges.bind(this)}/> 
+                    <hr/>
+                    {latestAddedTransaction()}
+                </div>
             </div>
         )
     }

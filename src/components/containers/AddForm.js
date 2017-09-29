@@ -35,11 +35,14 @@ class AddForm extends Component {
 
     inputStatusHandler(correctData) {
         if (correctData) {
-            console.log(correctData);
             this.setState({
                 block: false
             })
-        }              
+        } else {
+            this.setState ({
+                block: true
+            })
+        }          
     }
 
     addConfirmedData(craftedId) {
@@ -49,6 +52,14 @@ class AddForm extends Component {
             this.inputtedValue.value = '';
             this.inputtedType.value = '';
             this.inputtedDate.value = '';
+            this.setState ({
+                transaction: {
+                    value: '',
+                    type: '',
+                    date: ''
+                },
+                block: true
+            })        
         }
     }
 

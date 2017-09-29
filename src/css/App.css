@@ -29,6 +29,15 @@ td:first-child, th:first-child {
 }
 
 #addButton {
-	border-radius: 3px;
+		margin-top: 15px;
+		border-radius: 3px;
 }
 
+.inputHandler {
+		margin-top: 40px;	
+}
+
+.errorMessage {
+		color: #A02F25;
+		margin-top: 25px;
+}

@@ -59,24 +59,6 @@
       "value": 3000,
       "type": "income",
       "date": "2017-09-25T21:30"
-    },
-    {
-      "id": 11,
-      "value": "333",
-      "type": "income",
-      "date": "1994-03-30T20:30"
-    },
-    {
-      "id": 12,
-      "value": "33333",
-      "type": "income",
-      "date": "1994-02-20T20:30"
-    },
-    {
-      "id": 13,
-      "value": "2000",
-      "type": "consumption",
-      "date": "1994-03-30T20:30"
     }
   ]
 }

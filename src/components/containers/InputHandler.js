@@ -60,11 +60,13 @@ class InputHandler extends Component {
 
     componentDidUpdate() {
             let {valueStatus, typeStatus, dateStatus} = this.state;
-            let correctData = false;
             if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
-                    correctData = true;
+                    let correctData = true;
                     this.props.onConfirm(correctData);
-            }                     
+            } else {
+                    let notCorrectData = false;
+                    this.props.onConfirm(notCorrectData);
+            }                 
     }
 
     render() {
@@ -79,7 +81,7 @@ class InputHandler extends Component {
               return <h4>{dateStatus}</h4>
           } else return <h5>no data</h5>
       }
-      return <div>{statusHandler()}</div>      
+      return <div className="inputHandler">{statusHandler()}</div>      
   }
 }
 

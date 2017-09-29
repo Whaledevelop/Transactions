@@ -14,31 +14,34 @@ class FormButton extends Component {
 
     componentWillReceiveProps(nextProps) {
         let block = nextProps.block;
-        console.log(block);
         if (!block) {
             axios.get('http://localhost:3333/transactions')
                     .then(response => {
                         {
-                            let newId = (response.data.length + 1);
-                            console.log(newId);          
+                            let newId = (response.data.length + 1);       
                             this.setState({
                                 id: newId,
-                                addButtonClassName: 'btn btn-primary'
+                                addButtonClassName: 'btn btn-primary',
+                                errorMessage: ''
                             })
                         }
                     })
                     .catch(error => {
                         console.log('Error in getting json with transactions' + error);
                     })
+        } else {
+                this.setState ({
+                    addButtonClassName: 'btn btn-primary disabled'
+                })  
         }   
     }
 
     sendNewId() {
         let block = this.props.block;
-        console.log(block);
         if (block) {
             this.setState ({
-                errorMessage: 'Fill all inputs to add new transaction'
+                errorMessage: 'Fill all inputs with correct data to add new transaction',
+                addButtonClassName: 'btn btn-primary disabled'
             })
         } else {
             this.setState({
@@ -52,7 +55,7 @@ class FormButton extends Component {
       return (
         <div>
             <div id="addButton" className={this.state.addButtonClassName} onClick={this.sendNewId}>Add transaction</div>
-            <h4>{this.state.errorMessage}</h4>
+            <h4 className="errorMessage">{this.state.errorMessage}</h4>
         </div>
       )
     }   
