@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class FilterButtons extends Component {
+class FiltersHandler extends Component {
 	constructor(props) {
       super(props);
       let defaultBtn = 'btn btn-default';
@@ -92,4 +92,4 @@ class FilterButtons extends Component {
   }
 }
 
-export default FilterButtons;
+export default FiltersHandler;
