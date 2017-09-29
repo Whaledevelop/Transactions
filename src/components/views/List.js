@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 
-export class TransactionsList extends Component {
+export class List extends Component {
 		render (){
 				return (
 					<table className="table table-striped table-hover">
@@ -30,4 +30,4 @@ export class TransactionsList extends Component {
 			}
 }
 
-export default TransactionsList;
+export default List;

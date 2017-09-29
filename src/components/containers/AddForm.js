@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import InputHandler from './InputHandler';
-import FormButton from './FormButton';
+import AddHandler from './AddHandler';
+import AddButton from './AddButton';
 
 class AddForm extends Component {
     constructor(props) {
@@ -77,7 +77,7 @@ class AddForm extends Component {
                                     ref={(input) =>{this.inputtedValue = input }}/>
                             </div>
                             <div className="col-lg-6">
-                                <InputHandler
+                                <AddHandler
                                     input='value' 
                                     transaction={this.state.transaction}
                                     onConfirm={this.inputStatusHandler}
@@ -96,7 +96,7 @@ class AddForm extends Component {
                                 </select>
                             </div>
                             <div className="col-lg-6">
-                                <InputHandler
+                                <AddHandler
                                     input='type'
                                     transaction={this.state.transaction}
                                     onConfirm={this.inputStatusHandler}
@@ -112,14 +112,14 @@ class AddForm extends Component {
                                         ref={input =>{this.inputtedDate = input }}/>
                                 </div>
                                 <div className="col-lg-6">
-                                    <InputHandler
+                                    <AddHandler
                                         input='date' 
                                         transaction={this.state.transaction}
                                         onConfirm={this.inputStatusHandler}
                                         />
                                 </div>                                
                         </div>
-                        <FormButton 
+                        <AddButton 
                             block={this.state.block}
                             onClick={this.addConfirmedData}/>
                     </fieldset> 

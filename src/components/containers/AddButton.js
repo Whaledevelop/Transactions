@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class FormButton extends Component {
+class AddButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,7 +61,7 @@ class FormButton extends Component {
     }   
 }
 
-export default FormButton;
+export default AddButton;
 
 
 

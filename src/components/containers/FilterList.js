@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
-import TransactionsList from '../views/TransactionsList';
+import List from '../views/List';
 
 class FilterList extends Component {
     constructor(props) {
@@ -78,7 +78,7 @@ class FilterList extends Component {
         if(this.state.error) {
             return this.renderError()
         } else {
-            return <TransactionsList transactions={this.state.transactions}/>
+            return <List transactions={this.state.transactions}/>
         }      
     }
 

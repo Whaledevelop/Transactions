@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 
-class InputHandler extends Component {
+class AddHandler extends Component {
       constructor(props) {
           super(props);
           this.state = {
@@ -86,4 +86,4 @@ class InputHandler extends Component {
     }
 }
 
-export default InputHandler;
+export default AddHandler;
