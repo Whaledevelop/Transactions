@@ -1,0 +1,64 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "value": 20000,
+      "type": "consumption",
+      "date": "2016-12-08T11:30"
+    },
+    {
+      "id": 2,
+      "value": 1100,
+      "type": "income",
+      "date": "2017-06-12T13:10"
+    },
+    {
+      "id": 3,
+      "value": 900,
+      "type": "consumption",
+      "date": "2017-07-24T12:00"
+    },
+    {
+      "id": 4,
+      "value": 200,
+      "type": "income",
+      "date": "2017-07-29T19:30"
+    },
+    {
+      "id": 5,
+      "value": 100,
+      "type": "consumption",
+      "date": "2017-08-07T18:30"
+    },
+    {
+      "id": 6,
+      "value": 3200,
+      "type": "income",
+      "date": "2017-08-29T18:30"
+    },
+    {
+      "id": 7,
+      "value": 2100,
+      "type": "consumption",
+      "date": "2017-09-12T11:30"
+    },
+    {
+      "id": 8,
+      "value": 400,
+      "type": "income",
+      "date": "2017-09-15T14:30"
+    },
+    {
+      "id": 9,
+      "value": 1700,
+      "type": "consumption",
+      "date": "2017-09-19T16:30"
+    },
+    {
+      "id": 10,
+      "value": 3000,
+      "type": "income",
+      "date": "2017-09-25T21:30"
+    }
+  ]
+}

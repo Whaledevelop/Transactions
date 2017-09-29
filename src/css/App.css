@@ -1,0 +1,43 @@
+.table {
+	border: 1px solid #eeeeee;
+}
+
+th,th {
+	width: 32%
+}
+
+td:first-child, th:first-child {
+	width: 4%
+}
+
+.btn {
+	border-radius: 10px 10px 0px 0px;
+}
+
+.authenticButton {
+		border-radius: 3px;
+		margin: 30px 0px;
+}
+
+.form-control {
+		width: 375px;
+}
+
+#selectType {
+	width: 400px;
+	height: 48px;
+}
+
+#addButton {
+		margin-top: 15px;	
+		border-radius: 3px;
+}
+
+.inputHandler {
+		margin-top: 40px;	
+}
+
+.errorMessage {
+		color: #A02F25;
+		margin-top: 25px;
+}
