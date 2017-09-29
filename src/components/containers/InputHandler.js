@@ -69,20 +69,21 @@ class InputHandler extends Component {
             }                 
     }
 
+    statusHandler() {
+        let input = this.props.input;
+        let {valueStatus, typeStatus, dateStatus} = this.state;
+        if (input === 'value') {
+            return <h4>{valueStatus}</h4>
+        } else if (input === 'type') {
+            return <h4>{typeStatus}</h4>
+        } else if (input === 'date') {
+            return <h4>{dateStatus}</h4>
+        } else return <h5>no data</h5>
+    }
+
     render() {
-      const statusHandler = () => {
-          let input = this.props.input;
-          let {valueStatus, typeStatus, dateStatus} = this.state;
-          if (input === 'value') {
-              return <h4>{valueStatus}</h4>
-          } else if (input === 'type') {
-              return <h4>{typeStatus}</h4>
-          } else if (input === 'date') {
-              return <h4>{dateStatus}</h4>
-          } else return <h5>no data</h5>
-      }
-      return <div className="inputHandler">{statusHandler()}</div>      
-  }
+      return <div className="inputHandler">{this.statusHandler()}</div>      
+    }
 }
 
 export default InputHandler;

@@ -8,7 +8,9 @@ class FilterList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            transactions: []
+            transactions: [],
+            loading: true,
+            error: null
         }
     }
 
@@ -16,11 +18,16 @@ class FilterList extends Component {
         axios.get(`http://localhost:3333/transactions`)
             .then(response => {
                 this.setState({
-                    transactions: response.data
+                    transactions: response.data,
+                    loading: false,
+                    error: null
                 })
             })
             .catch(error => {
-                console.log('Error in getting json with data ' + error);
+                this.setState({
+                    loading: false,
+                    error: error
+                  })
             })
     }
 
@@ -59,9 +66,27 @@ class FilterList extends Component {
             });
     }
 
-    render() {                   
-        return <TransactionsList transactions={this.state.transactions}/>       
-  }
+    renderLoading() {
+        return <div className="loadingStatus">Loading...</div>;
+      }
+    
+    renderError() {
+        return <div>Something went wrong: {this.state.error.message}</div>;
+    }
+
+    renderData() {
+        if(this.state.error) {
+            return this.renderError()
+        } else {
+            return <TransactionsList transactions={this.state.transactions}/>
+        }      
+    }
+
+    render() {
+        return (
+            this.state.loading ? this.renderLoading() : this.renderData()
+        )  
+    }
 }
 
 export default FilterList;

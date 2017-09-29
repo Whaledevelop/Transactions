@@ -48,20 +48,21 @@ class AddContainer extends Component {
                     })                           
         }    
     }
-    
-    render () {
-        const latestAddedTransaction = () => {
-            if (this.state.submittedAdding) {
-                return  <JustAdded transaction={this.state.transaction}/>
-            }
+
+    latestAddedTransaction() {
+        if (this.state.submittedAdding) {
+            return  <JustAdded transaction={this.state.transaction}/>
         }
+    }
+
+    render () {     
         return (
             <div className="container">
                 <div className="col-lg-12">
                     <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
                     <AddForm onClick={this.handleChanges.bind(this)}/> 
                     <hr/>
-                    {latestAddedTransaction()}
+                    {this.latestAddedTransaction()}
                 </div>
             </div>
         )
