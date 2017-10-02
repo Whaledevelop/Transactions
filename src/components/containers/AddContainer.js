@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import AddForm from './AddForm';
-import JustAdded from '../views/JustAdded';
+import JustAdded from '../presentational/JustAdded';
 
 class AddContainer extends Component {
     constructor(props) {

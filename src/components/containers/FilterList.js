@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
-import List from '../views/List';
+import List from '../presentational/List';
 
 class FilterList extends Component {
     constructor(props) {
