@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 
-export class List extends Component {
+class TransactionsTable extends Component {
 		render (){
+			const { transactions } = this.props;
 				return (
 					<table className="table table-striped table-hover">
 							<thead>
@@ -14,7 +15,7 @@ export class List extends Component {
 									</tr>
 							</thead>
 							<tbody>
-									{this.props.transactions.map(transaction => {
+									{transactions.map(transaction => {
 												return (
 															<tr key={transaction.id}>
 																	<td>{transaction.id}</td>
@@ -30,4 +31,4 @@ export class List extends Component {
 			}
 }
 
-export default List;
+export default TransactionsTable;

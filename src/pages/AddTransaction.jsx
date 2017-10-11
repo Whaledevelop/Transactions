@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import AddForm from './AddForm';
-import JustAdded from '../presentational/JustAdded';
+import AddContainer from '../containers/AddContainer';
+import JustAdded from '../components/JustAdded';
 
-class AddContainer extends Component {
+class AddTransaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,15 +58,17 @@ class AddContainer extends Component {
     render () {     
         return (
             <div className="container">
-                <div className="col-lg-12">
-                    <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
-                    <AddForm onClick={this.handleChanges.bind(this)}/> 
-                    <hr/>
-                    {this.latestAddedTransaction()}
+                <div className="row">
+                    <div className="col-lg-12">
+                            <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
+                            <AddContainer onClick={this.handleChanges.bind(this)}/> 
+                            <hr/>
+                            {this.latestAddedTransaction()}
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-export default AddContainer;
+export default AddTransaction;
