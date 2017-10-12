@@ -19,6 +19,12 @@ class AddTransaction extends Component {
         }
     }
 
+    submitAdding(submit) {
+        this.setState ({
+            submittedAdding: submit
+        })
+    }
+
     handleChanges(id, value, type, date) {
         this.setState({
             transaction: {
@@ -26,8 +32,7 @@ class AddTransaction extends Component {
                 value: value,
                 type: type,
                 date: date
-            },
-            submittedAdding: true
+            }
         })
     }
 
@@ -61,7 +66,9 @@ class AddTransaction extends Component {
                 <div className="row">
                     <div className="col-lg-12">
                             <Link to="/"><button className="btn btn-primary authenticButton">Transaction List</button></Link>
-                            <AddContainer onClick={this.handleChanges.bind(this)}/> 
+                            <AddContainer 
+                                onConfirm={this.submitAdding.bind(this)}
+                                onClick={this.handleChanges.bind(this)}/> 
                             <hr/>
                             {this.latestAddedTransaction()}
                     </div>

@@ -11,8 +11,7 @@ class AddContainer extends Component {
           id: '',
           value: '',
           type: '',
-          date: '',
-          block: true 
+          date: ''
       }
       this.inputHandler = this.inputHandler.bind(this);
       this.inputStatusHandler = this.inputStatusHandler.bind(this);
@@ -30,25 +29,8 @@ class AddContainer extends Component {
         }     
     }
  
-
     inputStatusHandler(correctData) {
-        if (correctData) {
-                axios.get('http://localhost:3333/transactions')
-                .then(response => {
-                        let newId = (response.data.length + 1);       
-                        this.setState({
-                            id: newId,
-                            block: false
-                        })
-                })
-                .catch(error => {
-                        console.log('Error in getting json with transactions' + error);
-                })
-        } else {
-                this.setState ({
-                        block: true
-                })
-        }          
+        this.props.onConfirm(correctData)        
     }
 
     addConfirmedData() {

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-//import moment from 'moment'; 
 
 import { valueHandler } from './handlers/valueHandler';
 import { typeHandler } from './handlers/typeHandler';
 import { dateHandler } from './handlers/dateHandler';
+import InputStatus from './InputStatus';
 
 class AddHandler extends Component {
         constructor(props) {
@@ -16,6 +16,7 @@ class AddHandler extends Component {
         }
 
       componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps')
             let { value,type,date } = nextProps.transaction;
             let valueStatus = valueHandler(value);
             let typeStatus = typeHandler(type);       
@@ -28,6 +29,7 @@ class AddHandler extends Component {
         }
 
         shouldComponentUpdate(nextState) {
+            console.log('shouldComponentUpdate', nextState)
             return (
                 this.state.valueStatus !== nextState.valueStatus ||
                 this.state.typeStatus !== nextState.typeStatus ||
@@ -35,29 +37,23 @@ class AddHandler extends Component {
             )
         }
 
-        componentDidUpdate() {
-            let { valueStatus, typeStatus, dateStatus } = this.state;
+        componentWillUpdate(nextState) {
+            let { valueStatus, typeStatus, dateStatus} = nextState;
+            console.log ('componentDidUpdate', nextState);
             if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
                 this.props.onConfirm(true);
             } else {
                 this.props.onConfirm(false);
-            } 
-        }
-
-        statusHandler() {
-            const { input } = this.props;
-            const { valueStatus, typeStatus, dateStatus } = this.state;
-            if (input === 'value') {
-                return <h4>{ valueStatus }</h4>
-            } else if (input === 'type') {
-                return <h4>{ typeStatus }</h4>
-            } else if (input === 'date') {
-                return <h4>{ dateStatus }</h4>
-            } else return <h5>no data</h5>
-        }
+            }
+        } 
 
         render() {
-        return <div className="inputHandler">{ this.statusHandler() }</div>      
+            let { valueStatus, typeStatus, dateStatus } = this.state;
+            return <InputStatus
+                        valueStatus = {valueStatus}
+                        typeStatus = {typeStatus}
+                        dateStatus = {dateStatus}
+                        input = {this.props.input}/>  
         }
     }
 
