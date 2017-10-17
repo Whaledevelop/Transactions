@@ -8,6 +8,7 @@ class Input extends Component {
 
     inputView() {
         if (this.props.inputType === 'text') {
+            console.log ('text');
             return (
                 <input 
                     type="text"
@@ -25,7 +26,10 @@ class Input extends Component {
                     onChange={this.inputHandler}
                     name = {this.props.name}>
                         {values.map(value => {
-                            <option>{value}</option>
+                            return (
+                                <option>{value}</option>
+                            )
+                            
                         })}
                 </select>
             )
@@ -40,6 +44,7 @@ class Input extends Component {
             )
         }
     }
+    
     render () {
         return (
           <div className="form-group">
