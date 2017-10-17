@@ -66,7 +66,7 @@ class TransactionsList extends Component {
                         <div className="col-lg-12">
                                 <Link to="/add">
                                     <button className='btn btn-danger authenticButton'>Add new transaction</button>
-                                </Link>
+                                </Link> 
                                 <FiltersContainer onClick={this.filterTransactions}/>        
                                 <TransactionsTable transactions = {this.state.filteredTransactions}/>
                         </div>

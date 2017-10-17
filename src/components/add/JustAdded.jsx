@@ -6,6 +6,7 @@ class JustAdded extends Component {
         const { transaction } = this.props;
         return (
             <div className='justAdded'>
+                <hr/>
                 <h3>Done! You have added new transaction:</h3>
                     <ul>
                         <li>Id : {transaction.id}</li>

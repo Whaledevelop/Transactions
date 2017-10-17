@@ -41,10 +41,3 @@ td:first-child, th:first-child {
 		color: #A02F25;
 		margin-top: 25px;
 }
-
-.loadingStatus {
-		font-size: 38px;
-		width: 100%;
-		text-align: center;
-		margin-top: 100px;
-}

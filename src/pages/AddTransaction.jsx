@@ -5,20 +5,29 @@ import axios from 'axios';
 import AddContainer from '../containers/AddContainer';
 
 class AddTransaction extends Component {
-        postTransaction(value, type, date) {
-                axios.get('http://localhost:3333/transactions')
-                        .then(response => {
-                                let id = (response.data.length + 1); 
-                                axios.post('http://localhost:3333/transactions', {
-                                        id: id,
-                                        value: value,
-                                        type: type,
-                                        date: date
-                                })
-                                        .then(response => {console.log (response.data)})
-                                        .catch(error => {console.log('Error in posting new transaction' + error)})      
+        constructor(props) {
+                super(props);
+                this.state = {
+                        transaction: {
+                                id: '',
+                                value: '',
+                                type: '',
+                                date: ''
+                        },
+                        justAdded: false
+                }
+        }
+        postTransaction(id, value, type, date) {
+                        console.log (id, value, type, date);
+                        axios.post('http://localhost:3333/transactions', {
+                                id: id,
+                                value: value,
+                                type: type,
+                                date: date
                         })
-                        .catch(error => {console.log('Error in getting json' + error)})             
+                        .then(response => {console.log(response.data);
+                        })
+                        .catch(error => {console.log('Error in posting new transaction' + error)})               
         }
 
         render () {     

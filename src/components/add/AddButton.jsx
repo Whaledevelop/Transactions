@@ -4,51 +4,57 @@ class AddButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          addButtonClassName: 'btn btn-primary disabled',
-          errorMessage: ''
+          button: 'btn btn-info disabled',
+          error: ''
         }
-        this.sendNewId = this.sendNewId.bind(this);
+        this.addTransaction = this.addTransaction.bind(this);
     }
                           
     componentWillReceiveProps(nextProps) {
-        const { block } = nextProps;
-        if (!block) {
+        if  (nextProps.submit) {
             this.setState({
-                addButtonClassName: 'btn btn-primary',
-                errorMessage: ''
+                button: 'btn btn-info',
             })
         } else {
             this.setState ({
-                addButtonClassName: 'btn btn-primary disabled',
+                button: 'btn btn-info disabled',
             })  
         }   
     }
 
-    sendNewId() {
-        const { block } = this.props;
-        if (block) {
-            this.setState ({
-                errorMessage: 'Fill all inputs with correct data to add new transaction',
-                addButtonClassName: 'btn btn-primary disabled'
+    addTransaction() {
+        if (this.state.button === 'btn btn-info') {
+            this.props.onClick(true)
+            this.setState({
+                error: ''
             })
         } else {
-            this.setState({
-                errorMessage: ''
+            this.props.onClick(false)
+            this.setState ({
+                error: 'Fill all inputs with data'
             })
         }               
     }
 
+    errorMessage() {
+        let { error } = this.state;
+        if (error === 'Fill all inputs with data') {
+                return (
+                    <h4 className="errorMessage">{error}</h4>
+                )
+        }
+    }
+
     render() {
-            const { errorMessage, addButtonClassName} = this.state;
             return (
-                    <div>
+                    <div className='col-lg-12'>
                             <div 
                                     id="addButton" 
-                                    className={addButtonClassName} 
-                                    onClick={this.sendNewId}>
+                                    className={this.state.button} 
+                                    onClick={this.addTransaction}>
                                     Add transaction
                             </div>
-                            <h4 className="errorMessage">{errorMessage}</h4>
+                            {this.errorMessage()}
                     </div>
             )
     }   
