@@ -5,7 +5,7 @@ class JustAdded extends Component {
     render () {
         const { transaction } = this.props;
         return (
-            <div>
+            <div className='justAdded'>
                 <h3>Done! You have added new transaction:</h3>
                     <ul>
                         <li>Id : {transaction.id}</li>

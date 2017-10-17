@@ -9,22 +9,7 @@ class AddButton extends Component {
         }
         this.sendNewId = this.sendNewId.bind(this);
     }
-       /*if (correctData) {
-                axios.get('http://localhost:3333/transactions')
-                .then(response => {
-                        let newId = (response.data.length + 1);       
-                        this.setState({
-                            id: newId
-                        })
-                })
-                .catch(error => {
-                        console.log('Error in getting json with transactions' + error);
-                })
-        } else {
-                this.setState ({
-                        block: true
-                })
-        }*/                               
+                          
     componentWillReceiveProps(nextProps) {
         const { block } = nextProps;
         if (!block) {
