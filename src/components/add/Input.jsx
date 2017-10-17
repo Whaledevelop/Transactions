@@ -18,16 +18,16 @@ class Input extends Component {
             )
         } else if (this.props.inputType === 'select') {
             let values = this.props.values;
-            values.shift('');
+            values.unshift('');
             return (
                 <select 
                     id="selectType" 
                     className="form-control"
                     onChange={this.inputHandler}
                     name = {this.props.name}>
-                        {values.map(value => {
+                        {values.map((value, i) => {
                             return (
-                                <option>{value}</option>
+                                <option key={"value_" + i}>{value}</option>
                             )
                             
                         })}
@@ -50,7 +50,7 @@ class Input extends Component {
           <div className="form-group">
               <div className="col-lg-4">
                       <label>{this.props.name}</label>
-                      {this.inputView.bind(this)}
+                      {this.inputView()}
               </div> 
           </div> 
         )       
