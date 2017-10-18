@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import AddButton from '../components/add/AddButton';
-import JustAdded from '../components/add/JustAdded';
+import AddButton from '../components/AddButton';
 
-import { valueHandler } from '../components/add/handlers/valueHandler';
-import { typeHandler } from '../components/add/handlers/typeHandler';
-import { dateHandler } from '../components/add/handlers/dateHandler';
+import { valueHandler } from '../handlers/valueHandler';
+import { typeHandler } from '../handlers/typeHandler';
+import { dateHandler } from '../handlers/dateHandler';
 
-class AddContainer extends Component {
+class AddForm extends Component {
         constructor(props) {
                 super(props);
                 this.state = {
-                        id: null,
                         value: '',
                         type: '',
                         date: '',
@@ -53,12 +51,9 @@ class AddContainer extends Component {
                         .then(response => {
                                 let id = (response.data.length + 1); 
                                 this.props.onClick(id, value, type, date);
-                                this.setState({
-                                        id: id
-                                })
                         })
                         .catch(error => {console.log('Error in getting json' + error)})
-                }             
+                }                                     
         }
 
         confirmedData() {
@@ -66,14 +61,6 @@ class AddContainer extends Component {
                 if (valueStatus === 'correct' & typeStatus === 'correct' & dateStatus === 'correct') {
                         return true
                 } else return false
-        }
-
-        justAdded() {
-                if (this.state.id !== null) {
-                        let {id, value, type, date} = this.state;
-                        let transaction = {id: id, value: value, type: type, date: date}
-                        return <JustAdded transaction={transaction}/>
-                }
         }
  
         render() {  
@@ -138,10 +125,9 @@ class AddContainer extends Component {
                                                         onClick={this.addConfirmedData.bind(this)}/>
                                         </fieldset> 
                                 </form>
-                                {this.justAdded()}
                         </div>
                 )
         }
 }
 
-export default AddContainer;
+export default AddForm;

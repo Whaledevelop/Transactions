@@ -9,42 +9,19 @@ class FilterButton extends Component {
     }
 
     changeFilter() {
-        if (this.state.className === 'btn btn-default') {
-                let newClassName = this.props.className;					
+        let {name, className} = this.props;
+        if (this.state.className === 'btn btn-default') {					
                 this.setState ({
-                        className: newClassName
+                        className: className
                 })
-                let filterOn = true;
-                this.props.onClick (filterOn);
+                this.props.onClick (name, true);
                 
         } else {
                 this.setState ({
                         className: 'btn btn-default'
                 })
-                let filterOn = false
-                this.props.onClick (filterOn);
+                this.props.onClick (name, false);
         }
-    }
-
-    raiseFirstLetter(name) {
-        let raisedFirstLetter = name[0].toUpperCase();
-        let cutName = name.slice(1, name.length);
-        return name = raisedFirstLetter + cutName;
-    }
-
-    namingFilter () {
-            let { filterBy, filterValue, filterInfo } = this.props.text;
-            if (filterBy === 'type') {
-                return this.raiseFirstLetter(filterValue);
-            } else if (filterBy === 'date') {
-                if ((filterValue === 30 & filterInfo === 'days') || (filterValue === '1' & filterInfo === 'month')) {
-                        return 'This month';
-                } else {
-                        return ('Past ' + filterValue + ' ' + filterInfo);
-                }
-            } else if (filterBy === 'value') {
-                return (this.raiseFirstLetter(filterInfo) + ' than ' + filterValue + ' rubles');
-            }
     }
     
     render (){
@@ -52,7 +29,7 @@ class FilterButton extends Component {
         <a 
             className = { this.state.className } 
             onClick = {this.changeFilter.bind(this)}>
-            { this.namingFilter() }
+            {this.props.text}
         </a>
       )
           

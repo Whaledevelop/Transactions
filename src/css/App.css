@@ -38,6 +38,16 @@ td:first-child, th:first-child {
 }
 
 .errorMessage {
-		color: #A02F25;
+		color: red;
 		margin-top: 25px;
+}
+
+.readyMessage {
+		color: midnightblue;
+		margin-top: 25px;
+}
+
+.successMessage {
+	color: rgb(14, 99, 14);
+	margin-top: 25px;
 }
