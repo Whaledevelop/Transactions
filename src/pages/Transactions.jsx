@@ -38,21 +38,23 @@ class Transactions extends Component {
                 }
     
                 render() {
-                                return (
-                                        <div className="container">
-                                                <div className="row">
-                                                        <div className="col-lg-12">
-                                                                <Link to="/add">
+                        let { filteredTransactions } = this.state;
+                        return (
+                                <div className="container">
+                                        <div className="row">
+                                                <div className="col-lg-12">
+                                                        <Link to="/add">
                                                                 <button className='btn btn-danger authenticButton'>
                                                                         Add transaction
                                                                 </button>
-                                                                </Link> 
-                                                                <Filters onClick={this.filterTransactions}/>        
-                                                                <TransactionsTable transactions = {this.state.filteredTransactions}/>
-                                                        </div>
-                                                </div>        
-                                        </div>
-                                )
+                                                        </Link> 
+                                                        <Filters onClick={this.filterTransactions}/>        
+                                                        <TransactionsTable 
+                                                                transactions = {filteredTransactions}/>
+                                                </div>
+                                        </div>        
+                                </div>
+                        )
                 }
 }
 
