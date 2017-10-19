@@ -42,16 +42,19 @@ class Transactions extends Component {
                         return (
                                 <div className="container">
                                         <div className="row">
-                                                <div className="col-lg-12">
-                                                        <Link to="/add">
-                                                                <button className='btn btn-danger authenticButton'>
-                                                                        Add transaction
-                                                                </button>
-                                                        </Link> 
-                                                        <Filters onClick={this.filterTransactions}/>        
-                                                        <TransactionsTable 
-                                                                transactions = {filteredTransactions}/>
-                                                </div>
+                                                <Link to="/addTransaction">
+                                                        <button className='btn btn-danger authenticButton'>
+                                                                Add transaction
+                                                        </button>
+                                                </Link>
+                                                <Link to="/addFilter">
+                                                        <button className='btn btn-success authenticButton right'>
+                                                                Add filter
+                                                        </button>
+                                                </Link>
+                                                <Filters onClick={this.filterTransactions}/>        
+                                                <TransactionsTable 
+                                                        transactions = {filteredTransactions}/>
                                         </div>        
                                 </div>
                         )

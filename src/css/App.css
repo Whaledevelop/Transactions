@@ -51,3 +51,7 @@ td:first-child, th:first-child {
 	color: rgb(14, 99, 14);
 	margin-top: 25px;
 }
+
+.right {
+		float: right
+}

@@ -7,35 +7,37 @@ class Input extends Component {
         }
 
         inputView() {
-                let {name} = this.props;
-                if (name === 'Value') {
+                let {name, type} = this.props;  
+                if (type === "text") {
                         return (
                                 <input 
                                         type="text"
                                         className="form-control"
                                         onChange={this.inputHandler.bind(this)}
-                                        name = 'Value'/>
+                                        name = {name}/>
                         )
-                } else if (name === 'Type') {
+                } else if (type === "select") {
+                        let {values} = this.props;
+                        values.unshift('');
                         return (
                                 <select 
                                         id="selectType" 
                                         className="form-control"
                                         onChange={this.inputHandler.bind(this)}
-                                        name = 'Type'>
-                                                <option></option>
-                                                <option>income</option>
-                                                <option>consumption</option>
+                                        name = {name}>
+                                                {values.map((value, i) => {
+                                                        return <option key={"value_" + i}>{value}</option>  
+                                                })}         
                                 </select>
                         )
-                } else if (name === 'Date') {
+                } else if (type === "date") {
                         return (
                                 <input 
                                         type="datetime-local" 
                                         max="3000-12-30T00:00"
                                         className='form-control'
                                         onChange={this.inputHandler.bind(this)}
-                                        name = 'Date'/>
+                                        name = {name}/>
                         )           
                 }
         }

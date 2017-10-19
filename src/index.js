@@ -7,12 +7,14 @@ import './css/App.css';
 
 import Transactions from './pages/Transactions';
 import AddTransaction from './pages/AddTransaction';
+import AddFilter from './pages/AddFilter';
 
 ReactDOM.render(
         <BrowserRouter>
                 <div>
                         <Route exact path="/" component={Transactions}/>
-                        <Route path="/add" component={AddTransaction}/>
+                        <Route path="/addTransaction" component={AddTransaction}/>
+                        <Route path="/addFilter" component={AddFilter}/>
                 </div>
         </BrowserRouter>,  
         document.getElementById('root')
