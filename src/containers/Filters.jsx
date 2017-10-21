@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import FilterButton from '../components/FilterButton';
 
+import { camelNameCrafter } from '../components/modules/camelNameCrafter';
+
 class Filters extends Component {
         constructor(props) {
                 super(props);
@@ -15,8 +17,14 @@ class Filters extends Component {
         componentWillMount() {
                 axios.get('http://localhost:3333/filters')
                         .then(response => {
+                                let filters = response.data;
+                                for (let i = 0; i < filters.length; i++) {
+                                        filters[i]['active'] = 'false';
+                                        filters[i]['text'] = filters[i].name;
+                                        filters[i].name = camelNameCrafter(filters[i].name);
+                                }
                                 this.setState({
-                                        filters: response.data
+                                        filters: filters
                                 })
                         })
                         .catch(error => {console.log('Error in getting json' + error)})
@@ -33,16 +41,17 @@ class Filters extends Component {
         }
     
         render () {
-                let {filters} = this.state
+                let {filters} = this.state;
                 return (
                         <div className="btn-group btn-group-justified">
-                                {filters.map(filter => {
+                                {filters.map((filter, i) => {
                                         return (
                                                 <FilterButton
-                                                        className={filter.className}
-                                                        text={filter.text}
-                                                        name={filter.name}
-                                                        onClick={this.turnFilter}/>
+                                                        key = {"filter_" + i}
+                                                        name = {filter.name}
+                                                        className = {filter.className}
+                                                        text = {filter.text}
+                                                        onClick = {this.turnFilter}/>
                                         )
                                 })}
                         </div>

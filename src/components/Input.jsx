@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import { firstLetterHandler } from './modules/firstLetterHandler';
+
 class Input extends Component {    
         inputHandler(e) {
                 const {name, value} = e.target;
@@ -8,7 +10,7 @@ class Input extends Component {
 
         inputView() {
                 let {name, type} = this.props;  
-                if (type === "text") {
+                if (type === 'text' || type === 'numbers' || type === 'description') {
                         return (
                                 <input 
                                         type="text"
@@ -17,15 +19,14 @@ class Input extends Component {
                                         name = {name}/>
                         )
                 } else if (type === "select") {
-                        let {values} = this.props;
-                        values.unshift('');
+                        let {selectValues} = this.props;
                         return (
                                 <select 
                                         id="selectType" 
                                         className="form-control"
                                         onChange={this.inputHandler.bind(this)}
                                         name = {name}>
-                                                {values.map((value, i) => {
+                                                {selectValues.map((value, i) => {
                                                         return <option key={"value_" + i}>{value}</option>  
                                                 })}         
                                 </select>
@@ -43,17 +44,17 @@ class Input extends Component {
         }
 
         render() {
-                const { name, inputStatus } = this.props
+                const { info, name } = this.props
                 return (
                         <div className="col-lg-12">
                                 <div className="col-lg-4">
                                         <div className="form-group">           
-                                                <label>{name}</label>
+                                                <label>{firstLetterHandler(name, 'toUpperCase')}</label>
                                                 {this.inputView()}            
                                         </div>
                                 </div>
                                 <div className="col-lg-6">
-                                        <h4 className="inputHandler">{inputStatus}</h4>
+                                        <h4 className="inputHandler">{info}</h4>
                                 </div>
                         </div>
                 )

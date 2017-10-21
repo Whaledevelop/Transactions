@@ -2,20 +2,25 @@ import moment from 'moment';
 
 export const filtersHandler = (filters, filteredTransactions) => {
         for (let i = 0; i < filters.length; i++) {
-                let { active, filterBy, value, info } = filters[i];
-                if (active) {
+                let { active, filterBy} = filters[i];
+                if (active === true) {
                         if (filterBy === 'value') {
+                                let {value, moreOrLess} = filters[i]
                                 filteredTransactions = filteredTransactions.filter(transaction => {
-                                        return (
-                                                (info === 'more') ? (transaction.value > value) : (transaction.value < value)
-                                        )
+                                        if (moreOrLess === 'more') {
+                                                return transaction.value > value
+                                        } else if (moreOrLess === 'less') {
+                                                return transaction.value < value
+                                        }
                                 })
                         }
                         if (filterBy === 'type') {
-                                filteredTransactions = filteredTransactions.filter(transaction => transaction.type === value) 
+                                let {type} = filters[i];
+                                filteredTransactions = filteredTransactions.filter(transaction => transaction.type === type) 
                         }
                         if (filterBy === 'date') {
-                                let dateToCompare = moment().subtract(value, info).format('YYYYMMDD');
+                                let {past, unit} = filters[i];
+                                let dateToCompare = moment().subtract(past, unit).format('YYYYMMDD');
                                 filteredTransactions = filteredTransactions.filter(transaction => {
                                         return (
                                                 moment(transaction.date).format('YYYYMMDD') > dateToCompare

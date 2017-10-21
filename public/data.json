@@ -4,31 +4,31 @@
       "id": 1,
       "value": 20000,
       "type": "consumption",
-      "date": "2016-12-08T11:30"
+      "date": "2016-06-08T11:30"
     },
     {
       "id": 2,
       "value": 1100,
       "type": "income",
-      "date": "2017-07-12T13:10"
+      "date": "2017-01-12T13:10"
     },
     {
       "id": 3,
       "value": 900,
       "type": "consumption",
-      "date": "2017-07-24T12:00"
+      "date": "2017-03-24T12:00"
     },
     {
       "id": 4,
       "value": 200,
       "type": "income",
-      "date": "2017-07-29T19:30"
+      "date": "2017-05-29T19:30"
     },
     {
       "id": 5,
       "value": 100,
       "type": "consumption",
-      "date": "2017-08-17T18:30"
+      "date": "2017-07-17T18:30"
     },
     {
       "id": 6,
@@ -64,43 +64,41 @@
   "filters": [
     {
       "id": 1,
-      "name": "income",
-      "text": "Income",
+      "name": "Income",
       "className": "btn btn-success",
       "filterBy": "type",
-      "value": "income",
-      "info": "",
-      "active": false
+      "type": "income"
     },
     {
       "id": 2,
-      "name": "consumption",
-      "text": "Consumption",
+      "name": "Consumption",
       "className": "btn btn-warning",
       "filterBy": "type",
-      "value": "consumption",
-      "info": "",
-      "active": false
+      "type": "consumption"
     },
     {
       "id": 3,
-      "name": "thisMonth",
-      "text": "This month",
+      "name": "This month",
       "className": "btn btn-info",
       "filterBy": "date",
-      "value": 30,
-      "info": "days",
-      "active": false
+      "past": 30,
+      "unit": "days"
     },
     {
       "id": 4,
-      "name": "moreThan1000",
-      "text": "More than 1000 rubles",
+      "name": "More than 1000 rubles",
       "className": "btn btn-primary",
       "filterBy": "value",
       "value": 1000,
-      "info": "more",
-      "active": false
+      "moreOrLess": "more"
+    },
+    {
+      "id": 5,
+      "name": "Last year",
+      "className": "btn btn-primary",
+      "filterBy": "date",
+      "past": 1,
+      "unit": "year"
     }
   ]
 }

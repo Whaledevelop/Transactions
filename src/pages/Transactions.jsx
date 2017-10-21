@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Filters from '../containers/Filters';
 import TransactionsTable from '../components/TransactionsTable';
-import { filtersHandler } from '../components/handlers/filtersHandler';
+import { filtersHandler } from '../components/modules/filtersHandler';
 
 class Transactions extends Component {
                 constructor(props) {
