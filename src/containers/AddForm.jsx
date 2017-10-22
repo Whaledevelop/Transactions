@@ -5,7 +5,7 @@ import Input from '../components/Input';
 import AddButton from '../components/AddButton';
 
 import { inputsDataHandler } from '../components/modules/inputsDataHandler';
-import { nameInterpratator } from '../components/modules/nameInterpratator';
+import { dataForPostCrafter } from '../components/modules/dataForPostCrafter';
 
 class AddForm extends Component {
                 constructor(props) {
@@ -30,33 +30,10 @@ class AddForm extends Component {
 
                 inputsHandler(inputName, inputValue) {
                         let { data} = this.state;
-                        let currentInputData = data.find(input => input.name === inputName)
-                        let currentInputIndex = data.indexOf(currentInputData);
-                        let info = '';
-                        if (inputName === 'filterBy') {
-                                //info = inputsDataHandler(inputValue, currentInputData);
-                                let nameInput = data.find(input => input.name === 'name');
-                                let nameInputValue = nameInput.value;
-                                let nameInputIndex = data.indexOf(nameInput);
-                                console.log (nameInputValue, nameInputIndex, currentInputData, currentInputIndex)
-                                //let nameInputInfo = inputsDataHandler(nameInputValue, currentInputData, inputValue);
-                        }
-                        /*for (let i = 0; i < data.length; i++) {
-                                let {name, type} = data[i]
-                                if (name === inputName) {
-                                        if (inputName === 'filterBy') {
-                                                for(let i = 0; i < data.length; i++) {
-                                                        if()
-                                                }
-                                        }
-                                        let info = inputsDataHandler(inputValue, data);
-                                        this.setState(prevState => (
-                                                prevState.data[i].value = inputValue,  
-                                                prevState.data[i].info = info
-                                        ))
-                                }   
-                        }*/
-
+                        let newData = inputsDataHandler(inputName, inputValue, data);
+                        this.setState(prevState => (
+                                prevState.data = newData
+                        ))            
                 }
 
                 addData(submit){
@@ -65,18 +42,8 @@ class AddForm extends Component {
                                 axios.get(`http://localhost:3333/${object}`)
                                         .then(response => {
                                                         let id = (response.data.length + 1);
-                                                        let newData = {};
                                                         let {data} = this.state;
-                                                        newData['id'] = id;       
-                                                        for (let i = 0; i < data.length; i++) {
-                                                                let {name, value} = data[i];
-                                                                newData[name] = value;
-                                                        }
-                                                        let {name, filterBy} = newData;
-                                                        let additionalData = nameInterpratator(name, filterBy);
-                                                        for (let key in additionalData) {
-                                                                newData[key] = additionalData[key]
-                                                        }
+                                                        let newData = dataForPostCrafter(id, data);
                                                         axios.post(`http://localhost:3333/${object}`, newData)
                                                                 .then(response => {console.log(response.data)})
                                                                 .catch(error => {console.log('Error in posting new transaction' + error)})

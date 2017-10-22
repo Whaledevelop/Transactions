@@ -5,13 +5,11 @@ export const filtersHandler = (filters, filteredTransactions) => {
                 let { active, filterBy} = filters[i];
                 if (active === true) {
                         if (filterBy === 'value') {
-                                let {value, moreOrLess} = filters[i]
+                                let {value, moreOrLess} = filters[i];
                                 filteredTransactions = filteredTransactions.filter(transaction => {
                                         if (moreOrLess === 'more') {
                                                 return transaction.value > value
-                                        } else if (moreOrLess === 'less') {
-                                                return transaction.value < value
-                                        }
+                                        } else return transaction.value < value
                                 })
                         }
                         if (filterBy === 'type') {
@@ -20,6 +18,11 @@ export const filtersHandler = (filters, filteredTransactions) => {
                         }
                         if (filterBy === 'date') {
                                 let {past, unit} = filters[i];
+                                console.log (past, unit);
+                                if (unit === 'week' || unit === 'weeks') {
+                                        past = past*7;
+                                        unit = 'days';
+                                }
                                 let dateToCompare = moment().subtract(past, unit).format('YYYYMMDD');
                                 filteredTransactions = filteredTransactions.filter(transaction => {
                                         return (

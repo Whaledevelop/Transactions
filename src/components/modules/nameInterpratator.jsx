@@ -82,7 +82,7 @@ export const nameInterpratator = (name, filterBy) => {
           let past = nameObj.find(name => {
               return numberOrNot(name)
           })
-          if (past === undefined & (unit === 'year' || unit === 'month' || unit === 'day')) {         
+          if (past === undefined & (unit === 'year' || unit === 'month' || unit === 'week' || unit === 'day')) {       
               past = 1;
           }
           additionalData = {

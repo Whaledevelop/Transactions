@@ -1,11 +1,12 @@
 export const firstLetterHandler = (name, action) => {
+        let lowName = name.toLowerCase()
         let firstLetter = '';
         if (action === 'toUpperCase') {
-            firstLetter = name[0].toUpperCase();
+            firstLetter = lowName[0].toUpperCase();
         } else if (action === 'toLowerCase') {
-            firstLetter = name[0].toLowerCase();
+            firstLetter = lowName[0].toLowerCase();
         }
-        let cutName = name.slice(1, name.length);
+        let cutName = lowName.slice(1, lowName.length);
         name = firstLetter + cutName; 
         return name;        
 }
