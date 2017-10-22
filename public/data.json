@@ -99,6 +99,20 @@
       "filterBy": "date",
       "past": 1,
       "unit": "year"
+    },
+    {
+      "id": 6,
+      "filterBy": "value",
+      "name": "Less than 1000 rubles",
+      "className": "btn btn-primary",
+      "value": "1000",
+      "moreOrLess": "less"
+    },
+    {
+      "id": 7,
+      "filterBy": "value",
+      "name": "Income ",
+      "className": "btn btn-warning"
     }
   ]
 }

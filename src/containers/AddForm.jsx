@@ -4,7 +4,7 @@ import axios from 'axios';
 import Input from '../components/Input';
 import AddButton from '../components/AddButton';
 
-import { inputsHandler } from '../components/modules/inputsHandler';
+import { inputsDataHandler } from '../components/modules/inputsDataHandler';
 import { nameInterpratator } from '../components/modules/nameInterpratator';
 
 class AddForm extends Component {
@@ -30,28 +30,32 @@ class AddForm extends Component {
 
                 inputsHandler(inputName, inputValue) {
                         let { data} = this.state;
-                        for (let i = 0; i < data.length; i++) {
+                        let currentInputData = data.find(input => input.name === inputName)
+                        let currentInputIndex = data.indexOf(currentInputData);
+                        let info = '';
+                        if (inputName === 'filterBy') {
+                                //info = inputsDataHandler(inputValue, currentInputData);
+                                let nameInput = data.find(input => input.name === 'name');
+                                let nameInputValue = nameInput.value;
+                                let nameInputIndex = data.indexOf(nameInput);
+                                console.log (nameInputValue, nameInputIndex, currentInputData, currentInputIndex)
+                                //let nameInputInfo = inputsDataHandler(nameInputValue, currentInputData, inputValue);
+                        }
+                        /*for (let i = 0; i < data.length; i++) {
                                 let {name, type} = data[i]
                                 if (name === inputName) {
-                                        let selectValues = [];
-                                        let filterBy = '';
-                                        if (type==='select') {
-                                               selectValues = data[i].selectValues;
-                                        }
-                                        if (inputName === 'name') {
-                                                for (let i=0; i < data.length; i++) {
-                                                        if(data[i].name === 'filterBy') {
-                                                                filterBy = data[i].value
-                                                        }
+                                        if (inputName === 'filterBy') {
+                                                for(let i = 0; i < data.length; i++) {
+                                                        if()
                                                 }
                                         }
-                                        let info = inputsHandler(inputValue, type, selectValues, filterBy);
+                                        let info = inputsDataHandler(inputValue, data);
                                         this.setState(prevState => (
                                                 prevState.data[i].value = inputValue,  
                                                 prevState.data[i].info = info
                                         ))
                                 }   
-                        }
+                        }*/
 
                 }
 

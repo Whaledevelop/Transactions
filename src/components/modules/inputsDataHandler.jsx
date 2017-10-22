@@ -1,6 +1,23 @@
 import moment from 'moment';    
-
-export const inputsHandler = (value, type, selectValues, filterBy) => {
+/*
+        let selectValues = [];
+                                        let filterBy = '';
+                                        if (type==='select') {
+                                               selectValues = data[i].selectValues;
+                                        }
+                                        if (inputName === 'name') {
+                                                for (let i=0; i < data.length; i++) {
+                                                        if(data[i].name === 'filterBy')         {
+                                                                filterBy = data[i].value
+                                                        }
+                                                }
+                                                let inputData = {
+                                                        value: inputValue,
+                                                        filterBy: filterBy
+                                                }
+                                        }
+*/
+export const inputsDataHandler = (value, type, selectValues, filterBy) => {
         if (type ==='numbers') {
                 let parsedValue = parseInt(value, 10);
                 if (value === '') {
@@ -37,15 +54,23 @@ export const inputsHandler = (value, type, selectValues, filterBy) => {
                                             return true
                                         } else return false 
                                 }
-                                let value = nameObj.find(name => {
+                                let numbers = nameObj.find(name => {
                                         return numberOrNot(name)
                                 })
-                                console.log (value)
-                                if (value === undefined) {
-                                        return 'Enter some value to filter'
+                                if (numbers === undefined) {
+                                        return 'Enter the value with numbers'
                                 } else return 'correct'
+                        } else if (filterBy === 'type') {
+                                let incomeOrConsumption = nameObj.find(name => {
+                                        return name === 'income' || name === 'consumption'
+                                })
+                                if (incomeOrConsumption === undefined) {
+                                        return 'Enter income or consumption type'
+                                } else return 'correct'
+                        } else if (filterBy === 'date') {
+
                         }
-                } else return 'Fill \'filter by\' firstly'
+                } else return 'Fill \"filter by\" firstly'
         } else if (type === 'select') {
                 if (value === '') {
                     return ''
