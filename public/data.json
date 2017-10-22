@@ -91,14 +91,6 @@
       "filterBy": "value",
       "value": 1000,
       "moreOrLess": "more"
-    },
-    {
-      "id": 5,
-      "filterBy": "value",
-      "name": "More than 1000",
-      "className": "btn btn-primary",
-      "value": "1000",
-      "moreOrLess": "more"
     }
   ]
 }
