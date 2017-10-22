@@ -45,12 +45,13 @@ class Filters extends Component {
                 return (
                         <div className="btn-group btn-group-justified">
                                 {filters.map((filter, i) => {
+                                        let {name, className, text} = filter;
                                         return (
                                                 <FilterButton
                                                         key = {"filter_" + i}
-                                                        name = {filter.name}
-                                                        className = {filter.className}
-                                                        text = {filter.text}
+                                                        name = {name}
+                                                        className = {className}
+                                                        text = {text}
                                                         onClick = {this.turnFilter}/>
                                         )
                                 })}

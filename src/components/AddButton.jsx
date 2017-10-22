@@ -44,15 +44,20 @@ class AddButton extends Component {
                 onClick(submit);       
         }
 
+        singleNameObject(object) {
+                return object.slice(0, (object.length - 1));
+        }
+
         render() {
                 let {buttonClassName, message, messageClassName} = this.state;
+                let {object} = this.props;
                 return (
                         <div className='col-lg-12'>
                                 <div 
                                         id="addButton" 
                                         className={buttonClassName} 
                                         onClick={this.buttonHandler}>
-                                        Add transaction
+                                        Add {this.singleNameObject(object)}
                                 </div>
                                 <h4 className={messageClassName}>{message}</h4>
                         </div>

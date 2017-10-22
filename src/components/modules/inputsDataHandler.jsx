@@ -6,17 +6,17 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
         let {type, selectValues} = currentInputData;
         let info = '';
         if (type ==='numbers') {
-                let parsedValue = parseInt(inputValue, 10);
+                inputValue = parseInt(inputValue, 10);
                 if (inputValue === '') {
-                            info = ''       
-                } else if (isNaN(parsedValue)) {
-                            info = 'Enter numbers'
-                } else if (parsedValue < 0) {
-                            info = 'Enter positive number'
-                } else if (parsedValue > 1000000000) {
-                            info = 'Too much'
+                        info = ''       
+                } else if (isNaN(inputValue)) {
+                        info = 'Enter numbers'
+                } else if (inputValue < 0) {
+                        info = 'Enter positive number'
+                } else if (inputValue > 1000000000) {
+                        info = 'Too much'
                 } else {
-                            info = 'correct'
+                        info = 'correct'
                 }
         } else if (type === 'text') {
                 if (inputValue === '') {
@@ -34,7 +34,7 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
                                 let numberOrNot = (name) => {
                                         let parsedName = parseInt(name, 10);
                                         if (!isNaN(parsedName)) {
-                                            return true
+                                                return true
                                         } else return false 
                                 }
                                 let numbers = nameObj.find(name => {
@@ -58,7 +58,7 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
                                 let numberOrNot = (name) => {
                                         let parsedName = parseInt(name, 10);
                                         if (!isNaN(parsedName)) {
-                                            return true
+                                                return true
                                         } else return false 
                                 }
                                 let numbers = nameObj.find(name => {
@@ -76,18 +76,29 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
                                                 || name === 'month'
                                                 || name === 'year'
                                 })
-                                if (pluralUnits === undefined & singleUnits === undefined & numbers === undefined ) {
-                                        info = 'Enter unit and value';
-                                } else if (pluralUnits === undefined & singleUnits === undefined & numbers !== undefined) {
-                                        info = 'Specify what to compare'
-                                } else if (pluralUnits !== undefined & numbers === undefined) {
-                                        info = 'Enter the value to compare'
-                                } else if (pluralUnits === undefined & singleUnits !== undefined & numbers !== undefined ){
-                                        if (numbers === '1') {
-                                                info = 'correct'
+                                if (pluralUnits === undefined 
+                                        & singleUnits === undefined
+                                        & numbers === undefined) {
+                                                info = 'Enter unit and value';
+                                } else if (pluralUnits === undefined 
+                                        & singleUnits === undefined 
+                                        & numbers !== undefined) {
+                                                info = 'Specify what to compare'
+                                } else if (pluralUnits !== undefined 
+                                        & numbers === undefined) {
+                                                info = 'Enter the value to compare'
+                                } else if (pluralUnits === undefined 
+                                        & singleUnits !== undefined 
+                                        & numbers !== undefined ){
+                                                if (numbers === '1') {
+                                                        info = 'correct'
                                         } else info = 'No value needed if you enter single unit'
-                                } else if ((pluralUnits === undefined & singleUnits !== undefined & numbers === undefined) || (pluralUnits !== undefined & numbers !== undefined)) {
-                                        info = 'correct'
+                                } else if ((pluralUnits === undefined 
+                                        & singleUnits !== undefined 
+                                        & numbers === undefined) 
+                                        || (pluralUnits !== undefined 
+                                        & numbers !== undefined)) {
+                                                info = 'correct'
                                 }
                         }
                 }  else info = 'Fill "filter by" firstly'
@@ -103,7 +114,7 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
         } else if (type === 'date') {
                 let dateForComparison = moment(inputValue).format('YYYYMMDD');
                 let now = moment().format('YYYYMMDD');
-                let lowestAvailableDate = moment().subtract(30, 'years').format('YYYYMMDD');
+                let lowestAvailableDate = moment().subtract(50, 'years').format('YYYYMMDD');
                 if (inputValue === '') {
                         info = ''
                 } else if (dateForComparison > now) {
@@ -113,12 +124,19 @@ export const inputsDataHandler = (inputName, inputValue, data) => {
                 } else {
                         info ='correct'
                 }
+        } else if (type === 'colors') {
+                if (inputValue === '') {
+                        info = ''
+                } else if (inputValue === 'btn btn-default') {
+                        info = 'Choose color of filter button'
+                } else {
+                        info = 'correct'
+                }
         }
         data[currentInputIndex].value = inputValue;
         data[currentInputIndex].info = info;
         if (inputName === 'filterBy') {
-                let nameInput = data.find(input => input.name === 'name');
-                let nameInputValue = nameInput.value;
+                let nameInputValue = data.find(input => input.name === 'name').value;
                 inputsDataHandler('name', nameInputValue, data);
         }
         return data     

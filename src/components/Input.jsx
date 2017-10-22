@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 
+import ColorsButtons from './ColorsButtons';
+
 import { firstLetterHandler } from './modules/firstLetterHandler';
 
-class Input extends Component {    
+class Input extends Component {  
         inputHandler(e) {
                 const {name, value} = e.target;
                 this.props.onChange(name, value);
+        }
+        
+        colorsHandler(className) {
+                this.props.onChange('className', className);
         }
 
         inputView() {
@@ -40,7 +46,20 @@ class Input extends Component {
                                         onChange={this.inputHandler.bind(this)}
                                         name = {name}/>
                         )           
+                } else if (type === 'colors') {
+                        let {colors} = this.props;
+                        return <ColorsButtons
+                                        onClick={this.colorsHandler.bind(this)}
+                                        colors={colors}/>
                 }
+        }
+
+        nameForLabel(name) {          
+                if (name === 'filterBy') {
+                        return 'Filter by'
+                } else if (name === 'className') {
+                        return 'Colors'
+                } else return firstLetterHandler(name, 'toUpperCase');
         }
 
         render() {
@@ -49,7 +68,7 @@ class Input extends Component {
                         <div className="col-lg-12">
                                 <div className="col-lg-4">
                                         <div className="form-group">           
-                                                <label>{firstLetterHandler(name, 'toUpperCase')}</label>
+                                                <label>{this.nameForLabel(name)}</label>
                                                 {this.inputView()}            
                                         </div>
                                 </div>

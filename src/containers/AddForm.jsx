@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Input from '../components/Input';
 import AddButton from '../components/AddButton';
@@ -52,45 +53,58 @@ class AddForm extends Component {
                         }                                  
                 }
 
-                confirmedData() {
-                        let {data} = this.state;
+                confirmedData(data) {
                         let count = 0;
                         for (let i = 0; i < data.length; i++) {
-                                if (data[i].info === 'correct') {count++}                
+                                let {info} = data[i];
+                                if (info === 'correct') {count++}                
                         }
                         if (count === data.length) {return true
                         } else return false
                 }
                 
-                singleNameObject() {
-                        let {object} = this.props;
+                singleNameObject(object) {
                         return object.slice(0, (object.length - 1));
                 }
 
                 render() {
-                        let {data} = this.state;                                    
+                        let {data} = this.state; 
+                        let {object} = this.props;                                 
                         return (
-                                <div>           
-                                        <form className = "form-horizontal">
-                                                <fieldset>
-                                                        <legend>Add {this.singleNameObject()}</legend>
-                                                        {data.map((input, i) => {
-                                                                return (
-                                                                        <Input
-                                                                                key={"input_" + i}
-                                                                                name={input.name}
-                                                                                type={input.type}
-                                                                                selectValues={input.selectValues}
-                                                                                info={input.info}
-                                                                                onChange={this.inputsHandler}/>
-                                                                )
-                                                        })}
-                                                        <AddButton
-                                                                submit = {this.confirmedData()}
-                                                                onClick={this.addData}/>
-                                                </fieldset> 
-                                        </form>
+                                <div className='container'>
+                                        <div className='row'>
+                                                <Link to="/">
+                                                        <button className="btn btn-primary authenticButton">
+                                                                Transactions List
+                                                        </button>
+                                                </Link>
+                                                <div>           
+                                                        <form className = "form-horizontal">
+                                                                <fieldset>
+                                                                        <legend>Add {this.singleNameObject(object)}</legend>
+                                                                        {data.map((input, i) => {
+                                                                                let {name, type, selectValues, colors, info} = input;
+                                                                                return (
+                                                                                        <Input
+                                                                                                key={"input_" + i}
+                                                                                                name={name}
+                                                                                                type={type}
+                                                                                                selectValues={selectValues}
+                                                                                                colors={colors}
+                                                                                                info={info}
+                                                                                                onChange={this.inputsHandler}/>
+                                                                                )
+                                                                        })}
+                                                                        <AddButton
+                                                                                object = {object}
+                                                                                submit = {this.confirmedData(data)}
+                                                                                onClick={this.addData}/>
+                                                                </fieldset> 
+                                                        </form>
+                                                </div>   
+                                        </div>
                                 </div>
+                                
                         )
                 }
 }

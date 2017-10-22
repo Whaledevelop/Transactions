@@ -10,8 +10,8 @@ class Transactions extends Component {
                 constructor(props) {
                                 super(props);
                                 this.state = {
-                                                transactions: [],
-                                                filteredTransactions: []
+                                        transactions: [],
+                                        filteredTransactions: []
                                 };
                                 this.filterTransactions = this.filterTransactions.bind(this);
                 }
@@ -33,7 +33,7 @@ class Transactions extends Component {
                                 let filteredTransactions = this.state.transactions;
                                 filteredTransactions = filtersHandler(filters, filteredTransactions);    
                                 this.setState({
-                                                filteredTransactions: filteredTransactions
+                                                        filteredTransactions: filteredTransactions
                                 })
                 }
     

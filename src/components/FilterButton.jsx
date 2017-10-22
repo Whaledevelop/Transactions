@@ -10,17 +10,17 @@ class FilterButton extends Component {
                 }
 
                 changeFilter() {
-                                const {name, className} = this.props;
+                                const {name, className, onClick} = this.props;
                                 if (this.state.className === 'btn btn-default') {					
                                                 this.setState ({
                                                                 className: className
                                                 })
-                                                this.props.onClick (name, true);           
+                                                onClick (name, true);           
                                 } else {
                                                 this.setState ({
                                                         className: 'btn btn-default'
                                                 })
-                                                this.props.onClick (name, false);
+                                                onClick (name, false);
                                 }
                 }
     

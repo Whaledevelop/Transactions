@@ -18,7 +18,6 @@ export const filtersHandler = (filters, filteredTransactions) => {
                         }
                         if (filterBy === 'date') {
                                 let {past, unit} = filters[i];
-                                console.log (past, unit);
                                 if (unit === 'week' || unit === 'weeks') {
                                         past = past*7;
                                         unit = 'days';
@@ -32,6 +31,6 @@ export const filtersHandler = (filters, filteredTransactions) => {
                         }                   
                 }
         }
-        return filteredTransactions;
+        return filteredTransactions
 }
 
