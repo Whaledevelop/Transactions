@@ -44,10 +44,6 @@ class AddButton extends Component {
                 onClick(submit);       
         }
 
-        singleNameObject(object) {
-                return object.slice(0, (object.length - 1));
-        }
-
         render() {
                 let {buttonClassName, message, messageClassName} = this.state;
                 let {object} = this.props;
@@ -57,7 +53,7 @@ class AddButton extends Component {
                                         id="addButton" 
                                         className={buttonClassName} 
                                         onClick={this.buttonHandler}>
-                                        Add {this.singleNameObject(object)}
+                                        Add {object}
                                 </div>
                                 <h4 className={messageClassName}>{message}</h4>
                         </div>

@@ -96,7 +96,7 @@ class AddForm extends Component {
                                                                                 )
                                                                         })}
                                                                         <AddButton
-                                                                                object = {object}
+                                                                                object = {this.singleNameObject(object)}
                                                                                 submit = {this.confirmedData(data)}
                                                                                 onClick={this.addData}/>
                                                                 </fieldset> 
