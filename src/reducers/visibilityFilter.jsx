@@ -1,9 +1,15 @@
-const visibilityFilter = (state = 'SHOW_ALL', action) => {
-  switch (action.type) {
+const visibilityFilter = (state = [''], action) => {
+  let {type, filter} = action;
+  switch (type) {
     case 'SET_VISIBILITY_FILTER':
-      return action.filter
+        let index = state.indexOf(filter)
+        if (index === -1) {
+            return [...state, action.filter]
+        } else { 
+            return state.filter(f => f !== filter)
+        }       
     default:
-      return state
+        return state
   }
 }
 

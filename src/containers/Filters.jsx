@@ -3,8 +3,9 @@ import { setVisibilityFilter } from '../actions'
 import FilterButton from '../components/FilterButton'
 
 const mapStateToProps = (state, ownProps) => {
+  let active = state.visibilityFilter.indexOf(ownProps.filter) !== -1
   return {
-      active: ownProps.filter === state.visibilityFilter,
+      active: active,
       text: ownProps.text,
       className: ownProps.className
   }
@@ -19,8 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Filters = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(FilterButton)
 
 export default Filters

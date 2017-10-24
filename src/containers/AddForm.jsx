@@ -24,19 +24,39 @@ class AddForm extends Component {
     render() {
       return (
           <div>
-              <form onSubmit = {this.handleSubmit}>
-                  <input 
-                      name = "value"
-                      onChange = {this.handleChange}/>
-                  <input 
-                      name = "type"
-                      onChange = {this.handleChange}/>
-                  <input 
-                      name = "date"
-                      onChange = {this.handleChange}/>
-                  <button type="submit">
-                      Add Transaction
-                  </button>
+              <form className="form-horizontal" onSubmit = {this.handleSubmit}>
+                    <fieldset>
+                            <legend>Add transaction</legend>
+                            <div className="form-group col-lg-12">
+                                    <input
+                                            type="text"
+                                            className="form-control" 
+                                            name = "value"
+                                            onChange = {this.handleChange}/>
+                            </div>
+                            <div className="form-group col-lg-12">
+                                    <select
+                                            id="selectType"
+                                            className='form-control'
+                                            name = "type"
+                                            onChange = {this.handleChange}>
+                                            <option></option>
+                                            <option>income</option>
+                                            <option>consumption</option> 
+                                    </select>               
+                            </div>
+                            <div className="form-group col-lg-12">
+                                    <input 
+                                            type="datetime-local" 
+                                            max="3000-12-30T00:00"
+                                            className='form-control'
+                                            name = "date"
+                                            onChange = {this.handleChange}/>
+                            </div>
+                            <button className="btn btn-primary" type="submit">
+                                    Add Transaction
+                            </button>
+                    </fieldset>           
               </form>
           </div>
       )
@@ -44,10 +64,10 @@ class AddForm extends Component {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-      onAddTransaction: (transaction) => {
-          dispatch(addTransaction(transaction))
-      }
-  })
+        state => ({}),
+        dispatch => ({
+                onAddTransaction: (transaction) => {
+                        dispatch(addTransaction(transaction))
+                }
+        })
 )(AddForm)

@@ -1,17 +1,18 @@
 import moment from 'moment';
 
-export const filtersHandler = (transactions, filter) => {
-  switch (filter) {
-      case 'SHOW_ALL':
-            return transactions
-      case 'SHOW_INCOME':
-            return transactions.filter(transaction => transaction.type === 'income')
-      case 'SHOW_CONSUMPTION':
-            return transactions.filter(transaction => transaction.type === 'consumption')
-      case 'SHOW_LAST_MONTH':
-            let dateToCompare = moment().subtract(30, 'days').format('YYYYMMDD');
-            return transactions.filter(transaction => moment(transaction.date).format('YYYYMMDD') > dateToCompare)
-      case 'SHOW_MORE_THAN_1000_RUBLES':
-            return transactions.filter(transaction => transaction.value > 1000)
-  }
+export const filtersHandler = (transactions, filters) => {
+      let filteredTransactions = transactions;
+      for (let i=0; i<filters.length; i++) {
+            if (filters[i] === 'SHOW_INCOME') {
+                  filteredTransactions = filteredTransactions.filter(transaction => transaction.type === 'income');
+            } else if (filters[i] === 'SHOW_CONSUMPTION') {
+                  filteredTransactions = filteredTransactions.filter(transaction => transaction.type === 'consumption')
+            } else if (filters[i] === 'SHOW_LAST_MONTH') {
+                  let dateToCompare = moment().subtract(30, 'days').format('YYYYMMDD');
+                  filteredTransactions = filteredTransactions.filter(transaction => moment(transaction.date).format('YYYYMMDD') > dateToCompare)
+            } else if (filters[i] === 'SHOW_MORE_THAN_1000_RUBLES') {
+                  filteredTransactions =  filteredTransactions.filter(transaction => transaction.value > 1000)
+            }
+      } 
+      return filteredTransactions; 
 }

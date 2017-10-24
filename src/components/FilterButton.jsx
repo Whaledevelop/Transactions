@@ -1,21 +1,33 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const FilterButton = ({ active, text, className, onClick }) => {
-  if (active) {
-    return <button className={className}>{text}</button>
+class FilterButton extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            className: 'btn btn-default'
+        }
+        this.changeColor = this.changeColor.bind(this);
+    }
+
+    changeColor() {
+        let {className, onClick} = this.props;
+        if (this.state.className === 'btn btn-default') {
+            this.setState({className: className})
+        } else this.setState({className: 'btn btn-default'})   
+        onClick()
+    }
+
+    render() {
+        let {text} = this.props;
+        return (
+            <a
+                className={this.state.className}
+                onClick={this.changeColor}>
+                {text}
+            </a>
+        )
+    }
   }
 
-  return (
-    <button
-        className="btn btn-default"
-      onClick={e => {
-        e.preventDefault()
-        onClick()
-      }}
-    >
-      {text}
-    </button>
-  )
-}
 
 export default FilterButton

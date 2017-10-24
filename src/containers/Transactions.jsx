@@ -8,14 +8,6 @@ const mapStateToProps = state => {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onTransactionsClick: id => {
-//             dispatch(toggleTransactions(id))
-//         }
-//     }
-// }
-
 const Transactions = connect(
     mapStateToProps
 )(TransactionsList)

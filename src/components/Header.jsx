@@ -3,7 +3,6 @@ import Filters from '../containers/Filters'
 
 const Header = () => (
     <div className="btn-group btn-group-justified">
-          <Filters filter="SHOW_ALL" text="All" className="btn btn-default"/>
           <Filters filter="SHOW_INCOME" text="Income" className="btn btn-success"/>
           <Filters filter="SHOW_CONSUMPTION" text="Consumption" className="btn btn-warning"/>
           <Filters filter="SHOW_LAST_MONTH" text="Last month" className="btn btn-info"/>
