@@ -9,8 +9,8 @@ import './css/App.css';
 
 import App from './pages/App';
 import transactionsApp from './reducers';
-// import AddTransaction from './pages/AddTransaction';
-// import AddFilter from './pages/AddFilter';
+import AddTransaction from './pages/AddTransaction';
+import AddFilter from './pages/AddFilter';
 
 let store = createStore(transactionsApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -19,8 +19,8 @@ render(
                 <BrowserRouter>
                         <div>
                                 <Route exact path="/" component={App}/>
-                                {/* <Route path="/addTransaction" component={AddTransaction}/>
-                                <Route path="/addFilter" component={AddFilter}/> */}
+                                <Route path="/addTransaction" component={AddTransaction}/>
+                                <Route path="/addFilter" component={AddFilter}/>
                         </div>
                 </BrowserRouter>
         </Provider>,  

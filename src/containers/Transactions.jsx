@@ -1,24 +1,23 @@
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
-import TodoList from '../components/TodoList'
+import { filtersHandler } from '../components/modules/filtersHandler'
+import TransactionsList from '../components/TransactionsList'
 
 const mapStateToProps = state => {
     return {
-        todos: getVisibleTodos(state.todos, state.visibilityFilter)
+        transactions: filtersHandler(state.transactions, state.visibilityFilter)
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onTodoClick: id => {
-            dispatch(toggleTodo(id))
-        }
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onTransactionsClick: id => {
+//             dispatch(toggleTransactions(id))
+//         }
+//     }
+// }
 
-const VisibleTodoList = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TodoList)
+const Transactions = connect(
+    mapStateToProps
+)(TransactionsList)
 
-export default VisibleTodoList
+export default Transactions
