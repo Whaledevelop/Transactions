@@ -10,7 +10,7 @@ export const filtersHandler = (transactions, filters) => {
             } else if (filters[i] === 'SHOW_LAST_MONTH') {
                   let dateToCompare = moment().subtract(30, 'days').format('YYYYMMDD');
                   filteredTransactions = filteredTransactions.filter(transaction => moment(transaction.date).format('YYYYMMDD') > dateToCompare)
-            } else if (filters[i] === 'SHOW_MORE_THAN_1000_RUBLES') {
+            } else if (filters[i] === 'SHOW_MORE_THAN_1000') {
                   filteredTransactions =  filteredTransactions.filter(transaction => transaction.value > 1000)
             }
       } 

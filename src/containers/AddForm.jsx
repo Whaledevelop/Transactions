@@ -18,7 +18,9 @@ class AddForm extends Component {
     }
 
     handleSubmit() {
-        this.props.onAddTransaction(this.state.transaction)
+        let newTransaction = this.state.transaction
+        newTransaction['id'] = this.props.id;
+        this.props.onAddTransaction(newTransaction)
     }
 
     render() {
@@ -64,7 +66,9 @@ class AddForm extends Component {
 }
 
 export default connect(
-        state => ({}),
+        state => ({
+                id: (state.transactions.length + 1)        
+        }),
         dispatch => ({
                 onAddTransaction: (transaction) => {
                         dispatch(addTransaction(transaction))

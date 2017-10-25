@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-const TransactionsList = ({ transactions }) => (
+const TransactionsList = ({ transactions }) => {console.log (transactions); return (
         <table className="table table-striped table-hover">
                 <thead>
                         <tr>
@@ -13,18 +13,18 @@ const TransactionsList = ({ transactions }) => (
                 </thead>
                 <tbody>
                         {transactions.map(transaction => {
-                        let {id, value, type, date} = transaction;
-                        return (
-                            <tr key={id}>
-                                    <td>{id}</td>
-                                    <td>{value}</td>
-                                    <td>{type}</td> 
-                                    <td>{moment(date).format('HH:mm - DD.MM.YYYY')}</td>
-                            </tr>
-                        )
+                                let {id, value, type, date} = transaction;
+                                return (
+                                        <tr key={id}>
+                                                <td>{id}</td>
+                                                <td>{value}</td>
+                                                <td>{type}</td> 
+                                                <td>{moment(date).format('HH:mm - DD.MM.YYYY')}</td>
+                                        </tr>
+                                )
                         })}   								
                 </tbody>
         </table>
-)
+)}
 
 export default TransactionsList
