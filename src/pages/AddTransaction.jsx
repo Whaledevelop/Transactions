@@ -1,21 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../components/Header'
-import Transactions from '../containers/Transactions'
+import AddForm from '../containers/AddForm'
 
-const App = () => (    
+const AddTransaction = () => (    
     <div className='container'>
             <div className='row'>
-                        <Link to='/add'>
+                        <Link to='/'>
                                 <button className="authenticButton btn btn-primary">
-                                        Add Transaction
+                                        Transactions
                                 </button>
                         </Link>
-                        <Header/>
-                        <Transactions/>
+                        <AddForm/>
             </div>
     </div>
 )
 
-export default App
+export default AddTransaction

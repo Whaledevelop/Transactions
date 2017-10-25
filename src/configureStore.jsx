@@ -9,6 +9,7 @@ const configureStore = () => {
     let store = createStore(transactionsApp, persistedState);
 
     store.subscribe(() => {
+            console.log (store.getState());
             saveState({
                     transactions: store.getState().transactions
             });
