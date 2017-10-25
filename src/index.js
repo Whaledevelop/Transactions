@@ -18,7 +18,7 @@ render(
         <Provider store={store}>
                 <BrowserRouter>
                         <div>
-                                <Route exact path="/" component={App}/>
+                                <Route exact path="/(:filter)" component={App}/>
                                 <Route path="/addTransaction" component={AddTransaction}/>
                                 <Route path="/addFilter" component={AddFilter}/>
                         </div>

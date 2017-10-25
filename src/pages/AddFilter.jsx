@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const AddFilter = () => (
     <div className='container'>
             <div className='row'>
-                <Link to="/">
+                <Link to="/transactions">
                 <button className='btn btn-primary authenticButton'>
                         Main page
                 </button>
