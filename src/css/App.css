@@ -33,10 +33,6 @@ td:first-child, th:first-child {
 		border-radius: 3px;
 }
 
-.inputHandler {
-		margin-top: 40px;	
-}
-
 .errorMessage {
 		color: red;
 		margin-top: 25px;
