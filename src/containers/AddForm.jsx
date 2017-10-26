@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import moment from 'moment'
 
 import { addTransaction } from '../actions'
 import AddButton from '../components/AddButton'
@@ -19,12 +18,7 @@ class AddForm extends Component {
 
         handleChange(e) {
                 let {value, name} = e.target;
-                console.log (value, name);
                 let info = inputHandler(name, value);
-                if (name === 'date') {
-                        value = moment(value).format('HH:mm - DD.MM.YYYY')
-                }
-                console.log (value);
                 this.setState(prevState => ({
                         transaction: {...prevState.transaction, [name] : value},
                         info: {...prevState.info, [name] : info}
@@ -33,10 +27,9 @@ class AddForm extends Component {
 
         handleSubmit(submit) {
                 if (submit) {
-                        let newTransaction = this.state.transaction
+                        let newTransaction = this.state.transaction;
                         newTransaction['id'] = this.props.id;
-                        console.log (newTransaction);
-                        this.props.onAddTransaction(newTransaction)
+                        this.props.onAddTransaction(newTransaction);
                 }      
         }
 
@@ -107,12 +100,6 @@ class AddForm extends Component {
 }
 
 export default connect(
-        state => ({
-                id: (state.transactions.length + 1)        
-        }),
-        dispatch => ({
-                onAddTransaction: (transaction) => {
-                        dispatch(addTransaction(transaction))
-                }
-        })
-)(AddForm)
+        state => ({id: (state.transactions.length + 1)}),
+        {onAddTransaction: addTransaction}
+)(AddForm);

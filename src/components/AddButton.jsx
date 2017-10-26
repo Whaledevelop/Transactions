@@ -36,7 +36,7 @@ class AddButton extends Component {
                                 buttonClassName: 'btn btn-danger disabled',
                                 message: 'Fill all inputs with correct data',
                                 messageClassName: 'errorMessage'
-                    })
+                        })
                 } 
                 onClick(submit);       
         }
@@ -50,7 +50,7 @@ class AddButton extends Component {
                                         id="addButton" 
                                         className={buttonClassName} 
                                         onClick={this.handleButton}>
-                                        Add transaction
+                                                Add transaction
                                 </div>
                                 <h4 className={messageClassName}>{message}</h4>
                         </div>

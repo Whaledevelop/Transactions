@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-import { loadState, saveState, clearState } from './localStorage'
+import { loadState, saveState } from './localStorage' //can use clearStores
 import transactionsApp from './reducers';
 
 const configureStore = () => {

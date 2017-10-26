@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-const TransactionsList = ({ transactions }) => {console.log (transactions); return (
+const TransactionsList = ({ transactions }) => (
         <table className="table table-striped table-hover">
                 <thead>
                         <tr>
@@ -25,6 +25,6 @@ const TransactionsList = ({ transactions }) => {console.log (transactions); retu
                         })}   								
                 </tbody>
         </table>
-)}
+)
 
 export default TransactionsList
