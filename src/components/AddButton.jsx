@@ -46,12 +46,12 @@ class AddButton extends Component {
                 let {buttonClassName, message, messageClassName} = this.state;
                 return (
                         <div className='col-lg-12'>
-                                <div 
+                                <a 
                                         id="addButton" 
                                         className={buttonClassName} 
                                         onClick={this.handleButton}>
                                                 Add transaction
-                                </div>
+                                </a>
                                 <h4 className={messageClassName}>{message}</h4>
                         </div>
                 )

@@ -10,20 +10,20 @@ class FilterButton extends Component{
     }
 
     changeColor() {
-        let {className, onClick} = this.props;
-        if (this.state.className === 'btn btn-default') {
-            this.setState({className: className})
-        } else this.setState({className: 'btn btn-default'})   
-        onClick()
+            let {className, onClick, name} = this.props;
+            if (this.state.className === 'btn btn-default') {
+                    this.setState({className: className})
+            } else this.setState({className: 'btn btn-default'})   
+            onClick(name)
     }
 
     render() {
         let {text} = this.props;
         return (
             <a
-                className={this.state.className}
-                onClick={this.changeColor}>
-                {text}
+                    className={this.state.className}
+                    onClick={this.changeColor}>
+                    {text}
             </a>
         )
     }

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import transactions from './transactions'
-import visibilityFilter from './visibilityFilter'
+import visibilityFilters from './visibilityFilters'
 
 const transactionsApp = combineReducers({
     transactions,
-    visibilityFilter
+    visibilityFilters
 })
 
 export default transactionsApp

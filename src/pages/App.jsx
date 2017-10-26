@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../components/Header'
+import Filters from '../containers/Filters'
 import Transactions from '../containers/Transactions'
 
 const App = () => (    
@@ -12,7 +12,7 @@ const App = () => (
                                         Add Transaction
                                 </button>
                         </Link>
-                        <Header/>
+                        <Filters/>
                         <Transactions/>
             </div>
     </div>

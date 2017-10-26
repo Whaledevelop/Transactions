@@ -1,20 +1,21 @@
 import { createStore } from 'redux';
 
-import { loadState, saveState } from './localStorage' //can use clearStores
+import { loadState, saveState } from './localStorage'
+import {clearState} from './localStorage'
 import transactionsApp from './reducers';
 
 const configureStore = () => {
     const persistedState = loadState()
-
     let store = createStore(transactionsApp, persistedState);
-
     store.subscribe(() => {
-            console.log (store.getState());
+            console.log(store.getState())
             saveState({
-                    transactions: store.getState().transactions
+                    transactions: store.getState().transactions,
+                    visibilityFilters: store.getState().visibilityFilters
             });
     })
-    //clearState();
+    console.log (store.getState());
+    clearState();
     return store;
 }
 
