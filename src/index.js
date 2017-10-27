@@ -10,14 +10,14 @@ import AddTransaction from './pages/AddTransaction';
 import AddFilter from './pages/AddFilter';
 
 ReactDOM.render(
-        <BrowserRouter>
-                <div>
-                        <Route exact path="/" component={Transactions}/>
-                        <Route path="/addTransaction" component={AddTransaction}/>
-                        <Route path="/addFilter" component={AddFilter}/>
-                </div>
-        </BrowserRouter>,  
-        document.getElementById('root')
+  <BrowserRouter>
+    <div>
+      <Route exact path="/" component={Transactions}/>
+      <Route path="/addTransaction" component={AddTransaction}/>
+      <Route path="/addFilter" component={AddFilter}/>
+    </div>
+  </BrowserRouter>,  
+  document.getElementById('root')
 )
 
 
