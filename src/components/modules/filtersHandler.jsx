@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 export const filtersHandler = (transactions, filters) => {
-      console.log (filters);
       for (let i=0; i<filters.length; i++) {
             if (filters[i] === 'income') {
                   transactions = transactions.filter(transaction => transaction.type === 'income');

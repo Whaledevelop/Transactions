@@ -18,6 +18,9 @@ class AddForm extends Component {
 
         handleChange(e) {
                 let {value, name} = e.target;
+                if (name === 'value') {
+                        value = parseInt(value, 10);
+                }
                 let info = inputHandler(name, value);
                 this.setState(prevState => ({
                         transaction: {...prevState.transaction, [name] : value},
@@ -51,7 +54,7 @@ class AddForm extends Component {
                                 <div className="form-group col-lg-12">
                                                 <div className="col-lg-4">
                                                                 <input
-                                                                        type="text"
+                                                                        type="number"
                                                                         className="form-control" 
                                                                         name = "value"
                                                                         onChange = {this.handleChange}/>

@@ -8,13 +8,13 @@ const configureStore = () => {
     const persistedState = loadState()
     let store = createStore(transactionsApp, persistedState);
     store.subscribe(() => {
-            console.log(store.getState())
+            console.log(store.getState().visibilityFilters.map(f=> f.active))
+            console.log(store.getState().transactions.filter(t => t.id > 10).map(t => t.value))
             saveState({
                     transactions: store.getState().transactions,
                     visibilityFilters: store.getState().visibilityFilters
             });
     })
-    console.log (store.getState());
     clearState();
     return store;
 }

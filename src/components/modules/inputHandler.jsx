@@ -2,7 +2,6 @@ import moment from 'moment';
 
 export const inputHandler = (name, value) => {
     if (name === 'value') {
-        value = parseInt(value, 10);
         if (value === '') {
                 return ''       
         } else if (isNaN(value)) {
