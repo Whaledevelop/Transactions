@@ -8,15 +8,13 @@ class AddButton extends Component {
       message: '',
       messageClassName: ''
     }
-    this.buttonHandler = this.buttonHandler.bind(this);
+    this.handleButton = this.handleButton.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.submit) {
+    if  (nextProps.submit) {
       this.setState({
-        buttonClassName: 'btn btn-primary',
-        message: 'Ready to add',
-        messageClassName: 'readyMessage'
+        buttonClassName: 'btn btn-primary'
       })
     } else {
       this.setState ({
@@ -26,11 +24,10 @@ class AddButton extends Component {
     }   
   }
 
-  buttonHandler() {
-    let { submit, onClick } = this.props
-    if (submit) {
+  handleButton() {
+    let { submit, onClick } = this.props;
+    if (submit === true) {
       this.setState({
-        buttonClassName: 'btn btn-success',
         message: 'Success!',
         messageClassName: 'successMessage'
       })
@@ -44,24 +41,21 @@ class AddButton extends Component {
     onClick(submit);       
   }
 
+
   render() {
     let {buttonClassName, message, messageClassName} = this.state;
-    let {object} = this.props;
     return (
       <div className='col-lg-12'>
-        <div 
+        <a 
           id="addButton" 
           className={buttonClassName} 
-          onClick={this.buttonHandler}>
-          Add {object}
-        </div>
+          onClick={this.handleButton}>
+          Add transaction
+        </a>
         <h4 className={messageClassName}>{message}</h4>
       </div>
     )
   }   
 }
 
-export default AddButton
-
-
-
+export default AddButton;

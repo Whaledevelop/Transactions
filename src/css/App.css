@@ -1,26 +1,28 @@
 .table {
 	border: 1px solid #eeeeee;
 }
-
+/*
 th,th {
-	width: 32%
+	width: 26%
 }
 
-td:first-child, th:first-child {
-	width: 4%
+td:first-child, th:first-child, td:last-child, th:last-child {
+	width: 11%
 }
+*/
+
 
 .btn {
 	border-radius: 10px 10px 0px 0px;
 }
 
 .authenticButton {
-	border-radius: 3px;
-	margin: 30px 0px;
+		border-radius: 3px;
+		margin: 30px 0px;
 }
 
 .form-control {
-	width: 375px;
+		width: 375px;
 }
 
 #selectType {
@@ -29,22 +31,18 @@ td:first-child, th:first-child {
 }
 
 #addButton {
-	margin-top: 15px;	
-	border-radius: 3px;
-}
-
-.inputHandler {
-	margin-top: 40px;	
+		margin-top: 15px;	
+		border-radius: 3px;
 }
 
 .errorMessage {
-	color: red;
-	margin-top: 25px;
+		color: red;
+		margin-top: 25px;
 }
 
 .readyMessage {
-	color: midnightblue;
-	margin-top: 25px;
+		color: midnightblue;
+		margin-top: 25px;
 }
 
 .successMessage {
@@ -53,5 +51,5 @@ td:first-child, th:first-child {
 }
 
 .right {
-	float: right
+		float: right
 }

@@ -1,36 +1,31 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
-class FilterButton extends Component {
+class FilterButton extends Component{
   constructor(props) {
     super(props);
     this.state = {
-    className: 'btn btn-default'
+      className: 'btn btn-default'
     }
-    this.changeFilter = this.changeFilter.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
-  changeFilter() {
-    const {name, className, onClick} = this.props;
-    let filterOn = false;
-    let newClassName = 'btn btn-default'
+  changeColor() {
+    let {className, onClick, id} = this.props;
     if (this.state.className === 'btn btn-default') {
-      newClassName = className;					
-      filterOn = true;          
-    }
-    this.setState ({
-      className: newClassName
-    })
-    onClick(name, filterOn)
+      this.setState({className: className})
+    } else this.setState({className: 'btn btn-default'})   
+    onClick(id)
   }
 
-  render () {
+  render() {
+    let {name} = this.props;
     return (
-      <a 
-        className = { this.state.className } 
-        onClick = {this.changeFilter}>
-        {this.props.text}
+      <a
+        className={this.state.className}
+        onClick={this.changeColor}>
+        {name}
       </a>
-    )         
+    )
   }
 }
 
