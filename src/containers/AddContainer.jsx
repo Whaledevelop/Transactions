@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { addAction } from '../actions/addAction'
 import { fetchAction } from '../actions/fetchAction'
+import { nameInterpretator } from '../modules/nameInterpratator'
 import AddForm from '../components/AddForm'
 
 class AddContainer extends Component {
@@ -14,8 +15,13 @@ class AddContainer extends Component {
   }
 
   submitAdding(item) {
-    item['id'] = this.props.id;
-    this.props.onAddItem(item, this.props.object);
+    let newItem = Object.assign({}, item, {id: this.props.id});
+    if ((Object.keys(newItem).indexOf('filterBy') !== -1) 
+      & (Object.keys(newItem).indexOf('name') !== -1)) {
+        let additionalData = nameInterpretator(newItem.name, newItem.filterBy)
+        newItem = Object.assign({}, newItem, additionalData)
+      }
+    this.props.onAddItem(newItem, this.props.object);
     this.props.preLoadData(this.props.object);
   } 
   

@@ -36,6 +36,7 @@ class AddForm extends Component {
                 <Input 
                   key = {"input_" + i}
                   input={input} 
+                  data={transaction}
                   onChange={this.handleInputs}/>
               )     
             })}

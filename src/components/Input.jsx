@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { inputHandler } from '../modules/inputHandler'
+import { inputsHandler } from '../modules/inputsHandler'
+import ColorsButtons from './ColorsButtons'
 
 class Input extends Component {
   constructor(props) {
@@ -8,22 +9,28 @@ class Input extends Component {
       info: ''
     }
     this.handleInput = this.handleInput.bind(this);
+    this.handleColorButtons = this.handleColorButtons.bind(this);
   }
 
   handleInput(e){
     let {name, value} = e.target;
-    let selectValues = [];
-    if (this.props.input.type === 'select') {
-      selectValues = this.props.input.selectValues
-      if (this.props.input.dataType === 'numbers') {
-        value = parseInt(value, 10)
-      }
-    }   
-    let info = inputHandler(this.props.input.type, value, selectValues);
+    if (this.props.input.dataType === 'numbers') {value = parseInt(value, 10)}   
+    let info = inputsHandler(this.props.input, value, this.props.data);
     this.props.onChange(name, value, info);
     this.setState({
       info: info
     })
+  }
+
+  handleColorButtons(color) {
+    let info
+    if (color.on) {
+      info = 'correct'  
+    } else {
+      info = ''
+    }
+    this.props.onChange('color', color.name, info);
+    this.setState({info: info})  
   }
 
   renderInput(){
@@ -60,6 +67,14 @@ class Input extends Component {
             className='form-control'
             name = {name}
             onChange = {this.handleInput}/>
+        )
+      }
+      case 'colors': {
+        let {colors} = this.props.input;
+        return (
+          <ColorsButtons
+            onClick={this.handleColorButtons}
+            colors={colors}/>
         )
       }
       default: {

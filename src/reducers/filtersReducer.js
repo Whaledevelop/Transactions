@@ -28,7 +28,7 @@ export const filters = (state = initialFilters, action) => {
         filters: payload 
       } 
     }
-    case 'ADD_FILTER': {
+    case 'ADD_FILTERS': {
       return {
         ...state,
         filters: [...state.filters, payload]

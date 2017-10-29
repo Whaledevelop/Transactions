@@ -45,12 +45,11 @@ class AddButton extends Component {
   }
 
   renderButton() {
-    let buttonStyle = {width: '80px', borderRadius: "3px", marginTop: "15px"};
     let {submit, className} = this.state
     if (submit) {
       return (
         <button
-          style={buttonStyle}
+          style={{width: '106px', borderRadius: "3px", marginTop: "15px"}}
           className={className}
           onClick={this.handleButton}>
           Add
@@ -59,7 +58,7 @@ class AddButton extends Component {
     } else {
       return (
         <div
-          style={buttonStyle}
+          style={{width: '80px', borderRadius: "3px", marginTop: "15px"}}
           className={className}
           onClick={this.handleButton}>
           Add

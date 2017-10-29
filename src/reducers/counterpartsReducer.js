@@ -26,6 +26,12 @@ export const counterparts = (state = initialCounterparts, action) => {
         counterparts: action.payload 
       } 
     }
+    case 'ADD_COUNTERPARTS': {
+      return {
+        ...state,
+        counterparts: [...state.counterparts, action.payload]
+      }
+    }
     default: return state
   }
 }

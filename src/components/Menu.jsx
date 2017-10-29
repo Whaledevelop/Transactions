@@ -6,7 +6,6 @@ class Menu extends Component {
     let activeList = {color:'#00BDD9', borderBottom: '1px solid #fff', paddingBottom: '5px'}
     let activeAdd = {color:'#D0021B', borderBottom: '1px solid #fff', paddingBottom: '5px'}
     let header = {color:"#fff", fontWeight: 'bold'}
-    console.log (this.props);
     return (
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">

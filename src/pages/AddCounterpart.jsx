@@ -1,7 +1,7 @@
 import React from 'react';
 import AddContainer from '../containers/AddContainer'
 
-const AddTransaction = () => (
+const AddCounterpart = () => (
   <AddContainer 
     object = 'counterparts'
     inputes = {[
@@ -12,4 +12,4 @@ const AddTransaction = () => (
     ]}/>
 )
 
-export default AddTransaction
+export default AddCounterpart

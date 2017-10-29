@@ -21,7 +21,7 @@ export const transactions = (state = initialTransactions, action) => {
         transactions: action.payload 
       } 
     }
-    case 'ADD_TRANSACTION': {
+    case 'ADD_TRANSACTIONS': {
       return {
         ...state,
         transactions: [...state.transactions, action.payload]
