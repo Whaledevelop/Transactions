@@ -5,8 +5,8 @@ import {store} from './configureStore'
 
 import './css/bootstrap.css'
 import './css/App.css'
+import './css/fa/css/font-awesome.min.css'
 
-console.log ('index.jsx');
 render(
   <Root store={store}/>,
   document.getElementById('root')

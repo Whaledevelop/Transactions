@@ -1,18 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import AddContainer from '../containers/AddContainer'
 
-const AddTransaction = () => (    
-  <div className='container'>
-    <div className='row'>
-      <Link to='/'>
-        <button className="authenticButton btn btn-primary">
-          Transactions
-        </button>
-      </Link>
-      <AddContainer object = 'transactions'/>
-    </div>
-  </div>
+const AddTransaction = () => (
+  <AddContainer 
+    object = 'transactions'
+    optionalObj = 'counterparts'
+    optionalObjName = 'counterpartId'
+    inputes={[
+      {
+        name: 'value',
+        type: 'number'
+      },
+      {
+        name: 'type',
+        type: 'select',
+        selectValues: ['', 'income', 'consumption'],
+        dataType: 'text'
+      },
+      {
+        name: 'date',
+        type: 'date'
+      },
+      {
+        name: 'counterpartId',
+        type: 'select',
+        selectValues: [],
+        dataType: 'numbers'
+      }
+    ]}/>
 )
 
 export default AddTransaction

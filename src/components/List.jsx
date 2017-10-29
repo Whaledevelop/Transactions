@@ -11,11 +11,12 @@ const List = ({object}) => {
       }
     }
   }
+  let params = uniqueKeys.filter(key => key !== 'active');
   return (
     <table className="table table-striped table-hover">
       <thead>
         <tr>
-          {uniqueKeys.map((key,i) => {
+          {params.map((key,i) => {
             return <th key={"key_"+i}>{key}</th>
           })}
         </tr>
@@ -24,11 +25,11 @@ const List = ({object}) => {
           {object.map((item,i) => {
             return (
               <tr key={"item_"+i}>
-                {uniqueKeys.map((key,j) => {
-                  if (uniqueKeys[j] === 'date') {
-                    return <td key={"key_"+j}>{moment(item[uniqueKeys[j]]).format('HH:mm - DD.MM.YYYY')}</td>;
+                {params.map((key,j) => {
+                  if (params[j] === 'date') {
+                    return <td key={"key_"+j}>{moment(item[params[j]]).format('HH:mm - DD.MM.YYYY')}</td>;
                   }
-                  return <td key={"key_"+j}>{item[uniqueKeys[j]]}</td>
+                  return <td key={"key_"+j}>{item[params[j]]}</td>
                 })}
               </tr>
             )

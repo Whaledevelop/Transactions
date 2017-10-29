@@ -75,21 +75,21 @@
     {
       "id": 1,
       "name": "Income",
-      "className": "btn btn-success",
+      "color": "green",
       "filterBy": "type",
       "value": "income"
     },
     {
       "id": 2,
       "name": "Consumption",
-      "className": "btn btn-warning",
+      "color": "orange",
       "filterBy": "type",
       "value": "consumption"
     },
     {
       "id": 3,
       "name": "This month",
-      "className": "btn btn-info",
+      "color": "lightblue",
       "filterBy": "date",
       "value": 30,
       "unit": "days"
@@ -97,7 +97,7 @@
     {
       "id": 4,
       "name": "More than 1000 rubles",
-      "className": "btn btn-primary",
+      "color": "deepblue",
       "filterBy": "value",
       "value": 1000,
       "unit": "more"
@@ -123,6 +123,10 @@
     {
       "id": 5,
       "name": "Raining Man"
+    },
+    {
+      "name": "Johny Balboa",
+      "id": 6
     }
   ]
 }

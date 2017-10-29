@@ -8,6 +8,9 @@ import AddForm from '../components/AddForm'
 class AddContainer extends Component {
   componentWillMount(){
     this.props.preLoadData(this.props.object);
+    if (this.props.optionalObj !== undefined) {
+      this.props.preLoadData(this.props.optionalObj)  
+    }
   }
 
   submitAdding(item) {
@@ -17,16 +20,29 @@ class AddContainer extends Component {
   } 
   
   render() {
+    let {object, data, optionalObjName, inputes} = this.props;
     return (
-      <AddForm onClick={this.submitAdding.bind(this)}/>
+      <AddForm 
+        onClick={this.submitAdding.bind(this)}
+        object={object}
+        optionalObj={data[optionalObjName]}
+        optionalObjName={optionalObjName}
+        inputes={inputes}/>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let object = state[ownProps.object][ownProps.object]
+  let {object, optionalObjName, optionalObj} = ownProps;
+  let data = {
+    id: state[object][object].length + 1
+  }
+  if (optionalObj !== undefined) {
+    data[optionalObjName] = state[optionalObj][optionalObj].map(item => {return item.id})
+    data[optionalObjName].unshift('');
+  }
   return {
-    id: object.length + 1,
+    data: data
   }
 }
 

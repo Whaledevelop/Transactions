@@ -12,11 +12,11 @@ class FiltersContainer extends Component {
   renderFilters() {
     return (
       <div className="btn-group btn-group-justified">
-        {this.props.filters.map(filter=> {
+        {this.props.filters.map(filter=> { 
           return (
             <FilterButton
               key={filter.id}
-              className={filter.className}
+              color={filter.color}
               id={filter.id}
               name={filter.name}
               onClick={id => this.props.onTurnFilter(id)}/> 

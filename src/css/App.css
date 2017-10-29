@@ -1,55 +1,12 @@
 .table {
 	border: 1px solid #eeeeee;
-}
-/*
-th,th {
-	width: 26%
-}
-
-td:first-child, th:first-child, td:last-child, th:last-child {
-	width: 11%
-}
-*/
-
-
-.btn {
-	border-radius: 10px 10px 0px 0px;
-}
-
-.authenticButton {
-		border-radius: 3px;
-		margin: 30px 0px;
+	table-layout: fixed;
 }
 
 .form-control {
-		width: 375px;
+	width: 375px;
 }
 
-#selectType {
-	width: 400px;
-	height: 48px;
-}
-
-#addButton {
-		margin-top: 15px;	
-		border-radius: 3px;
-}
-
-.errorMessage {
-		color: red;
-		margin-top: 25px;
-}
-
-.readyMessage {
-		color: midnightblue;
-		margin-top: 25px;
-}
-
-.successMessage {
-	color: rgb(14, 99, 14);
-	margin-top: 25px;
-}
-
-.right {
-		float: right
+td:first-child, th:first-child {
+	width: 4%
 }
