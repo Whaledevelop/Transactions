@@ -21,10 +21,12 @@ export const inputHandler = (type, value, selectValues) => {
       } else return 'correct'
     }
     case 'select': {
-      if (value === '' || isNaN(value) === true) {
+      if (value === '') {
         return ''
       } else if (selectValues.indexOf(value) !== -1) {
         return 'correct'
+      } else if (isNaN(value) === true) {
+        return ''
       }
     }
     case 'date': {

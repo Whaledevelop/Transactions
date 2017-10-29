@@ -5,7 +5,8 @@ class AddButton extends Component {
     super(props);
     this.state = {
       submit: false,
-      clicked: false
+      message: '',
+      className: 'btn btn-primary disabled'
     }
     this.handleButton = this.handleButton.bind(this);
   }
@@ -14,47 +15,64 @@ class AddButton extends Component {
     let infoValues = Object.values(nextProps.info)
     let correctData = infoValues.filter(i => i === 'correct');
     if (correctData.length === nextProps.inputesAmount) {
-      this.setState({submit: true, clicked: false})
+      this.setState({
+        submit: true, 
+        message: 'Ready to add',
+        className: 'btn btn-primary'
+      })
     } else {
-      this.setState({submit: false, clicked: false})
+      this.setState({
+        submit: false,
+        message: '',
+        className: 'btn btn-primary disabled'
+      })
     }
   }
 
   handleButton() {
-    if (this.state.submit) {this.props.onClick()  }   
-    this.setState({clicked: true}) 
+    if (this.state.submit) {
+      this.setState({
+        message: "Success!",
+        className: "btn btn-success"
+      })
+      this.props.onClick()
+    } else {
+      this.setState({
+        message: "Fill all inputs with correct data",
+        className: "btn btn-danger"
+      })
+    }
   }
 
-  addButtonHandler() {
-    let {submit, clicked} = this.state;
-    let message = '';
-    let className = '';
-    if (submit === true & clicked === true) {
-      message = 'Success'
-      className = 'btn btn-success'
-    } else if (submit === false & clicked === true) {
-      message = 'Fill all inputs with correct data'
-      className = 'btn btn-danger'
-    } else if (submit === true & clicked === false) {
-      message = 'Ready to add'
-      className = 'btn btn-primary'
-    } else if (submit === false & clicked === false) {
-      message = ''
-      className = 'btn btn-primary disabled'
+  renderButton() {
+    let buttonStyle = {width: '80px', borderRadius: "3px", marginTop: "15px"};
+    let {submit, className} = this.state
+    if (submit) {
+      return (
+        <button
+          style={buttonStyle}
+          className={className}
+          onClick={this.handleButton}>
+          Add
+        </button>
+      )
+    } else {
+      return (
+        <div
+          style={buttonStyle}
+          className={className}
+          onClick={this.handleButton}>
+          Add
+        </div>
+      )
     }
-    return {message: message, className: className}
-  } 
+  }
 
   render() {
     return (
       <div className='col-lg-12'>
-        <div
-          style={{width: '80px', borderRadius: "3px", marginTop: "15px"}} 
-          className={this.addButtonHandler().className}
-          onClick={this.handleButton}>
-          Add
-        </div>
-        {this.addButtonHandler().message}
+        {this.renderButton()}
+        <h4>{this.state.message}</h4>
       </div>
     )
   }   

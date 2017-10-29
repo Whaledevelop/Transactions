@@ -3,9 +3,9 @@
 	table-layout: fixed;
 }
 
-.form-control {
+/*.form-control {
 	width: 375px;
-}
+}*/
 
 td:first-child, th:first-child {
 	width: 4%

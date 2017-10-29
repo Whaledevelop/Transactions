@@ -26,7 +26,7 @@ class Input extends Component {
     })
   }
 
-  inputView(){
+  renderInput(){
     let {name, type} = this.props.input;
     switch (type) {
       case ('number'||'text') : {
@@ -42,7 +42,7 @@ class Input extends Component {
         let {selectValues} = this.props.input;
         return (
           <select
-            style={{width: "400px",	height: "48px"}}
+            style={{width: "425px",	height: "48px"}}
             className='form-control'
             name = {name}
             onChange = {this.handleInput}>
@@ -74,14 +74,24 @@ class Input extends Component {
     }
   }
 
+  renderInfo() {
+    if(this.state.info === 'correct') {
+      return <i className="fa fa-thumbs-o-up" style={{fontSize: '30px'}}></i>
+    } else {
+      return <h4>{this.state.info}</h4>
+    }
+  }
+
   render () {
     return (
       <div className="form-group col-lg-12">
-        <div className="col-lg-5">
+        <div className="col-lg-4">
           <label>{this.props.input.name}</label>  
-          {this.inputView()}
+          {this.renderInput()}
         </div>
-        <h4>{this.state.info}</h4>
+        <div className="col-lg-offset-1 col-lg-3" style={{marginTop: '30px'}}>
+          {this.renderInfo()}
+        </div>
       </div>
     )
   }

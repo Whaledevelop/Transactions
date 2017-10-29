@@ -106,27 +106,19 @@
   "counterparts": [
     {
       "id": 1,
-      "name": "John"
-    },
-    {
-      "id": 2,
-      "name": "Will"
-    },
-    {
-      "id": 3,
-      "name": "Smith"
-    },
-    {
-      "id": 4,
-      "name": "Heroe"
-    },
-    {
-      "id": 5,
       "name": "Raining Man"
     },
     {
-      "name": "Johny Balboa",
-      "id": 6
+      "name": "Rocky Balboa",
+      "id": 2
+    },
+    {
+      "name": "Квентин Тарантино",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Леголас"
     }
   ]
 }
