@@ -69,13 +69,6 @@
       "type": "income",
       "date": "2017-10-18T21:30",
       "counterpartId": 3
-    },
-    {
-      "value": "200",
-      "type": "consumption",
-      "date": "2017-10-30T09:33",
-      "counterpartId": 4,
-      "id": 11
     }
   ],
   "filters": [
@@ -108,14 +101,6 @@
       "filterBy": "value",
       "value": 1000,
       "unit": "more"
-    },
-    {
-      "filterBy": "date",
-      "name": "Last week",
-      "color": "red",
-      "value": 1,
-      "unit": "week",
-      "id": 5
     }
   ],
   "counterparts": [
@@ -138,10 +123,6 @@
     {
       "id": 5,
       "name": "Генератор Имён"
-    },
-    {
-      "name": "Little pony",
-      "id": 6
     }
   ]
 }
