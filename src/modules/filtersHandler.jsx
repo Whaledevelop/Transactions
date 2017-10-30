@@ -13,7 +13,15 @@ export const filtersHandler = (transactions, filters) => {
         filteredTransactions = filteredTransactions.filter(t => moment(t.date).format('YYYYMMDD') > dateToCompare)
       }
       if(filterBy === 'value') {
-        filteredTransactions =  filteredTransactions.filter(t => t.value > value)
+        filteredTransactions =  filteredTransactions.filter(t => {
+          if (unit === 'more') {
+            return (t.value > value)
+          } else  if (unit === 'less') {
+            return (t.value < value)
+          } else {
+            return t.value
+          }
+        })
       }
     }
   } 
