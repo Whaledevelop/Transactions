@@ -1,53 +1,12 @@
 .table {
 	border: 1px solid #eeeeee;
+	table-layout: fixed;
 }
 
-th,th {
-	width: 32%
-}
+/*.form-control {
+	width: 375px;
+}*/
 
 td:first-child, th:first-child {
 	width: 4%
-}
-
-.btn {
-	border-radius: 10px 10px 0px 0px;
-}
-
-.authenticButton {
-		border-radius: 3px;
-		margin: 30px 0px;
-}
-
-.form-control {
-		width: 375px;
-}
-
-#selectType {
-	width: 400px;
-	height: 48px;
-}
-
-#addButton {
-		margin-top: 15px;	
-		border-radius: 3px;
-}
-
-.errorMessage {
-		color: red;
-		margin-top: 25px;
-}
-
-.readyMessage {
-		color: midnightblue;
-		margin-top: 25px;
-}
-
-.successMessage {
-	color: rgb(14, 99, 14);
-	margin-top: 25px;
-}
-
-.right {
-		float: right
 }

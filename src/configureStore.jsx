@@ -1,25 +1,11 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
+import reducer from './reducers'
 
-import { loadState, saveState } from './localStorage'
-import {clearState} from './localStorage'
-import transactionsApp from './reducers';
+const middleware = applyMiddleware(thunk, logger)
+export const store = createStore(reducer, middleware);
 
-const configureStore = () => {
-    const persistedState = loadState()
-    let store = createStore(transactionsApp, persistedState);
-    store.subscribe(() => {
-            console.log(store.getState().visibilityFilters.map(f=> f.active))
-            console.log(store.getState().transactions.filter(t => t.id > 10).map(t => t.value))
-            saveState({
-                    transactions: store.getState().transactions,
-                    visibilityFilters: store.getState().visibilityFilters
-            });
-    })
-    clearState();
-    return store;
-}
-
-export default configureStore;
-
-
-
+store.subscribe(() => {
+  console.log("store  changed", store.getState())
+})

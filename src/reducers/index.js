@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux'
-import transactions from './transactions'
-import visibilityFilters from './visibilityFilters'
+import {combineReducers} from 'redux'
 
-const transactionsApp = combineReducers({
-    transactions,
-    visibilityFilters
+import {transactions} from './transactionsReducer'
+import {filters} from './filtersReducer'
+import {counterparts} from './counterpartsReducer'
+
+export default combineReducers({
+  transactions,
+  filters,
+  counterparts
 })
-
-export default transactionsApp
