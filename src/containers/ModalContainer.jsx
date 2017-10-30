@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import AddContainer from './AddContainer'
 import ModalWindow from '../components/ModalWindow'
+import { turnModal } from '../actions/modalsActions'
 
 class ModalContainer extends Component {
   renderModal() {
@@ -9,9 +10,10 @@ class ModalContainer extends Component {
     console.log (modals);
     let activeModal = modals.find(modal => modal.active === true);
     if (activeModal !== undefined) {
-      if (activeModal.action === 'add') {
+      let {name, action, id} = activeModal;
+      if (action === 'add') {
         let addData = {}
-        if (activeModal.name === 'Transaction') {
+        if (name === 'Transaction') {
           addData = {
             object: 'transactions',
             inputes: [
@@ -37,7 +39,7 @@ class ModalContainer extends Component {
               }
             ]
           }
-        } else if (activeModal.name === 'Counterpart') {
+        } else if (name === 'Counterpart') {
           addData = {
             object: 'counterparts',
             inputes: [
@@ -47,7 +49,7 @@ class ModalContainer extends Component {
               }
             ]
           }
-        } else if (activeModal.name === 'Filter'){
+        } else if (name === 'Filter'){
           addData = {
             object: 'filters',
             inputes: [
@@ -69,7 +71,7 @@ class ModalContainer extends Component {
           }     
         }
         return (
-          <ModalWindow modal={activeModal.name} action='Add'>
+          <ModalWindow modal={name} action={action} onClick={() => this.props.onTurnModal(id)}>
             <AddContainer addData={addData} />
           </ModalWindow>
         )
@@ -85,12 +87,13 @@ class ModalContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    modals: state.modals
+    modals: state.modals,
   }
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {onTurnModal: turnModal}
 )(ModalContainer)
 
 /*            optionalObj: {

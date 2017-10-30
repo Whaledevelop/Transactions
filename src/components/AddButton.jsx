@@ -48,19 +48,20 @@ class AddButton extends Component {
   }
 
   renderButton(className) {
+    let buttonStyle = {width: '80px', borderRadius: "3px", marginTop: "15px"}
     if (this.state.submit) {
       return (
-        <button
-          style={{width: '80px', borderRadius: "3px", marginTop: "15px"}}
+        <div
+          style={buttonStyle}
           className={className}
           onClick={this.handleButton}>
           Add
-        </button>
+        </div>
       )
     } else {
       return (
         <div
-          style={{width: '80px', borderRadius: "3px", marginTop: "15px"}}
+          style={buttonStyle}
           className={className}
           onClick={this.handleButton}>
           Add
@@ -73,8 +74,8 @@ class AddButton extends Component {
     let {className} = this.state;
     return (
       <div className='col-lg-12'>
-        {this.renderButton(className)}
-        <h4>{this.renderMessage(className)}</h4>
+        <div style={{marginLeft: '151px'}}>{this.renderButton(className)}</div>
+        <div className="addMessage">{this.renderMessage(className)}</div>
       </div>
     )
   }   

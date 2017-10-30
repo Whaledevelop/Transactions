@@ -69,8 +69,8 @@ class ColorsButtons extends Component {
               name={name}
               style={{
                 borderRadius:0,
-                width: '50px',
-                height: '50px',
+                width: '56px',
+                height: '55px',
                 lineHeight: '50px'}}
               className={this.classNameHandler(on, className)}
               onClick={this.changeColor}>

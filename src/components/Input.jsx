@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { inputsHandler } from '../modules/inputsHandler'
+import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import ColorsButtons from './ColorsButtons'
 
 class Input extends Component {
@@ -45,7 +46,7 @@ class Input extends Component {
         let {selectValues} = this.props.input;
         return (
           <select
-            style={{width: "425px",	height: "48px"}}
+            style={{width: "405px",	height: "48px"}}
             className='form-control'
             name = {name}
             onChange = {this.handleInput}>
@@ -86,23 +87,33 @@ class Input extends Component {
   }
 
   renderInfo() {
-    if(this.state.info === 'correct') {
-      return <i className="fa fa-thumbs-o-up" style={{fontSize: '30px'}}></i>
-    } else {
-      return <h4>{this.state.info}</h4>
-    }
+    let iconStyle = {fontSize: '30px'};
+    if (this.state.info !== '') {
+      let icon, tooltip;
+      if (this.state.info === 'correct') {
+        icon = (<i className="fa fa-thumbs-o-up" style={iconStyle}></i>)
+        tooltip = 'Correct data! Well done'
+      } else {
+        icon = (<i className="fa fa-exclamation" style={iconStyle}></i>)
+        tooltip = this.state.info;
+      }
+      return (
+        <OverlayTrigger overlay={
+          <Tooltip id="modal-tooltip">
+            {tooltip}
+          </Tooltip>}>
+          <a>{icon}</a>
+        </OverlayTrigger>           
+      )
+    } else return ''
   }
 
   render () {
     return (
-      <div className="form-group col-lg-12">
-        <div className="col-lg-4">
-          <label>{this.props.input.name}</label>  
-          {this.renderInput()}
-        </div>
-        <div className="col-lg-offset-1 col-lg-3" style={{marginTop: '30px'}}>
-          {this.renderInfo()}
-        </div>
+      <div className="form-group">
+        <label>{this.props.input.name}</label>  
+        {this.renderInput()}
+        <div className="inputInfo">{this.renderInfo()}</div>
       </div>
     )
   }

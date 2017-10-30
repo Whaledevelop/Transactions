@@ -23,7 +23,7 @@ class AddForm extends Component {
     let { info, newItem } = this.state;  
     let { onClick, addData } = this.props;
     return (
-      <div>
+      <div style={{marginLeft: '80px'}}>
         <form className="form-horizontal">
           <fieldset>
             {addData.inputes.map((input,i) => {

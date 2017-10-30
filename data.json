@@ -69,13 +69,6 @@
       "type": "income",
       "date": "2017-10-18T21:30",
       "counterpartId": 3
-    },
-    {
-      "value": "323",
-      "type": "income",
-      "date": "1994-03-20T20:03",
-      "counterpartId": 3,
-      "id": 11
     }
   ],
   "filters": [
@@ -126,6 +119,10 @@
     {
       "id": 4,
       "name": "John Frusciante"
+    },
+    {
+      "name": "Hello",
+      "id": 5
     }
   ]
 }
