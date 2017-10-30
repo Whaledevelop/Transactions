@@ -8,47 +8,53 @@ import AddForm from '../components/AddForm'
 
 class AddContainer extends Component {
   componentWillMount(){
-    this.props.preLoadData(this.props.object);
-    if (this.props.optionalObj !== undefined) {
-      this.props.preLoadData(this.props.optionalObj)  
+    let {preLoadData, addData} = this.props;
+    preLoadData(addData.object);
+    if (addData.object === 'transactions') {
+      preLoadData('counterparts')  
     }
   }
 
   submitAdding(item) {
-    let newItem = Object.assign({}, item, {id: this.props.id});
+    let {addData, dataFromStore, onAddItem, preLoadData} = this.props;
+    let newItem = Object.assign({}, item, {id: dataFromStore.id});
     if ((Object.keys(newItem).indexOf('filterBy') !== -1) 
       & (Object.keys(newItem).indexOf('name') !== -1)) {
         let additionalData = nameInterpretator(newItem.name, newItem.filterBy)
         newItem = Object.assign({}, newItem, additionalData)
-      }
-    this.props.onAddItem(newItem, this.props.object);
-    this.props.preLoadData(this.props.object);
+    }
+    onAddItem(newItem, addData.object);
+    preLoadData(addData.object);
   } 
   
   render() {
-    let {object, data, optionalObjName, inputes} = this.props;
+    let {addData, dataFromStore} = this.props
+    if (addData.object === 'transactions') {
+      let counterpartsIndex = addData.inputes.findIndex(input => input.name === 'counterpartId')
+      addData.inputes[counterpartsIndex].selectValues = dataFromStore.counterpartsId
+    }
+    
     return (
       <AddForm 
         onClick={this.submitAdding.bind(this)}
-        object={object}
-        optionalObj={data[optionalObjName]}
-        optionalObjName={optionalObjName}
-        inputes={inputes}/>
+        addData={addData}/>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let {object, optionalObjName, optionalObj} = ownProps;
-  let data = {
+  let {object} = ownProps.addData;
+  let dataFromStore = {
     id: state[object][object].length + 1
   }
-  if (optionalObj !== undefined) {
-    data[optionalObjName] = state[optionalObj][optionalObj].map(item => {return item.id})
-    data[optionalObjName].unshift('');
+  if (object === 'transactions') {
+    dataFromStore['counterpartsId'] = state['counterparts']['counterparts'].map(counterpart => {
+      return counterpart.id
+    })
+    dataFromStore['counterpartsId'].unshift('');
   }
   return {
-    data: data
+    dataFromStore: dataFromStore
   }
 }
 

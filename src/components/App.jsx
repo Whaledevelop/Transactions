@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
-import Menu from './Menu'
+import NavBar from './NavBar'
+import ModalContainer from '../containers/ModalContainer'
 
 class App extends Component {
   render() {
     return (
       <div className="container">
         <div className="row">
-          <Menu/>
+          <NavBar/>
+          <ModalContainer/>
           {this.props.children}
         </div>
       </div>

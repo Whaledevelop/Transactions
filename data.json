@@ -69,6 +69,13 @@
       "type": "income",
       "date": "2017-10-18T21:30",
       "counterpartId": 3
+    },
+    {
+      "value": "323",
+      "type": "income",
+      "date": "1994-03-20T20:03",
+      "counterpartId": 3,
+      "id": 11
     }
   ],
   "filters": [
@@ -114,15 +121,11 @@
     },
     {
       "id": 3,
-      "name": "Леголас"
+      "name": "Боромир"
     },
     {
       "id": 4,
-      "name": "Трус Балбес Бывалый"
-    },
-    {
-      "id": 5,
-      "name": "Генератор Имён"
+      "name": "John Frusciante"
     }
   ]
 }

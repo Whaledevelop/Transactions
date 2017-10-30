@@ -5,7 +5,6 @@ class AddButton extends Component {
     super(props);
     this.state = {
       submit: false,
-      message: '',
       className: 'btn btn-primary disabled'
     }
     this.handleButton = this.handleButton.bind(this);
@@ -17,13 +16,11 @@ class AddButton extends Component {
     if (correctData.length === nextProps.inputesAmount) {
       this.setState({
         submit: true, 
-        message: 'Ready to add',
         className: 'btn btn-primary'
       })
     } else {
       this.setState({
         submit: false,
-        message: '',
         className: 'btn btn-primary disabled'
       })
     }
@@ -31,25 +28,30 @@ class AddButton extends Component {
 
   handleButton() {
     if (this.state.submit) {
-      this.setState({
-        message: "Success!",
-        className: "btn btn-success"
-      })
+      this.setState({className: 'btn btn-success'})
       this.props.onClick()
     } else {
-      this.setState({
-        message: "Fill all inputs with correct data",
-        className: "btn btn-danger"
-      })
+      this.setState({className: 'btn btn-danger'})
     }
   }
 
-  renderButton() {
-    let {submit, className} = this.state
-    if (submit) {
+  renderMessage(className) {
+    if(className === 'btn btn-primary') {
+      return 'Ready to add'
+    } else if (className === 'btn btn-primary disabled') {
+      return ''
+    } else if (className === 'btn btn-success') {
+      return 'Success'
+    } else if (className === 'btn btn-danger') {
+      return 'Fill all inputs with correct data'
+    } else return ''
+  }
+
+  renderButton(className) {
+    if (this.state.submit) {
       return (
         <button
-          style={{width: '106px', borderRadius: "3px", marginTop: "15px"}}
+          style={{width: '80px', borderRadius: "3px", marginTop: "15px"}}
           className={className}
           onClick={this.handleButton}>
           Add
@@ -68,10 +70,11 @@ class AddButton extends Component {
   }
 
   render() {
+    let {className} = this.state;
     return (
       <div className='col-lg-12'>
-        {this.renderButton()}
-        <h4>{this.state.message}</h4>
+        {this.renderButton(className)}
+        <h4>{this.renderMessage(className)}</h4>
       </div>
     )
   }   

@@ -43,12 +43,6 @@ export const filters = (state = initialFilters, action) => {
         filters: newFilters
       }
     }
-    case 'DELETE_FILTER': {
-      return {
-        ...state,
-        filters: state.filters.filter(t=> t.id !== payload)
-      }
-    }
     default: return state
   }
 };

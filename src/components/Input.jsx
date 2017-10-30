@@ -15,7 +15,7 @@ class Input extends Component {
   handleInput(e){
     let {name, value} = e.target;
     if (this.props.input.dataType === 'numbers') {value = parseInt(value, 10)}   
-    let info = inputsHandler(this.props.input, value, this.props.data);
+    let info = inputsHandler(this.props.input, value, this.props.newItem);
     this.props.onChange(name, value, info);
     this.setState({
       info: info
@@ -24,11 +24,7 @@ class Input extends Component {
 
   handleColorButtons(color) {
     let info
-    if (color.on) {
-      info = 'correct'  
-    } else {
-      info = ''
-    }
+    if (color.on) {info = 'correct'} else {info = ''}
     this.props.onChange('color', color.name, info);
     this.setState({info: info})  
   }
