@@ -22,11 +22,11 @@ export const nameInterpretator = (name, filterBy) => {
     }
   }
   if (filterBy === 'type') {
-    let type = nameObj.find(name => {
+    let value = nameObj.find(name => {
       return name === 'income' || name === 'consumption'
     });
     additionalData = {
-      type: type
+      value: value
     }      
   }
   if (filterBy === 'date') {
