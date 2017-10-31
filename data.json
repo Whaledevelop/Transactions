@@ -33,7 +33,7 @@
       "value": 100,
       "type": "consumption",
       "date": "2017-07-17T18:30",
-      "counterpartId": 5
+      "counterpartId": 3
     },
     {
       "id": 6,
@@ -61,7 +61,7 @@
       "value": 1700,
       "type": "consumption",
       "date": "2017-10-09T16:30",
-      "counterpartId": 5
+      "counterpartId": 2
     },
     {
       "id": 10,
