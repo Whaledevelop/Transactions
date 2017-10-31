@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Modal, Button} from 'react-bootstrap'
-import {firstLetterUpperCase} from '../modules/firstLetterUpperCase'
+import {firstLetterUpperCase} from '../../modules/functional/firstLetterUpperCase'
 
-class ModalWindow extends Component {
+class DefaultModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -25,7 +25,7 @@ class ModalWindow extends Component {
       dialogClassName="custom-modal">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-lg">
-          {firstLetterUpperCase(this.props.action)}{' '}{this.props.modal.toLowerCase()}
+          {firstLetterUpperCase(this.props.action)}{' '}{this.props.modal}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -39,4 +39,4 @@ class ModalWindow extends Component {
   }
 }
 
-export default ModalWindow
+export default DefaultModal

@@ -23,3 +23,13 @@ td:first-child, th:first-child {
 	font-size: 15px;
 	margin-top: -28px;
 }
+
+.progressModal {
+	height: '400px'
+}
+
+.progressModalLabel {
+	color: #fff;
+	line-height: 400px; 
+	text-align: center;
+}

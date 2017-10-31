@@ -38,43 +38,21 @@ class AddButton extends Component {
   renderMessage(className) {
     if(className === 'btn btn-primary') {
       return 'Ready to add'
-    } else if (className === 'btn btn-primary disabled') {
-      return ''
-    } else if (className === 'btn btn-success') {
-      return 'Success'
     } else if (className === 'btn btn-danger') {
       return 'Fill all inputs with correct data'
     } else return ''
-  }
-
-  renderButton(className) {
-    let buttonStyle = {width: '80px', borderRadius: "3px", marginTop: "15px"}
-    if (this.state.submit) {
-      return (
-        <div
-          style={buttonStyle}
-          className={className}
-          onClick={this.handleButton}>
-          Add
-        </div>
-      )
-    } else {
-      return (
-        <div
-          style={buttonStyle}
-          className={className}
-          onClick={this.handleButton}>
-          Add
-        </div>
-      )
-    }
   }
 
   render() {
     let {className} = this.state;
     return (
       <div className='col-lg-12'>
-        <div style={{marginLeft: '151px'}}>{this.renderButton(className)}</div>
+        <div
+          style={{width: '80px', borderRadius: "3px", marginTop: "15px", marginLeft: '151px'}}
+          className={className}
+          onClick={this.handleButton}>
+          Add
+        </div>
         <div className="addMessage">{this.renderMessage(className)}</div>
       </div>
     )

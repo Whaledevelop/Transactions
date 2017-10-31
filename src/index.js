@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import Root from './components/Root'
   
 import './css/bootstrap.css'
-import './css/app.css'
+import './css/App.css'
 import './css/fa/css/font-awesome.min.css'
 
 render(

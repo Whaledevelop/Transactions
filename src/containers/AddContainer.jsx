@@ -3,20 +3,21 @@ import { connect } from 'react-redux'
 
 import { addAction } from '../actions/addAction'
 import { fetchAction } from '../actions/fetchAction'
+import { turnProgressModal } from '../actions/modalsActions'
 import { nameInterpretator } from '../modules/nameInterpratator'
-import AddForm from '../components/AddForm'
+import AddForm from '../components/add/AddForm'
 
 class AddContainer extends Component {
   componentWillMount(){
-    let {preLoadData, addData} = this.props;
-    preLoadData(addData.object);
+    let {onFetchData, addData} = this.props;
+    onFetchData(addData.object);
     if (addData.object === 'transactions') {
-      preLoadData('counterparts')  
+      onFetchData('counterparts')  
     }
   }
 
   submitAdding(item) {
-    let {addData, dataFromStore, onAddItem, preLoadData} = this.props;
+    let {addData, dataFromStore, onAddItem, onFetchData, onTurnProgressModal} = this.props;
     let newItem = Object.assign({}, item, {id: dataFromStore.id});
     if ((Object.keys(newItem).indexOf('filterBy') !== -1) 
       & (Object.keys(newItem).indexOf('name') !== -1)) {
@@ -24,7 +25,9 @@ class AddContainer extends Component {
         newItem = Object.assign({}, newItem, additionalData)
     }
     onAddItem(newItem, addData.object);
-    preLoadData(addData.object);
+    onTurnProgressModal('success') 
+    onFetchData(addData.object);
+    
   } 
   
   render() {
@@ -62,6 +65,7 @@ export default connect(
   mapStateToProps,
   {
     onAddItem: addAction,
-    preLoadData: fetchAction
+    onFetchData: fetchAction,
+    onTurnProgressModal: turnProgressModal
   }
 )(AddContainer);

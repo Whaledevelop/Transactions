@@ -6,7 +6,7 @@ import FilterButton from '../components/FilterButton'
 
 class FiltersContainer extends Component {
   componentWillMount() {
-    this.props.preLoadData('filters')
+    this.props.onFetchData('filters')
   }
 
   renderFilters() {
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     {
-      preLoadData: fetchAction,
+      onFetchData: fetchAction,
       onTurnFilter: turnFilter
     }
 )(FiltersContainer);

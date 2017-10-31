@@ -1,19 +1,20 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import AddContainer from './AddContainer'
-import ModalWindow from '../components/ModalWindow'
-import { turnModal } from '../actions/modalsActions'
+import DefaultModal from '../components/modals/DefaultModal'
+import ProgressModal from '../components/modals/ProgressModal'
+import { turnAddModal, turnProgressModal } from '../actions/modalsActions'
 
 class ModalContainer extends Component {
   renderModal() {
     let {modals} = this.props;
-    console.log (modals);
     let activeModal = modals.find(modal => modal.active === true);
     if (activeModal !== undefined) {
       let {name, action, id} = activeModal;
       if (action === 'add') {
         let addData = {}
-        if (name === 'Transaction') {
+        if (name === 'transaction') {
           addData = {
             object: 'transactions',
             inputes: [
@@ -39,7 +40,7 @@ class ModalContainer extends Component {
               }
             ]
           }
-        } else if (name === 'Counterpart') {
+        } else if (name === 'counterpart') {
           addData = {
             object: 'counterparts',
             inputes: [
@@ -49,7 +50,7 @@ class ModalContainer extends Component {
               }
             ]
           }
-        } else if (name === 'Filter'){
+        } else if (name === 'filter'){
           addData = {
             object: 'filters',
             inputes: [
@@ -71,11 +72,16 @@ class ModalContainer extends Component {
           }     
         }
         return (
-          <ModalWindow modal={name} action={action} onClick={() => this.props.onTurnModal(id)}>
-            <AddContainer addData={addData} />
-          </ModalWindow>
+          <DefaultModal modal={name} action={action} onClick={() => this.props.onTurnAddModal(id)}>
+            <AddContainer addData={addData}/>
+          </DefaultModal>
         )
-      }      
+      } else if (action === 'progress') {
+        setTimeout(() => this.props.onTurnProgressModal(name), 2000);
+        return (
+          <ProgressModal modal={name}/>
+        )   
+      }    
     }
     return <div></div>    
   }
@@ -93,11 +99,8 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {onTurnModal: turnModal}
+  {
+    onTurnAddModal: turnAddModal,
+    onTurnProgressModal: turnProgressModal
+  }
 )(ModalContainer)
-
-/*            optionalObj: {
-              object: 'counterparts',
-              name: 'counterpartId',
-              item: 'id'
-            },*/

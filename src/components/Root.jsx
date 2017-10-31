@@ -4,7 +4,7 @@ import { Router, Route, Switch } from 'react-router-dom'
 
 import {store, history} from '../configureStore'
 import App from '../components/App'
-import Home from '../components/Home'
+import Home from '../pages/Home'
 import Transactions from '../pages/Transactions'
 import Counterparts from '../pages/Counterparts'
 import Filters from '../pages/Filters'

@@ -4,22 +4,30 @@ import { connect } from 'react-redux'
 import List from '../components/List'
 import { filtersHandler } from '../modules/filtersHandler'
 import { fetchAction } from '../actions/fetchAction'
+import { turnAddModal } from '../actions/modalsActions'
 
 class ListContainer extends Component {
   componentWillMount() {
-    this.props.preLoadData(this.props.list);
+    this.props.onFetchData(this.props.list);
     if (this.props.filtering) {
-      this.props.preLoadData('filters')
+      this.props.onFetchData('filters')
     }
   }
 
   renderList() {
-    let {object, filters} = this.props.data;
-    if (this.props.filtering) {
-      object = filtersHandler(object, filters)
+    let {data, filtering, list, onTurnAddModal} = this.props;
+    if (filtering) {
+      data.object = filtersHandler(data.object, data.filters)
     };
+    let singleList = list.slice(0, -1);
+    let currentModal = data.modals.find(modal => modal.name === singleList)
     return (
-      <List object = {object}/>
+      <div>
+        <List object = {data.object}/>
+        <a className="btn btn-primary" onClick={() => onTurnAddModal(currentModal.id)}>
+          Add {singleList}
+        </a>
+      </div>
     )
   }
 
@@ -39,7 +47,8 @@ class ListContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
   let data = {
     object: state[ownProps.list][ownProps.list],
-    objectFetched: state[ownProps.list].fetched
+    objectFetched: state[ownProps.list].fetched,
+    modals: state.modals
   }
   if (ownProps.filtering) {
     data['filters'] = state.filters.filters;
@@ -52,5 +61,8 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  {preLoadData: fetchAction}
+  {
+    onFetchData: fetchAction,
+    onTurnAddModal: turnAddModal
+  }
 )(ListContainer)

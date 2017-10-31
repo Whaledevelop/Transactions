@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { inputsHandler } from '../modules/inputsHandler'
+import { inputsHandler } from '../../modules/inputsHandler'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import ColorsButtons from './ColorsButtons'
 

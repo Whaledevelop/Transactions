@@ -36,9 +36,9 @@ class AddForm extends Component {
               )     
             })}
             <AddButton
+              onClick={() => onClick(newItem)}
               info = {info}
-              inputesAmount = {addData.inputes.length}
-              onClick={() => onClick(newItem)}/>
+              inputesAmount = {addData.inputes.length}/>
           </fieldset>           
         </form>
       </div>

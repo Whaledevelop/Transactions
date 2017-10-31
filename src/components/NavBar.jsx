@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
+
 import ModalsNavContainer from '../containers/ModalsNavContainer'
 
 class NavBar extends Component {
