@@ -1,13 +1,6 @@
-export const turnAddModal = (id) => {
+export const showModal = (name) => {
   return {
-    type: "SET_ADD_MODAL_MODE",
-    payload: id
-  }
-}
-
-export const turnProgressModal = (name) => {
-  return {
-    type: "SET_PROGRESS_MODAL_MODE",
+    type: "SET_MODAL_MODE",
     payload: name
   }
 }

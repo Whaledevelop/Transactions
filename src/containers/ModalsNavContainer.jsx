@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { turnAddModal } from '../actions/modalsActions'
+import { showModal } from '../actions/modalsActions'
 import ModalsNavBar from '../components/modals/ModalsNavBar'
 
 class ModalsNavContainer extends Component {
   render() {
     return (
-      <ModalsNavBar onClick={id => this.props.onTurnAddModal(id)} modals={this.props.modals}/>
+      <ModalsNavBar onClick={name => this.props.onShowModal(name)} modals={this.props.modals}/>
     )
   }
 }
@@ -19,5 +19,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {onTurnAddModal: turnAddModal}
+  {onShowModal: showModal}
 )(ModalsNavContainer)

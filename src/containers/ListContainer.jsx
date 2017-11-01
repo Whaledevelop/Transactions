@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import List from '../components/List'
 import { filtersHandler } from '../modules/filtersHandler'
 import { fetchAction } from '../actions/fetchAction'
-import { turnAddModal } from '../actions/modalsActions'
+import { showModal } from '../actions/modalsActions'
 
 class ListContainer extends Component {
   componentWillMount() {
@@ -15,16 +15,15 @@ class ListContainer extends Component {
   }
 
   renderList() {
-    let {data, filtering, list, onTurnAddModal} = this.props;
+    let {data, filtering, list, onShowModal} = this.props;
     if (filtering) {
       data.object = filtersHandler(data.object, data.filters)
     };
     let singleList = list.slice(0, -1);
-    let currentModal = data.modals.find(modal => modal.name === singleList)
     return (
       <div>
         <List object = {data.object}/>
-        <a className="btn btn-primary" onClick={() => onTurnAddModal(currentModal.id)}>
+        <a className="btn btn-primary" onClick={() => onShowModal(singleList)}>
           Add {singleList}
         </a>
       </div>
@@ -63,6 +62,6 @@ export default connect(
   mapStateToProps,
   {
     onFetchData: fetchAction,
-    onTurnAddModal: turnAddModal
+    onShowModal: showModal
   }
 )(ListContainer)

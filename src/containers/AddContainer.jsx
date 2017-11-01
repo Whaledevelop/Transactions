@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { addAction } from '../actions/addAction'
 import { fetchAction } from '../actions/fetchAction'
-import { turnProgressModal } from '../actions/modalsActions'
+import { showModal } from '../actions/modalsActions'
 import { nameInterpretator } from '../modules/nameInterpratator'
 import AddForm from '../components/add/AddForm'
 
@@ -17,7 +17,7 @@ class AddContainer extends Component {
   }
 
   submitAdding(item) {
-    let {addData, dataFromStore, onAddItem, onFetchData, onTurnProgressModal} = this.props;
+    let {addData, dataFromStore, onAddItem, onFetchData, onShowModal} = this.props;
     let newItem = Object.assign({}, item, {id: dataFromStore.id});
     if ((Object.keys(newItem).indexOf('filterBy') !== -1) 
       & (Object.keys(newItem).indexOf('name') !== -1)) {
@@ -25,9 +25,8 @@ class AddContainer extends Component {
         newItem = Object.assign({}, newItem, additionalData)
     }
     onAddItem(newItem, addData.object);
-    onTurnProgressModal('success') 
-    onFetchData(addData.object);
-    
+    onShowModal('success') 
+    onFetchData(addData.object);   
   } 
   
   render() {
@@ -66,6 +65,6 @@ export default connect(
   {
     onAddItem: addAction,
     onFetchData: fetchAction,
-    onTurnProgressModal: turnProgressModal
+    onShowModal: showModal
   }
 )(AddContainer);

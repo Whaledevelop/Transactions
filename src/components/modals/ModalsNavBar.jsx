@@ -18,7 +18,7 @@ class ModalsNavBar extends Component {
           return (
             <li key = {modal.id}>
               <a
-                id={modal.id}
+                id={modal.name}
                 onClick={e => onClick(e.target.id)} 
                 style={this.modalStyle(modal.active)}>
                 {firstLetterUpperCase(modal.name)}

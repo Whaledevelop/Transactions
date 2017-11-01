@@ -27,19 +27,9 @@ const initialModals = [
 
 export const modals = (state = initialModals, action) => {
   switch (action.type) {
-    case 'SET_ADD_MODAL_MODE': {
-      let newModals = Object.assign([], state)
-      let modalIndex = newModals.findIndex(modal => modal.id === parseInt(action.payload, 10))
-      let previousActive = newModals[modalIndex].active;
-      for (let i=0; i<newModals.length; i++) {newModals[i].active = false}
-      newModals[modalIndex].active = !previousActive
-      return newModals
-    }
-    case 'SET_PROGRESS_MODAL_MODE': {
+    case 'SET_MODAL_MODE': {
       let newModals = Object.assign([], state);
-      console.log (action.payload)
       let modalIndex = newModals.findIndex(modal => modal.name === action.payload)
-      console.log (modalIndex);
       let previousActive = newModals[modalIndex].active;
       for (let i=0; i<newModals.length; i++) {newModals[i].active = false}
       newModals[modalIndex].active = !previousActive
