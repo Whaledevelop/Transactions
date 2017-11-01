@@ -1,22 +1,17 @@
 import React from 'react'
 import moment from 'moment'
+import _ from 'lodash'
 
 const List = ({object}) => {
-  let uniqueKeys = [];
-  for (let i = 0; i < object.length; i++) {
-    let itemKeys = Object.keys(object[i]);
-    for(let j=0; j < itemKeys.length; j++) {
-      if (uniqueKeys.indexOf(itemKeys[j]) === -1) {
-        uniqueKeys.push(itemKeys[j])
-      }
-    }
-  }
-  let params = uniqueKeys.filter(key => key !== 'active');
+  let keys = [];
+  for (let i = 0; i < object.length; i++) {keys = keys.concat(Object.keys(object[i]))}
+  let uniqueKeys = _.uniq(keys);
+  uniqueKeys = uniqueKeys.filter(key => key !== 'active');
   return (
     <table className="table table-striped table-hover">
       <thead>
         <tr>
-          {params.map((key,i) => {
+          {uniqueKeys.map((key,i) => {
             return <th key={"key_"+i}>{key}</th>
           })}
         </tr>
@@ -25,11 +20,11 @@ const List = ({object}) => {
           {object.map((item,i) => {
             return (
               <tr key={"item_"+i}>
-                {params.map((key,j) => {
-                  if (params[j] === 'date') {
-                    return <td key={"key_"+j}>{moment(item[params[j]]).format('HH:mm - DD.MM.YYYY')}</td>;
+                {uniqueKeys.map((key,j) => {
+                  if (uniqueKeys[j] === 'date') {
+                    return <td key={"key_"+j}>{moment(item[uniqueKeys[j]]).format('HH:mm - DD.MM.YYYY')}</td>;
                   }
-                  return <td key={"key_"+j}>{item[params[j]]}</td>
+                  return <td key={"key_"+j}>{item[uniqueKeys[j]]}</td>
                 })}
               </tr>
             )

@@ -11,7 +11,7 @@ class ModalContainer extends Component {
     let {modals} = this.props;
     let activeModal = modals.find(modal => modal.active === true);
     if (activeModal !== undefined) {
-      let {name, action, id} = activeModal;
+      let {name, action} = activeModal;
       if (action === 'add') {
         let addData = {}
         if (name === 'transaction') {
