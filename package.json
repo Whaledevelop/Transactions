@@ -27,7 +27,7 @@
     "underscore": "^1.8.3"
   },
   "scripts": {
-    "start": "start json-server --watch ./transactions/data.json --port 3333 & react-scripts start",
+    "start": "start json-server --watch data.json --port 3333 & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
