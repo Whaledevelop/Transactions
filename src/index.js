@@ -5,7 +5,6 @@ import Root from './components/app/Root'
   
 import './css/bootstrap.css'
 import './css/App.css'
-import './css/fa/css/font-awesome.min.css'
 
 render(
   <Root/>,
