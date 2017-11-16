@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import NavBar from './NavBar'
-import ModalContainer from '../containers/ModalContainer'
+import ModalContainer from '../../containers/ModalContainer'
 
 class App extends Component {
   render() {

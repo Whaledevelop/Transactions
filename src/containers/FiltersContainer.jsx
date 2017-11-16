@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+
 import { turnFilter } from '../actions/filtersActions'
 import { fetchAction } from '../actions/fetchAction'
-import FilterButton from '../components/FilterButton'
+import FilterButton from '../components/app/FilterButton'
 
 class FiltersContainer extends Component {
   componentWillMount() {

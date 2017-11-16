@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import List from '../components/List'
+import List from '../components/app/List'
 import { filtersHandler } from '../modules/filtersHandler'
 import { fetchAction } from '../actions/fetchAction'
 import { showModal } from '../actions/modalsActions'
