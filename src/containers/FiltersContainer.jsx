@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { turnFilter } from '../actions/filtersActions'
-import { fetchAction } from '../actions/fetchAction'
+import { fetch, setMode} from '../actions'
+
 import FilterButton from '../components/app/FilterButton'
 
 class FiltersContainer extends Component {
@@ -18,9 +18,8 @@ class FiltersContainer extends Component {
             <FilterButton
               key={filter.id}
               color={filter.color}
-              id={filter.id}
               name={filter.name}
-              onClick={id => this.props.onTurnFilter(id)}/> 
+              onClick={name => this.props.onTurnFilter(name, 'filter')}/> 
           )        
         })}
       </div>
@@ -46,7 +45,7 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     {
-      onFetchData: fetchAction,
-      onTurnFilter: turnFilter
+      onFetchData: fetch,
+      onTurnFilter: setMode
     }
 )(FiltersContainer);

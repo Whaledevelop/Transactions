@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
+import {fetch, setMode} from '../actions'
+
 import List from '../components/app/List'
 import { filtersHandler } from '../modules/filtersHandler'
-import { fetchAction } from '../actions/fetchAction'
-import { showModal } from '../actions/modalsActions'
 
 class ListContainer extends Component {
   componentWillMount() {
@@ -19,11 +19,11 @@ class ListContainer extends Component {
     if (filtering) {
       data.object = filtersHandler(data.object, data.filters)
     };
-    let singleList = list.slice(0, -1);
+    const singleList = list.slice(0, -1);
     return (
       <div>
         <List object = {data.object}/>
-        <a className="btn btn-primary" onClick={() => onShowModal(singleList)}>
+        <a className="btn btn-primary" onClick={() => onShowModal(singleList, 'modal')}>
           Add {singleList}
         </a>
       </div>
@@ -61,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   {
-    onFetchData: fetchAction,
-    onShowModal: showModal
+    onFetchData: fetch,
+    onShowModal: setMode
   }
 )(ListContainer)

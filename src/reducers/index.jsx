@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
-import {transactions} from './transactionsReducer'
-import {filters} from './filtersReducer'
-import {counterparts} from './counterpartsReducer'
-import {modals} from './modalsReducer'
+import {transactions} from './transactions'
+import {filters} from './filters'
+import {counterparts} from './counterparts'
+import {modals} from './modals'
 
 export default combineReducers({
   transactions,

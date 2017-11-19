@@ -6,7 +6,7 @@ const initialFilters = {
 }
 
 export const filters = (state = initialFilters, action) => {
-  let {type, payload} = action;
+  const {type, payload} = action;
   switch(type) {
     case 'FETCH_FILTERS_PENDING': {
       return {
@@ -36,7 +36,7 @@ export const filters = (state = initialFilters, action) => {
     }
     case 'SET_FILTER_MODE': {
       let newFilters = Object.assign([], state.filters)
-      let filterIndex = newFilters.findIndex(f => f.id === payload)
+      let filterIndex = newFilters.findIndex(f => f.name === payload)
       newFilters[filterIndex].active = !newFilters[filterIndex].active;
       return {
         ...state,

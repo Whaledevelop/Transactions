@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import AddContainer from './AddContainer'
 import DefaultModal from '../components/modals/DefaultModal'
 import ProgressModal from '../components/modals/ProgressModal'
-import { showModal } from '../actions/modalsActions'
+import { setMode } from '../actions'
 
 class ModalContainer extends Component {
   renderModal() {
@@ -72,12 +72,12 @@ class ModalContainer extends Component {
           }     
         }
         return (
-          <DefaultModal modal={name} action={action} onClick={() => this.props.onShowModal(name)}>
+          <DefaultModal modal={name} action={action} onClick={() => this.props.onShowModal(name, 'modal')}>
             <AddContainer addData={addData}/>
           </DefaultModal>
         )
       } else if (action === 'progress') {
-        setTimeout(() => this.props.onShowModal(name), 2000);
+        setTimeout(() => this.props.onShowModal(name, 'modal'), 2000);
         return (
           <ProgressModal modal={name}/>
         )   
@@ -100,6 +100,6 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    onShowModal: showModal,
+    onShowModal: setMode,
   }
 )(ModalContainer)
