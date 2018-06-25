@@ -1,16 +1,15 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-import { setMode} from '../actions'
+import { switchMode} from '../actions'
 import ModalsNavBar from '../components/modals/ModalsNavBar'
 
-class ModalsNavContainer extends Component {
-  render() {
-    return (
-      <ModalsNavBar onClick={name => this.props.onShowModal(name, 'modal')} modals={this.props.modals}/>
-    )
-  }
-}
+const ModalsNavContainer = ({ onSwitchMode, modals }) => (
+  <ModalsNavBar 
+    onClick = {name => onSwitchMode (name, 'modal')} 
+    modals = {modals}
+  />
+)
 
 const mapStateToProps = (state) => {
   return {
@@ -20,5 +19,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {onShowModal: setMode}
+  {onSwitchMode: switchMode}
 )(ModalsNavContainer)

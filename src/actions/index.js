@@ -24,7 +24,7 @@ export const fetch = (object) => {
     }
   }
 
-  export const setMode = (name, object) => {
+  export const switchMode = (name, object) => {
     return {
       type: `SET_${object.toUpperCase()}_MODE`,
       payload: name

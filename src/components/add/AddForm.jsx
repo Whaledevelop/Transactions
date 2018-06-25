@@ -29,7 +29,7 @@ class AddForm extends Component {
             {addData.inputes.map((input,i) => {
               return (
                 <Input 
-                  key = {"input_" + i}
+                  key = {i}
                   input={input} 
                   newItem={newItem}
                   onChange={this.handleInputs}/>

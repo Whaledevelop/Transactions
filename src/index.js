@@ -1,12 +1,14 @@
 import React from 'react'
 import {render} from 'react-dom'
+import { Provider } from 'react-redux'
 
 import Root from './components/app/Root'
-  
-import './css/bootstrap.css'
-import './css/App.css'
+import {store} from './configureStore'
+
 
 render(
-  <Root/>,
+  <Provider store={store}>
+    <Root/>
+  </Provider>,
   document.getElementById('root')
 )

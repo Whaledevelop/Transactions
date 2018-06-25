@@ -4,90 +4,61 @@ import {connect} from 'react-redux'
 import AddContainer from './AddContainer'
 import DefaultModal from '../components/modals/DefaultModal'
 import ProgressModal from '../components/modals/ProgressModal'
-import { setMode } from '../actions'
+import { switchMode } from '../actions'
+import axios from 'axios';
 
 class ModalContainer extends Component {
-  renderModal() {
-    let {modals} = this.props;
-    let activeModal = modals.find(modal => modal.active === true);
-    if (activeModal !== undefined) {
-      let {name, action} = activeModal;
-      if (action === 'add') {
-        let addData = {}
-        if (name === 'transaction') {
-          addData = {
-            object: 'transactions',
-            inputes: [
-              {
-                name: 'value',
-                type: 'number'
-              },
-              {
-                name: 'type',
-                type: 'select',
-                selectValues: ['', 'income', 'consumption'],
-                dataType: 'text'
-              },
-              {
-                name: 'date',
-                type: 'date'
-              },
-              {
-                name: 'counterpartId',
-                type: 'select',
-                selectValues: [],
-                dataType: 'numbers'
-              }
-            ]
-          }
-        } else if (name === 'counterpart') {
-          addData = {
-            object: 'counterparts',
-            inputes: [
-              {
-                name: "name",
-                type: "text"
-              }
-            ]
-          }
-        } else if (name === 'filter'){
-          addData = {
-            object: 'filters',
-            inputes: [
-              {
-                name: 'filterBy',
-                type: 'select',
-                selectValues: ['', 'value', 'type', 'date']
-              },
-              {
-                name: 'name',
-                type: 'description',
-              },
-              {
-                name: 'color',
-                type: 'colors',
-                colors: ['red', 'orange', 'lightblue', 'deepblue', 'green']
-              }                                                            
-            ]
-          }     
-        }
-        return (
-          <DefaultModal modal={name} action={action} onClick={() => this.props.onShowModal(name, 'modal')}>
-            <AddContainer addData={addData}/>
-          </DefaultModal>
-        )
-      } else if (action === 'progress') {
-        setTimeout(() => this.props.onShowModal(name, 'modal'), 2000);
-        return (
-          <ProgressModal modal={name}/>
-        )   
-      }    
+  constructor(props) {
+    super(props);
+    this.state = {
+      addInputs: null
     }
-    return <div></div>    
+    this.switchModalMode = this.switchModalMode.bind(this)
+  }
+
+  switchModalMode(name) {
+    this.props.onSwitchMode(name, 'modal')
+  }
+
+  componentWillMount() {
+    axios.get("http://localhost:3333/addInputs")
+      .then(response => {
+        this.setState({ addInputs: response.data });
+      })
+      .catch(error => { console.log (error) }) 
   }
 
   render() {
-    return this.renderModal()
+    let activeModal = this.props.modals.find(modal => (
+      modal.active === true
+    ));
+    if (activeModal !== undefined) {
+      const {action, name} = activeModal;
+      switch (action) {
+        case "add" : {
+          if (this.state.addInputs !== null) {
+            return (
+              <DefaultModal 
+                modal={name} 
+                action={action} 
+                onClick={this.switchModalMode}
+              >
+                <AddContainer 
+                  addData={this.state.addInputs}
+                />
+              </DefaultModal>
+            )
+          } else return null 
+        }
+        case "progress" : {
+          setTimeout(this.switchModalMode, 2000);
+          return (
+            <ProgressModal modal={name}/>
+          )
+        }
+        default: return null
+      }   
+    } else return null
   }
 }
 
@@ -99,7 +70,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {
-    onShowModal: setMode,
-  }
+  {onSwitchMode: switchMode}
 )(ModalContainer)

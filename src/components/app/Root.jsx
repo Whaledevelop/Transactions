@@ -1,27 +1,24 @@
 import React from 'react';
-import { Provider } from 'react-redux'
 import { Router, Route, Switch } from 'react-router-dom'
+import createBrowserHistory from 'history/createBrowserHistory'
 
-import {store, history} from '../../configureStore'
 import App from './App'
-import Home from '../../pages/Home'
-import Transactions from '../../pages/Transactions'
-import Counterparts from '../../pages/Counterparts'
-import Filters from '../../pages/Filters'
+import Home from '../../routes/Home'
+import Transactions from '../../routes/Transactions'
+import Counterparts from '../../routes/Counterparts'
+import Filters from '../../routes/Filters'
 
 const Root = () => (
-  <Provider store={store}>
-    <Router history={history}>
-      <App>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/transactions" component={Transactions}/>
-          <Route path="/counterparts" component={Counterparts}/>
-          <Route path="/filters" component={Filters}/>
-        </Switch>
-      </App>
-    </Router>
-  </Provider>
+  <Router history={createBrowserHistory()}>
+    <App>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/transactions" component={Transactions}/>
+        <Route path="/counterparts" component={Counterparts}/>
+        <Route path="/filters" component={Filters}/>
+      </Switch>
+    </App>
+  </Router>
 )
 
 export default Root

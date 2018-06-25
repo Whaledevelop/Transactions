@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import {fetch, setMode} from '../actions'
+import {fetch, switchMode} from '../actions'
 
 import List from '../components/app/List'
 import { filtersHandler } from '../modules/filtersHandler'
@@ -15,7 +15,7 @@ class ListContainer extends Component {
   }
 
   renderList() {
-    let {data, filtering, list, onShowModal} = this.props;
+    let {data, filtering, list, onSwitchMode} = this.props;
     if (filtering) {
       data.object = filtersHandler(data.object, data.filters)
     };
@@ -23,7 +23,7 @@ class ListContainer extends Component {
     return (
       <div>
         <List object = {data.object}/>
-        <a className="btn btn-primary" onClick={() => onShowModal(singleList, 'modal')}>
+        <a className="btn btn-primary" onClick={() => onSwitchMode(singleList, 'modal')}>
           Add {singleList}
         </a>
       </div>
@@ -45,12 +45,11 @@ class ListContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let data = {
-    object: state[ownProps.list][ownProps.list],
-    objectFetched: state[ownProps.list].fetched,
-    modals: state.modals
+    object: state[ownProps.list].data,
+    objectFetched: state[ownProps.list].fetched
   }
   if (ownProps.filtering) {
-    data['filters'] = state.filters.filters;
+    data['filters'] = state.filters.data;
     data['filtersFetched'] = state.filters.fetched;
   }
   return {
@@ -62,6 +61,6 @@ export default connect(
   mapStateToProps,
   {
     onFetchData: fetch,
-    onShowModal: setMode
+    onSwitchMode: switchMode
   }
 )(ListContainer)

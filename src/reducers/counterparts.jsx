@@ -1,5 +1,7 @@
+// import {defaultReducers} from './defaultReducers/index.js'
+
 const initialCounterparts = {
-  counterparts: [],
+  data: [],
   fetching: false,
   fetched: false,
   error: null
@@ -8,27 +10,25 @@ const initialCounterparts = {
 export const counterparts = (state = initialCounterparts, action) => {
   switch(action.type) {
     case 'FETCH_COUNTERPARTS_PENDING': {
-      return {
-        ...state, 
-        fetching: true} 
+      return {...state, 
+        fetching: true
+      } 
     }
     case 'FETCH_COUNTERPARTS_REJECTED': {
-      return {
-        ...state, 
+      return {...state, 
         fetching: false, 
-        error: action.payload} 
+        error: action.payload
+      } 
     }
     case 'FETCH_COUNTERPARTS_FULFILLED': {
-      return {
-        ...state,
+      return {...state,
         fetching: false, 
         fetched: true,
         counterparts: action.payload 
       } 
     }
     case 'ADD_COUNTERPARTS': {
-      return {
-        ...state,
+      return {...state,
         counterparts: [...state.counterparts, action.payload]
       }
     }

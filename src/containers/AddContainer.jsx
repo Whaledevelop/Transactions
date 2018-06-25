@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { add, fetch, setMode } from '../actions'
+import { add, fetch, switchMode } from '../actions'
 
 import { nameInterpretator } from '../modules/nameInterpratator'
 import AddForm from '../components/add/AddForm'
@@ -9,6 +9,7 @@ import AddForm from '../components/add/AddForm'
 class AddContainer extends Component {
   componentWillMount(){
     const {onFetchData, addData} = this.props;
+    console.log (addData);
     onFetchData(addData.object);
     if (addData.object === 'transactions') {
       onFetchData('counterparts')  
@@ -44,6 +45,8 @@ class AddContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log (ownProps);
+  console.log (state)
   const {object} = ownProps.addData;
   let dataFromStore = {
     id: state[object][object].length + 1
@@ -64,6 +67,6 @@ export default connect(
   {
     onAddItem: add,
     onFetchData: fetch,
-    onShowModal: setMode
+    onShowModal: switchMode
   }
 )(AddContainer);
