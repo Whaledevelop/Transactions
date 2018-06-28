@@ -15,7 +15,7 @@ class AddContainer extends Component {
   }
 
   submitAdding(newItem) {
-    const {addObjKey, nextId, onAddItem, onFetchData, onSwitchMode} = this.props;
+    const {addObjKey, nextId, onAddItem, onSwitchMode} = this.props;
     const newItemWithId = {id: nextId, ...newItem};
     onAddItem(newItemWithId, addObjKey);
     onSwitchMode('success', 'modal');

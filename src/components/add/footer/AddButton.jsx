@@ -1,38 +1,52 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const AddButton = ({ addStatus, onClick }) => {
-  let className;
-  switch (addStatus) {
-    case "Ready" : {
-      className = "btn btn-primary";
-      break;
+class AddButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clickCount : 0
     }
-    case "Not ready" : {
-      className = "btn btn-primary disabled";
-      break;
-    }
-    case "Rejected" : {
-      className = "btn btn-warning";
-      break;
-    }
-    case "Done" : {
-      className = "btn btn-success";
-      break;
-    }
-    case "Overrejected" : {
-      className = "btn btn-danger";
-      break;
-    }
-    default: return null
+    this.handleClick = this.handleClick.bind(this)
   }
-  return (
-    <div
-      className={`${className} addButton`}
-      onClick={onClick}
-    >
+
+  plusClickCount() {
+    this.setState(prevState => ({
+      clickCount: prevState.clickCount + 1
+    }))
+  }
+
+  handleClick() {
+    switch (this.props.addStatus) {
+      case "Ready" : {
+        this.props.onClick("Done");
+        this.setState({ clickCount: 0 });
+        break;
+      }
+      case "Not ready" : {
+        this.props.onClick("Rejected");
+        this.plusClickCount();
+        break;
+      }
+      case "Rejected" : {
+        const addStatus = this.state.clickCount >= 3 ? "Overrejected" : "Rejected"
+        this.props.onClick(addStatus)
+        this.plusClickCount();
+        break;
+      }
+      default: this.plusClickCount();
+    }
+  }
+
+  render() {
+    return (
+      <div
+        className={`${this.props.className} addButton`}
+        onClick={this.handleClick}
+      >
       Add
     </div>
-  )
+    )
+  }
 }
  
 export default AddButton;

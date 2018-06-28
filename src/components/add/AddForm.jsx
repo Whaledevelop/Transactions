@@ -1,7 +1,7 @@
 import React from 'react'
 
 import InputRow from './inputsBlock/InputRow';
-import AddFormFooter from './footer/AddFormFooter';
+import AddFormFooterContainer from '../../containers/AddFormFooterContainer';
 
 const AddForm = ({ fetched, addFormData, newItem, info, onChange, onSubmit }) => {
   return (
@@ -17,7 +17,7 @@ const AddForm = ({ fetched, addFormData, newItem, info, onChange, onSubmit }) =>
                 onChange={onChange}
               />
             ))}
-            <AddFormFooter
+            <AddFormFooterContainer
               info = {info}
               inputsAmount = {addFormData.length}
               onSubmit={onSubmit}

@@ -1,65 +1,56 @@
 import React, {Component} from 'react';
 
 import AddButton from './AddButton';
-import AddMessage from './AddMessage';
 
 class AddFormFooter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      addStatus: "Not ready",
-      clickCount: 0
-    }
-    this.handleButtonClick = this.handleButtonClick.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let infoValues = Object.values(nextProps.info);
-    const addStatus = (
-      infoValues.every(info => info === 'correct') &&
-      nextProps.inputsAmount === infoValues.length
-     ) ? "Ready" : "Not ready"
-    this.setState({
-      addStatus: addStatus,
-      clickCount: 0
-    })
-  }
-
-  handleButtonClick() {
-    const {addStatus, clickCount} = this.state
-    if (addStatus === "Ready") {
-      this.setState({
-        addStatus: "Done",
-        clickCount: 0
-      })
-      this.props.onSubmit()
-    } else if (addStatus === "Not ready") {
-      this.setState(prevState => {
+  handleAddStatus() {
+    switch (this.props.addStatus) {
+      case "Ready" : {
         return {
-          addStatus: "Rejected",
-          clickCount: prevState.clickCount + 1
+          className: "btn btn-primary",
+          message: "Correct data. Ready to add"
         }
-      }) 
-    } else if (addStatus === "Rejected") {
-      this.setState(prevState => {
+      }
+      case "Not ready" : {
         return {
-          addStatus: clickCount >= 3 ? "Overrejected" : "Rejected",
-          clickCount: prevState.clickCount + 1
+          className: "btn btn-primary disabled",
+          message: ""
         }
-      })       
+      }
+      case "Rejected" : {
+        return {
+          className: "btn btn-warning",
+          message: "Fill all inputs with correct data"
+        } 
+      }
+      case "Done" : {
+        return {
+          className: "btn btn-success",
+          message: "Done. Well done"
+        }
+      }
+      case "Overrejected" : {
+        return {
+          className: "btn btn-danger",
+          message: "Don't be angry. Fill inputs"
+        }
+      }
+      default: return null
     }
   }
 
   render() {
+    const {className, message} = this.handleAddStatus();
     return (
       <div className='col-lg-12'>
         <AddButton
-          addStatus = {this.state.addStatus}
-          onClick = {this.handleButtonClick}
+          className = {className}
+          addStatus = {this.props.addStatus}
+          onClick = {this.props.onClick}
         />
-        <AddMessage
-          addStatus = {this.state.addStatus}
-        />
+        <div className="addMessage">
+          {message}
+        </div>
       </div>
     )
   }   
