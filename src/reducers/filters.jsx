@@ -8,8 +8,6 @@ const initialFilters = {
 }
 
 export const filters = (state = initialFilters, action) => {
-//   return defaultReducers(state, action);
-// }
   const {type, payload} = action;
   switch(type) {
     case 'FETCH_FILTERS_PENDING': {

@@ -3,9 +3,9 @@ import ListContainer from '../containers/ListContainer'
 
 const Counterparts = () => (
   <ListContainer 
-    filtering={false} 
-    list='counterparts' 
-    size='col-lg-6'
+    filterable = {false} 
+    listName = 'counterparts' 
+    size = 'col-lg-6'
   />
 )
 

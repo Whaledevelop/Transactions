@@ -9,11 +9,9 @@ export const modals = (state = initialModals, action) => {
   switch (action.type) {
     case 'SET_MODAL_MODE': {
       const modals = state.map(modal => {
-        if (modal.name === action.payload) {
-          modal.active = !modal.active;
-        } else {
-          modal.active = false
-        }
+        modal.active = modal.name === action.payload
+          ? !modal.active 
+          : false
         return modal
       })
       return Object.assign([], modals)

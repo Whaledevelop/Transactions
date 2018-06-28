@@ -3,8 +3,10 @@
 	margin-top: 100px; 
 }
 
-/**/
-
+.statusMessageHeader {
+	line-height: 300px;
+	text-align: center;
+}
 
 .table {
 	border: 1px solid #eeeeee;
@@ -23,6 +25,13 @@ td:first-child, th:first-child {
 	position: absolute;
 	margin-left: 440px;
 	margin-top: -40px;
+}
+
+.addButton {
+	width: 80px; 
+	border-radius: 3px;
+	margin-top: 15px;
+	margin-left: 151px
 }
 
 .addMessage {

@@ -9,14 +9,17 @@ class FiltersRowContainer extends Component {
     this.props.onFetchData('filters')
   }
 
+  handleSwitchMode(name) {
+    this.props.onSwitchMode(name, "filter")
+  }
+
   render() {
-    console.log (this.props.filters)
     return (
       <FiltersRow
         size = {this.props.size}
         filters = {this.props.filters}
         fetched = {this.props.fetched}
-        onSwitchMode = {this.props.onSwitchMode}
+        onSwitchMode = {this.handleSwitchMode.bind(this)}
       />
     )
   }

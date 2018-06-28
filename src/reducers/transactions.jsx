@@ -22,12 +22,13 @@ export const transactions = (state = initialTransactions, action) => {
       return {...state,
         fetching: false, 
         fetched: true,
-        transactions: action.payload 
+        data: action.payload 
       } 
     }
     case 'ADD_TRANSACTIONS': {
-      return {...state,
-        transactions: [...state.transactions, action.payload]
+      return {
+        ...state,
+        data: [...state.transactions, action.payload]
       }
     }
     default: return state

@@ -3,57 +3,72 @@ import { connect } from 'react-redux'
 
 import {fetch, switchMode} from '../actions'
 
-import List from '../components/app/List'
-import { filtersHandler } from '../modules/filtersHandler'
+import List from '../components/list/List'
+import FilterableListContainer from './FilterableListContainer';
 
 class ListContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSwitchMode = this.handleSwitchMode.bind(this)
+  }
+
   componentWillMount() {
-    this.props.onFetchData(this.props.list);
-    if (this.props.filtering) {
-      this.props.onFetchData('filters')
+    this.props.onFetchData(this.props.listName);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.listData !== this.props.listData) {
+      this.props.onFetchData(nextProps.listName);
     }
   }
 
+  handleSwitchMode(name) {
+    this.props.onSwitchMode(name, 'modal')
+  }
+
   renderList() {
-    let {data, filtering, list, onSwitchMode} = this.props;
-    if (filtering) {
-      data.object = filtersHandler(data.object, data.filters)
-    };
-    const singleList = list.slice(0, -1);
-    return (
-      <div>
-        <List object = {data.object}/>
-        <a className="btn btn-primary" onClick={() => onSwitchMode(singleList, 'modal')}>
-          Add {singleList}
-        </a>
-      </div>
-    )
+    if (this.props.filterable) {
+      return (
+        <FilterableListContainer
+          listData = {this.props.listData}
+          listName = {this.props.listName}
+          onSwitchMode = {this.handleSwitchMode}
+        />
+      )
+    } else {
+      return (
+        <List 
+          listData = {this.props.listData}
+          listName = {this.props.listName}
+          onSwitchMode = {this.handleSwitchMode}
+        />
+      )
+    }
   }
 
   renderLoading() {
-    return <h4 style={{lineHeight: '300px', textAlign: 'center'}}>Loading {this.props.list}</h4>
+    return (
+      <h4 className = "statusMessageHeader">
+        Loading {this.props.listName}
+      </h4>
+    )
   }
-  
+
   render() {
-    return ( 
+    return (
       <div className={this.props.size}>
-        {this.props.data.objectFetched ? this.renderList() : this.renderLoading()}
-      </div> 
+        {this.props.fetched ? this.renderList() : this.renderLoading()}
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let data = {
-    object: state[ownProps.list].data,
-    objectFetched: state[ownProps.list].fetched
-  }
-  if (ownProps.filtering) {
-    data['filters'] = state.filters.data;
-    data['filtersFetched'] = state.filters.fetched;
-  }
+  const fetched = state[ownProps.listName].fetched;
+  const listData = fetched ? state[ownProps.listName].data : []
   return {
-    data: data
+    listData: listData,
+    fetched: fetched
   }
 }
 

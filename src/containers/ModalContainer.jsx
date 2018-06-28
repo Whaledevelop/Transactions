@@ -1,70 +1,30 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import AddContainer from './AddContainer'
-import DefaultModal from '../components/modals/DefaultModal'
-import ProgressModal from '../components/modals/ProgressModal'
 import { switchMode } from '../actions'
-import axios from 'axios';
+import ModalWindow from '../components/modals/ModalWindow';
 
 class ModalContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      addInputs: null
-    }
-    this.switchModalMode = this.switchModalMode.bind(this)
-  }
-
-  switchModalMode(name) {
-    this.props.onSwitchMode(name, 'modal')
-  }
-
-  componentWillMount() {
-    axios.get("http://localhost:3333/addInputs")
-      .then(response => {
-        this.setState({ addInputs: response.data });
-      })
-      .catch(error => { console.log (error) }) 
+  handleSwitchMode(name) {
+    this.props.onSwitchMode(name, "modal")
   }
 
   render() {
-    let activeModal = this.props.modals.find(modal => (
-      modal.active === true
-    ));
-    if (activeModal !== undefined) {
-      const {action, name} = activeModal;
-      switch (action) {
-        case "add" : {
-          if (this.state.addInputs !== null) {
-            return (
-              <DefaultModal 
-                modal={name} 
-                action={action} 
-                onClick={this.switchModalMode}
-              >
-                <AddContainer 
-                  addData={this.state.addInputs}
-                />
-              </DefaultModal>
-            )
-          } else return null 
-        }
-        case "progress" : {
-          setTimeout(this.switchModalMode, 2000);
-          return (
-            <ProgressModal modal={name}/>
-          )
-        }
-        default: return null
-      }   
-    } else return null
+    return (
+      <ModalWindow
+        modal = {this.props.modal}
+        onSwitchMode = {this.handleSwitchMode.bind(this)}
+      />
+    )
   }
 }
 
 const mapStateToProps = (state) => {
+  const activeModal = state.modals.find(modal => (
+    modal.active === true
+  ));
   return {
-    modals: state.modals,
+    modal: activeModal,
   }
 }
 

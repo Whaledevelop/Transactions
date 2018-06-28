@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Modal} from 'react-bootstrap'
-import {firstLetterUpperCase} from '../../modules/functional/firstLetterUpperCase'
+import {firstLetterUpperCase} from '../../modules/firstLetterUpperCase'
           
 class ProgressModal extends Component {
   progressModalStyle() {
@@ -14,7 +14,8 @@ class ProgressModal extends Component {
     <Modal
       {...this.props}
       show={true}
-      dialogClassName="custom-modal">
+      dialogClassName="custom-modal"
+    >
       <Modal.Body>
         <div className="progressModal" style={this.progressModalStyle()}>
           <h2 className="progressModalLabel">

@@ -4,20 +4,22 @@ import { connect } from 'react-redux'
 import { switchMode} from '../actions'
 import ModalsNavBar from '../components/modals/ModalsNavBar'
 
-const ModalsNavContainer = ({ onSwitchMode, modals }) => (
+const ModalsNavBarContainer = ({ modals, onSwitchMode }) => (
   <ModalsNavBar 
-    onClick = {name => onSwitchMode (name, 'modal')} 
     modals = {modals}
+    label = "Add"
+    onSwitchMode = {name => onSwitchMode (name, 'modal')} 
   />
 )
 
 const mapStateToProps = (state) => {
+  const addModals = state.modals.filter(modal => modal.action === 'add');
   return {
-    modals: state.modals
+    modals: addModals
   }
 }
 
 export default connect(
   mapStateToProps,
   {onSwitchMode: switchMode}
-)(ModalsNavContainer)
+)(ModalsNavBarContainer)

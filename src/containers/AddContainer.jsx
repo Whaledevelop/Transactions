@@ -2,63 +2,67 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import { add, fetch, switchMode } from '../actions'
-
-import { nameInterpretator } from '../modules/nameInterpratator'
-import AddForm from '../components/add/AddForm'
+import AddFormContainer from './AddFormContainer';
 
 class AddContainer extends Component {
   componentWillMount(){
-    const {onFetchData, addData} = this.props;
-    console.log (addData);
-    onFetchData(addData.object);
-    if (addData.object === 'transactions') {
+    const {onFetchData, addObjKey} = this.props;
+    onFetchData(addObjKey);
+    if (addObjKey === 'transactions') {
       onFetchData('counterparts')  
     }
+    onFetchData('addInputs')
   }
 
-  submitAdding(item) {
-    const {addData, dataFromStore, onAddItem, onFetchData, onShowModal} = this.props;
-    let newItem = Object.assign({}, item, {id: dataFromStore.id});
-    if ((Object.keys(newItem).indexOf('filterBy') !== -1) 
-      & (Object.keys(newItem).indexOf('name') !== -1)) {
-        const additionalData = nameInterpretator(newItem.name, newItem.filterBy)
-        newItem = Object.assign({}, newItem, additionalData)
-    }
-    onAddItem(newItem, addData.object);
-    onShowModal('success', 'modal') 
-    onFetchData(addData.object);   
+  submitAdding(newItem) {
+    const {addObjKey, nextId, onAddItem, onFetchData, onSwitchMode} = this.props;
+    const newItemWithId = {id: nextId, ...newItem};
+    onAddItem(newItemWithId, addObjKey);
+    onSwitchMode('success', 'modal');
   } 
   
-  render() {
-    let {addData, dataFromStore} = this.props
-    if (addData.object === 'transactions') {
-      const counterpartsIndex = addData.inputes.findIndex(input => input.name === 'counterpartId')
-      addData.inputes[counterpartsIndex].selectValues = dataFromStore.counterpartsId
-    }
-    
+  render() {    
     return (
-      <AddForm 
-        onClick={this.submitAdding.bind(this)}
-        addData={addData}/>
+      <AddFormContainer
+        addFormData = {this.props.addFormData}
+        fetched = {this.props.fetched}
+        onSubmit = {this.submitAdding.bind(this)}
+      />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log (ownProps);
-  console.log (state)
-  const {object} = ownProps.addData;
-  let dataFromStore = {
-    id: state[object][object].length + 1
-  }
-  if (object === 'transactions') {
-    dataFromStore['counterpartsId'] = state['counterparts']['counterparts'].map(counterpart => {
-      return counterpart.id
-    })
-    dataFromStore['counterpartsId'].unshift('');
-  }
+  const addObj = state[ownProps.addObjKey] // Объект с свойствами добавляемого объекта
+  const fetched = addObj.fetched && state.addInputs.fetched;
+  /*
+    addFormData - данные об инпутах формы для добавления определенного 
+    объекта: транзакции, контрагента или фильтра. У них разные инпуты
+  */
+  const addFormData = state.addInputs.data[ownProps.addObjKey];
+  if (fetched) {
+    /*
+      В форме для добавления транзакции нужно указать id контрагента из списка,
+      являющегося массивом с id всех действующих контрагентов. Т.к. количество
+      контрагентов может меняться, то эту информацию нужно добавлять дополнительно
+      для настоящего времени
+    */
+    if (ownProps.addObjKey === 'transactions') {
+      if (state['counterparts'].fetched) {
+        const counterpartsId = state['counterparts'].data.map(counterpart => {
+          return counterpart.id
+        })
+        const selectCounterpartInput = addFormData.find(input => (
+          input.name === "counterpartId"
+        ))
+        selectCounterpartInput.selectValues = counterpartsId;
+      }
+    }
+  }  
   return {
-    dataFromStore: dataFromStore
+    addFormData: addFormData,
+    fetched: fetched,
+    nextId: addObj.data.length + 1
   }
 }
 
@@ -67,6 +71,6 @@ export default connect(
   {
     onAddItem: add,
     onFetchData: fetch,
-    onShowModal: switchMode
+    onSwitchMode: switchMode
   }
 )(AddContainer);

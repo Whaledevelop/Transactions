@@ -67,29 +67,8 @@
       "id": 10,
       "value": 3000,
       "type": "income",
-      "date": "2017-11-18T21:30",
+      "date": "2018-06-18T21:30",
       "counterpartId": 3
-    },
-    {
-      "value": "9",
-      "type": "consumption",
-      "counterpartId": 2,
-      "date": "2018-06-20T08:23",
-      "id": 11
-    },
-    {
-      "value": "4",
-      "type": "consumption",
-      "date": "1994-03-30T20:30",
-      "counterpartId": 2,
-      "id": 12
-    },
-    {
-      "value": "232323333",
-      "type": "consumption",
-      "date": "1980-01-01T03:23",
-      "counterpartId": 3,
-      "id": 13
     }
   ],
   "counterparts": [
@@ -108,10 +87,6 @@
     {
       "id": 4,
       "name": "John Frusciante"
-    },
-    {
-      "name": "Nikolay",
-      "id": 5
     }
   ],
   "filters": [
@@ -121,7 +96,8 @@
       "color": "green",
       "className": "btn btn-success",
       "filterBy": "type",
-      "value": "income"
+      "value": "income",
+      "unit": ""
     },
     {
       "id": 2,
@@ -129,13 +105,14 @@
       "color": "orange",
       "className": "btn btn-warning",
       "filterBy": "type",
-      "value": "consumption"
+      "value": "consumption",
+      "unit": ""
     },
     {
       "id": 3,
       "name": "This month",
       "color": "lightblue",
-      "className" : "btn btn-info",
+      "className": "btn btn-info",
       "filterBy": "date",
       "value": 30,
       "unit": "days"
@@ -159,22 +136,22 @@
       {
         "name": "type",
         "type": "select",
+        "selectValuesType": "text",
         "selectValues": [
-          "",
           "income",
           "consumption"
-        ],
-        "dataType": "text"
+        ]
       },
       {
         "name": "date",
-        "type": "date"
+        "type": "datetime-local",
+        "max": "2020-01-01T00:00"
       },
       {
         "name": "counterpartId",
         "type": "select",
-        "selectValues": [],
-        "dataType": "numbers"
+        "selectValuesType": "number",
+        "selectValues": []
       }
     ],
     "counterparts": [
@@ -187,8 +164,8 @@
       {
         "name": "filterBy",
         "type": "select",
+        "selectValuesType": "text",
         "selectValues": [
-          "",
           "value",
           "type",
           "date"
@@ -196,17 +173,33 @@
       },
       {
         "name": "name",
-        "type": "description"
+        "type": "descriptive",
+        "descriptorKey": "filterBy"
       },
       {
         "name": "color",
         "type": "colors",
-        "colors": [
-          "red",
-          "orange",
-          "lightblue",
-          "deepblue",
-          "green"
+        "buttons": [
+          {
+            "color": "red",
+            "className": "btn btn-danger"
+          },
+          {
+            "color": "orange",
+            "className": "btn btn-warning"
+          },
+          {
+            "color": "lightblue",
+            "className": "btn btn-info"
+          },
+          {
+            "color": "deepblue",
+            "className": "btn btn-primary"
+          },
+          {
+            "color": "green",
+            "className": "btn btn-success"
+          }
         ]
       }
     ]

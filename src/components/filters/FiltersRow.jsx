@@ -11,7 +11,7 @@ const FiltersRow = ({ size, fetched, filters, onSwitchMode }) => (
             key={filter.id}
             className={filter.className}
             name={filter.name}
-            onClick={name => onSwitchMode(name, 'filter')}
+            onClick={onSwitchMode}
           /> 
         ))}
       </div>

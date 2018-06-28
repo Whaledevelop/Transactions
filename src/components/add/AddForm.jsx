@@ -1,49 +1,34 @@
-import React, {Component} from 'react'
-import Input from './Input'
-import AddButton from './AddButton'
+import React from 'react'
 
-class AddForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newItem: {},
-      info: {}
-    }
-    this.handleInputs = this.handleInputs.bind(this);
-  }
+import InputRow from './inputsBlock/InputRow';
+import AddFormFooter from './footer/AddFormFooter';
 
-  handleInputs(name, value, info) {
-    this.setState(prevState => ({
-      newItem: {...prevState.newItem, [name] : value},
-      info: {...prevState.info, [name] : info}
-    }));
-  }
-
-  render() {
-    let { info, newItem } = this.state;  
-    let { onClick, addData } = this.props;
-    return (
-      <div style={{marginLeft: '80px'}}>
+const AddForm = ({ fetched, addFormData, newItem, info, onChange, onSubmit }) => {
+  return (
+    <div style={{marginLeft: '80px'}}>
+      {fetched ? (
         <form className="form-horizontal">
           <fieldset>
-            {addData.inputes.map((input,i) => {
-              return (
-                <Input 
-                  key = {i}
-                  input={input} 
-                  newItem={newItem}
-                  onChange={this.handleInputs}/>
-              )     
-            })}
-            <AddButton
-              onClick={() => onClick(newItem)}
+            {addFormData.map((input,i) => (
+              <InputRow 
+                key = {i}
+                input={input} 
+                newItem={newItem}
+                onChange={onChange}
+              />
+            ))}
+            <AddFormFooter
               info = {info}
-              inputesAmount = {addData.inputes.length}/>
+              inputsAmount = {addFormData.length}
+              onSubmit={onSubmit}
+            />
           </fieldset>           
         </form>
-      </div>
-    )
-  } 
+      ) : (
+        <h4 className = "loadingHeader">Loading</h4>
+      )}
+    </div>
+  )
 }
 
 export default AddForm

@@ -9,9 +9,9 @@ const Transactions = () => {
     <div> 
       <FiltersRowContainer size={size}/>
       <ListContainer 
-        filtering={true} 
-        list='transactions' 
-        size={size}
+        filterable = {true} 
+        listName = 'transactions' 
+        size = {size}
       />
     </div>
   )

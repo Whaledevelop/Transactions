@@ -24,12 +24,12 @@ export const counterparts = (state = initialCounterparts, action) => {
       return {...state,
         fetching: false, 
         fetched: true,
-        counterparts: action.payload 
+        data: action.payload 
       } 
     }
     case 'ADD_COUNTERPARTS': {
       return {...state,
-        counterparts: [...state.counterparts, action.payload]
+        data: [...state.counterparts, action.payload]
       }
     }
     default: return state
