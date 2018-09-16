@@ -5,7 +5,7 @@ import AddFormFooterContainer from '../../containers/AddFormFooterContainer';
 
 const AddForm = ({ fetched, addFormData, newItem, info, onChange, onSubmit }) => {
   return (
-    <div style={{marginLeft: '80px'}}>
+    <div className = "addForm">
       {fetched ? (
         <form className="form-horizontal">
           <fieldset>

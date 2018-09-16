@@ -9,12 +9,14 @@ export const addInputs = (state = initialAddInputs, action) => {
   const {type, payload} = action;
   switch(type) {
     case 'FETCH_ADDINPUTS_PENDING': {
-      return {...state, 
+      return {
+        ...state, 
         fetching: true
       } 
     }
     case 'FETCH_ADDINPUTS_REJECTED': {
-      return {...state, 
+      return {
+        ...state, 
         fetching: false, 
         error: payload
       } 

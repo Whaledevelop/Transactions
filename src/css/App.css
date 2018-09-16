@@ -27,6 +27,10 @@ td:first-child, th:first-child {
 	margin-top: -40px;
 }
 
+.addForm {
+	margin-left: 80px
+}
+
 .addButton {
 	width: 80px; 
 	border-radius: 3px;
@@ -42,7 +46,7 @@ td:first-child, th:first-child {
 }
 
 .progressModal {
-	height: '400px'
+	height: 400px
 }
 
 .progressModalLabel {
